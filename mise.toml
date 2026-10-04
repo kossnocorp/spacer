@@ -1,0 +1,11 @@
+monorepo_root = true
+
+[monorepo]
+config_roots = ["pkgs/*"]
+
+[tools]
+fnox = "latest"
+node = "latest"
+oxfmt = "latest"
+pnpm = "latest"
+uv = "latest"

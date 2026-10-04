@@ -1,0 +1,1850 @@
+[
+  {
+    "number": 1,
+    "path": "extensions/git/src/main.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 397,
+    "added": 6,
+    "deleted": 28,
+    "changed": 34,
+    "percent": 8.564231738035264,
+    "oldStart": 310,
+    "newStart": 298,
+    "decisions": [
+      {
+        "line": 311,
+        "probability": 0.19,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 314,
+        "probability": 0.46,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 328,
+        "probability": 0.28,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 337,
+        "probability": 0.25,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 341,
+        "probability": 0.53,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 348,
+        "probability": 0.23,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 321,
+        "probability": 0.82,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -310,44 +298,38 @@\n-\n     commands.executeCommand(\"setContext\", \"git.missing\", true);\n     warnAboutMissingGit();\n-\n     return new GitExtensionImpl();\n   } finally {\n     disposables.push(new GitProtocolHandler(logger));\n   }\n }\n \n let _context: ExtensionContext;\n+\n export function getExtensionContext(): ExtensionContext {\n   return _context;\n }\n \n export async function activate(context: ExtensionContext): Promise<GitExtension> {\n   _context = context;\n-\n   const result = await _activate(context);\n   context.subscriptions.push(registerAPICommands(result));\n   return result;\n }\n \n async function checkGitv1(info: IGit): Promise<void> {\n   const config = workspace.getConfiguration(\"git\");\n   const shouldIgnore = config.get<boolean>(\"ignoreLegacyWarning\") === true;\n-\n   if (shouldIgnore) {\n     return;\n   }\n-\n   if (!/^[01]/.test(info.version)) {\n     return;\n   }\n \n   const update = l10n.t(\"Update Git\");\n   const neverShowAgain = l10n.t(\"Don't Show Again\");\n-\n   const choice = await window.showWarningMessage(\n     l10n.t('You seem to have git \"{0}\" installed. Code works best with git >= 2', info.version),\n     update,\n     neverShowAgain,\n   );\n-"
+  },
+  {
+    "number": 2,
+    "path": "extensions/git/src/askpass.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 198,
+    "added": 1,
+    "deleted": 13,
+    "changed": 14,
+    "percent": 7.07070707070707,
+    "oldStart": 60,
+    "newStart": 58,
+    "decisions": [
+      {
+        "line": 63,
+        "probability": 0.34,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 66,
+        "probability": 0.3,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 83,
+        "probability": 0.17,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 85,
+        "probability": 0.36,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 90,
+        "probability": 0.38,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 102,
+        "probability": 0.17,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -60,45 +58,39 @@\n   async handle(payload: { askpassType: \"https\" | \"ssh\"; argv: string[] }): Promise<string> {\n     this.logger.trace(`[Askpass][handle] ${JSON.stringify(payload)}`);\n-\n     const config = workspace.getConfiguration(\"git\", null);\n     const enabled = config.get<boolean>(\"enabled\");\n-\n     if (!enabled) {\n       this.logger.trace(`[Askpass][handle] Git is disabled`);\n       return \"\";\n     }\n \n     return payload.askpassType === \"https\"\n       ? await this.handleAskpass(payload.argv)\n       : await this.handleSSHAskpass(payload.argv);\n   }\n \n   async handleAskpass(argv: string[]): Promise<string> {\n     // HTTPS (username | password)\n     // Username for 'https://github.com':\n     // Password for 'https://github.com':\n     const request = argv[2];\n     const host = argv[4].replace(/^[\"']+|[\"':]+$/g, \"\");\n-\n     this.logger.trace(`[Askpass][handleAskpass] request: ${request}, host: ${host}`);\n-\n     const uri = Uri.parse(host);\n     const authority = uri.authority.replace(/^.*@/, \"\");\n     const password = /password/i.test(request);\n     const cached = this.cache.get(authority);\n-\n     if (cached && password) {\n       this.cache.delete(authority);\n       clearTimeout(this.cacheEvictionTimers.get(authority));\n       this.cacheEvictionTimers.delete(authority);\n       return cached.password;\n     }\n \n     if (!password) {\n       for (const credentialsProvider of this.credentialsProviders) {\n         try {\n           const credentials = await credentialsProvider.getCredentials(uri);\n-\n           if (credentials) {\n             this.cache.set(authority, credentials);\n             clearTimeout(this.cacheEvictionTimers.get(authority));"
+  },
+  {
+    "number": 3,
+    "path": "extensions/git/src/staging.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 284,
+    "added": 0,
+    "deleted": 23,
+    "changed": 23,
+    "percent": 8.098591549295776,
+    "oldStart": 18,
+    "newStart": 18,
+    "decisions": [
+      {
+        "line": 24,
+        "probability": 0.29,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 28,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 31,
+        "probability": 0.3,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 41,
+        "probability": 0.54,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 45,
+        "probability": 0.35,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 53,
+        "probability": 0.36,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 58,
+        "probability": 0.53,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -18,45 +18,37 @@\n   modified: TextDocument,\n   diffs: LineChange[],\n ): string {\n   const result: string[] = [];\n   let currentLine = 0;\n-\n   for (const diff of diffs) {\n     const isInsertion = diff.originalEndLineNumber === 0;\n     const isDeletion = diff.modifiedEndLineNumber === 0;\n-\n     let endLine = isInsertion ? diff.originalStartLineNumber : diff.originalStartLineNumber - 1;\n     let endCharacter = 0;\n-\n     // if this is a deletion at the very end of the document,then we need to account\n     // for a newline at the end of the last line which may have been deleted\n     // https://github.com/microsoft/vscode/issues/59670\n     if (isDeletion && diff.originalEndLineNumber === original.lineCount) {\n       endLine -= 1;\n       endCharacter = original.lineAt(endLine).range.end.character;\n     }\n \n     result.push(original.getText(new Range(currentLine, 0, endLine, endCharacter)));\n-\n     if (!isDeletion) {\n       let fromLine = diff.modifiedStartLineNumber - 1;\n       let fromCharacter = 0;\n-\n       // if this is an insertion at the very end of the document,\n       // then we must start the next range after the last character of the\n       // previous line, in order to take the correct eol\n       if (isInsertion && diff.originalStartLineNumber === original.lineCount) {\n         fromLine -= 1;\n         fromCharacter = modified.lineAt(fromLine).range.end.character;\n       }\n-\n       result.push(\n         modified.getText(new Range(fromLine, fromCharacter, diff.modifiedEndLineNumber, 0)),\n       );\n     }\n-\n     currentLine = isInsertion ? diff.originalStartLineNumber : diff.originalEndLineNumber;\n   }\n \n   result.push(original.getText(new Range(currentLine, 0, original.lineCount, 0)));\n-"
+  },
+  {
+    "number": 4,
+    "path": "extensions/typescript-language-features/src/filesystems/autoInstallerFs.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 280,
+    "added": 7,
+    "deleted": 11,
+    "changed": 18,
+    "percent": 6.428571428571428,
+    "oldStart": 85,
+    "newStart": 83,
+    "decisions": [
+      {
+        "line": 93,
+        "probability": 0.4,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 97,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 110,
+        "probability": 0.43,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 116,
+        "probability": 0.28,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 119,
+        "probability": 0.34,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 125,
+        "probability": 0.3,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 128,
+        "probability": 0.36,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -85,45 +83,38 @@\n   watch(resource: vscode.Uri): vscode.Disposable {\n     this.logger.trace(`AutoInstallerFs.watch. Resource: ${resource.toString()}}`);\n     return this.memfs.watch(resource);\n   }\n \n   async stat(uri: vscode.Uri): Promise<vscode.FileStat> {\n     this.logger.trace(`AutoInstallerFs.stat: ${uri}`);\n-\n     const mapped = new MappedUri(uri);\n \n     // TODO: case sensitivity configuration\n-\n     // We pretend every single node_modules or @types directory ever actually\n     // exists.\n     if (basename(mapped.path) === \"node_modules\" || basename(mapped.path) === \"@types\") {\n       return {\n         mtime: 0,\n         ctime: 0,\n         type: vscode.FileType.Directory,\n         size: 0,\n       };\n     }\n \n     await this.ensurePackageContents(mapped);\n-\n     return this.memfs.stat(URI.file(mapped.path));\n   }\n \n   async readDirectory(uri: vscode.Uri): Promise<[string, vscode.FileType][]> {\n     this.logger.trace(`AutoInstallerFs.readDirectory: ${uri}`);\n-\n     const mapped = new MappedUri(uri);\n     await this.ensurePackageContents(mapped);\n-\n     return this.memfs.readDirectory(URI.file(mapped.path));\n   }\n \n   async readFile(uri: vscode.Uri): Promise<Uint8Array> {\n     this.logger.trace(`AutoInstallerFs.readFile: ${uri}`);\n-\n     const mapped = new MappedUri(uri);\n     await this.ensurePackageContents(mapped);\n-\n     return this.memfs.readFile(URI.file(mapped.path));\n   }"
+  },
+  {
+    "number": 5,
+    "path": "extensions/typescript-language-features/src/utils/async.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 187,
+    "added": 0,
+    "deleted": 12,
+    "changed": 12,
+    "percent": 6.417112299465241,
+    "oldStart": 107,
+    "newStart": 105,
+    "decisions": [
+      {
+        "line": 110,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 123,
+        "probability": 0.53,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 126,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 130,
+        "probability": 0.11,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 134,
+        "probability": 0.39,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 137,
+        "probability": 0.18,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 145,
+        "probability": 0.49,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -107,45 +105,37 @@\n   private queuedPromise: Promise<any> | null;\n   private queuedPromiseFactory: ITask<Promise<any>> | null;\n-\n   private isDisposed = false;\n \n   constructor() {\n     this.activePromise = null;\n     this.queuedPromise = null;\n     this.queuedPromiseFactory = null;\n   }\n \n   queue<T>(promiseFactory: ITask<Promise<T>>): Promise<T> {\n     if (this.isDisposed) {\n       return Promise.reject(new Error(\"Throttler is disposed\"));\n     }\n-\n     if (this.activePromise) {\n       this.queuedPromiseFactory = promiseFactory;\n-\n       if (!this.queuedPromise) {\n         const onComplete = () => {\n           this.queuedPromise = null;\n-\n           if (this.isDisposed) {\n             return;\n           }\n-\n           const result = this.queue(this.queuedPromiseFactory!);\n           this.queuedPromiseFactory = null;\n-\n           return result;\n         };\n \n         this.queuedPromise = new Promise((resolve) => {\n           this.activePromise!.then(onComplete, onComplete).then(resolve);\n         });\n       }\n-\n       return new Promise((resolve, reject) => {\n         this.queuedPromise!.then(resolve, reject);\n       });\n     }\n \n     this.activePromise = promiseFactory();\n-"
+  },
+  {
+    "number": 6,
+    "path": "extensions/typescript-language-features/src/languageFeatures/signatureHelp.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 150,
+    "added": 3,
+    "deleted": 8,
+    "changed": 11,
+    "percent": 7.333333333333333,
+    "oldStart": 86,
+    "newStart": 86,
+    "decisions": [
+      {
+        "line": 88,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 95,
+        "probability": 0.38,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 98,
+        "probability": 0.14,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 104,
+        "probability": 0.47,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 128,
+        "probability": 0.25,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -86,45 +86,39 @@\n       const label = Previewer.asPlainTextWithLinks(parameter.displayParts, this.client);\n-\n       signature.parameters.push(\n         new vscode.ParameterInformation(\n           [textIndex, textIndex + label.length],\n           Previewer.documentationToMarkdown(parameter.documentation, [], this.client, baseUri),\n         ),\n       );\n-\n       textIndex += label.length;\n       signature.label += label;\n-\n       if (i !== item.parameters.length - 1) {\n         signature.label += separatorLabel;\n         textIndex += separatorLabel.length;\n       }\n     }\n-\n     signature.label += Previewer.asPlainTextWithLinks(item.suffixDisplayParts, this.client);\n     return signature;\n   }\n }\n \n function toTsTriggerReason(context: vscode.SignatureHelpContext): Proto.SignatureHelpTriggerReason {\n   switch (context.triggerKind) {\n     case vscode.SignatureHelpTriggerKind.TriggerCharacter:\n       if (context.triggerCharacter) {\n         if (context.isRetrigger) {\n           return {\n             kind: \"retrigger\",\n             triggerCharacter: context.triggerCharacter as Proto.SignatureHelpRetriggerCharacter,\n           };\n         } else {\n           return {\n             kind: \"characterTyped\",\n             triggerCharacter: context.triggerCharacter as Proto.SignatureHelpTriggerCharacter,\n           };\n         }\n       } else {\n         return { kind: \"invoked\" };\n       }\n-\n     case vscode.SignatureHelpTriggerKind.ContentChange:\n       return context.isRetrigger ? { kind: \"retrigger\" } : { kind: \"invoked\" };\n-"
+  },
+  {
+    "number": 7,
+    "path": "src/vs/base/common/comparers.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 385,
+    "added": 0,
+    "deleted": 34,
+    "changed": 34,
+    "percent": 8.831168831168831,
+    "oldStart": 287,
+    "newStart": 265,
+    "decisions": [
+      {
+        "line": 300,
+        "probability": 0.42,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 304,
+        "probability": 0.36,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 311,
+        "probability": 0.21,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 315,
+        "probability": 0.39,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 319,
+        "probability": 0.17,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 327,
+        "probability": 0.44,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 329,
+        "probability": 0.22,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -287,45 +265,38 @@\n function compareCaseUpperFirst(one: string, other: string): number {\n   if (startsWithUpper(one) && startsWithLower(other)) {\n     return -1;\n   }\n   return startsWithLower(one) && startsWithUpper(other) ? 1 : 0;\n }\n \n function comparePathComponents(one: string, other: string, caseSensitive = false): number {\n   if (!caseSensitive) {\n     one = one && one.toLowerCase();\n     other = other && other.toLowerCase();\n   }\n-\n   if (one === other) {\n     return 0;\n   }\n-\n   return one < other ? -1 : 1;\n }\n \n export function comparePaths(one: string, other: string, caseSensitive = false): number {\n   const oneParts = one.split(sep);\n   const otherParts = other.split(sep);\n-\n   const lastOne = oneParts.length - 1;\n   const lastOther = otherParts.length - 1;\n   let endOne: boolean, endOther: boolean;\n-\n   for (let i = 0; ; i++) {\n     endOne = lastOne === i;\n     endOther = lastOther === i;\n-\n     if (endOne && endOther) {\n       return compareFileNames(oneParts[i], otherParts[i], caseSensitive);\n     } else if (endOne) {\n       return -1;\n     } else if (endOther) {\n       return 1;\n     }\n-\n     const result = comparePathComponents(oneParts[i], otherParts[i], caseSensitive);\n-\n     if (result !== 0) {\n       return result;\n     }"
+  },
+  {
+    "number": 8,
+    "path": "src/vs/base/common/objects.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 300,
+    "added": 23,
+    "deleted": 7,
+    "changed": 30,
+    "percent": 10,
+    "oldStart": 124,
+    "newStart": 129,
+    "decisions": [
+      {
+        "line": 132,
+        "probability": 0.38,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 144,
+        "probability": 0.22,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 136,
+        "probability": 0.58,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 148,
+        "probability": 0.63,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 149,
+        "probability": 0.56,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 152,
+        "probability": 0.59,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 153,
+        "probability": 0.71,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 156,
+        "probability": 0.69,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -124,38 +129,43 @@\n   }\n   if (Array.isArray(one) !== Array.isArray(other)) {\n     return false;\n   }\n \n   let i: number;\n   let key: string;\n-\n   if (Array.isArray(one)) {\n     if (one.length !== other.length) {\n       return false;\n     }\n+\n     for (i = 0; i < one.length; i++) {\n       if (!equals(one[i], other[i])) {\n         return false;\n       }\n     }\n   } else {\n     const oneKeys: string[] = [];\n-\n     for (key in one) {\n       oneKeys.push(key);\n     }\n     oneKeys.sort();\n+\n     const otherKeys: string[] = [];\n+\n     for (key in other) {\n       otherKeys.push(key);\n     }\n+\n     otherKeys.sort();\n+\n     if (!equals(oneKeys, otherKeys)) {\n       return false;\n     }\n+\n     for (i = 0; i < oneKeys.length; i++) {\n       if (!equals(one[oneKeys[i]], other[oneKeys[i]])) {\n         return false;\n       }\n     }\n   }\n+"
+  },
+  {
+    "number": 9,
+    "path": "src/vs/base/common/image.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 183,
+    "added": 17,
+    "deleted": 0,
+    "changed": 17,
+    "percent": 9.289617486338798,
+    "oldStart": 72,
+    "newStart": 76,
+    "decisions": [
+      {
+        "line": 78,
+        "probability": 0.57,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 81,
+        "probability": 0.72,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 83,
+        "probability": 0.64,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 92,
+        "probability": 0.61,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 100,
+        "probability": 0.81,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -72,39 +76,45 @@\n   let i = 2;\n   while (i < bytes.length - 9) {\n     // Skip fill bytes (0xFF) before the marker.\n     while (i < bytes.length && bytes[i] === 0xff) {\n       i++;\n     }\n+\n     if (i >= bytes.length) {\n       return undefined;\n     }\n+\n     const marker = bytes[i];\n     i++;\n+\n     // Standalone markers without a length field.\n     if (\n       marker === 0xd8 ||\n       marker === 0xd9 ||\n       marker === 0x01 ||\n       (marker >= 0xd0 && marker <= 0xd7)\n     ) {\n       continue;\n     }\n+\n     if (i + 1 >= bytes.length) {\n       return undefined;\n     }\n     const segLength = (bytes[i] << 8) | bytes[i + 1];\n     // The 2-byte length field includes itself, so anything < 2 is corrupt.\n     if (segLength < 2) {\n       return undefined;\n     }\n+\n     // SOFn markers (0xC0..0xCF) carry the frame dimensions, except DHT (0xC4), JPG (0xC8) and DAC (0xCC).\n     if (marker >= 0xc0 && marker <= 0xcf && marker !== 0xc4 && marker !== 0xc8 && marker !== 0xcc) {\n       if (i + 6 >= bytes.length) {\n         return undefined;\n       }\n       const height = (bytes[i + 3] << 8) | bytes[i + 4];\n       const width = (bytes[i + 5] << 8) | bytes[i + 6];\n       return { width, height };\n     }\n     i += segLength;\n   }\n+"
+  },
+  {
+    "number": 10,
+    "path": "src/vs/base/common/sseParser.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 243,
+    "added": 6,
+    "deleted": 13,
+    "changed": 19,
+    "percent": 7.818930041152264,
+    "oldStart": 153,
+    "newStart": 151,
+    "decisions": [
+      {
+        "line": 154,
+        "probability": 0.32,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 160,
+        "probability": 0.53,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 171,
+        "probability": 0.13,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 177,
+        "probability": 0.2,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 186,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 193,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 162,
+        "probability": 0.9,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -153,43 +151,39 @@\n-\n       // If value starts with a space, remove it\n       if (value.startsWith(\" \")) {\n         value = value.substring(1);\n       }\n     }\n-\n     this.processField(field, value);\n   }\n+\n   /**\n    * Processes a field with the given name and value.\n    */\n   private processField(field: string, value: string): void {\n     switch (field) {\n       case \"event\":\n         this.eventTypeBuffer = value;\n         break;\n-\n       case \"data\":\n         // Append the value to the data buffer, followed by a newline\n         this.dataBuffer += value;\n         this.dataBuffer += \"\\n\";\n         break;\n-\n       case \"id\":\n         // If the field value doesn't contain NULL, set the last event ID buffer\n         if (!value.includes(\"\\0\")) {\n           this.currentEventId = this.lastEventIdBuffer = value;\n         } else {\n           this.currentEventId = undefined;\n         }\n         break;\n-\n       case \"retry\":\n         // If the field value consists only of ASCII digits, set the reconnection time\n         if (/^\\d+$/.test(value)) {\n           this.reconnectionTime = parseInt(value, 10);\n         }\n         break;\n-\n       // Ignore any other fields\n     }\n   }\n+"
+  },
+  {
+    "number": 11,
+    "path": "src/vs/base/common/jsonFormatter.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 283,
+    "added": 12,
+    "deleted": 4,
+    "changed": 16,
+    "percent": 5.6537102473498235,
+    "oldStart": 63,
+    "newStart": 63,
+    "decisions": [
+      {
+        "line": 69,
+        "probability": 0.2,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 88,
+        "probability": 0.35,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 73,
+        "probability": 0.77,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 74,
+        "probability": 0.56,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 77,
+        "probability": 0.56,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 86,
+        "probability": 0.73,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -63,40 +63,43 @@\n   let rangeStart: number;\n   let rangeEnd: number;\n   if (range) {\n     rangeStart = range.offset;\n     rangeEnd = rangeStart + range.length;\n-\n     formatTextStart = rangeStart;\n     while (formatTextStart > 0 && !isEOL(documentText, formatTextStart - 1)) {\n       formatTextStart--;\n     }\n+\n     let endOffset = rangeEnd;\n+\n     while (endOffset < documentText.length && !isEOL(documentText, endOffset)) {\n       endOffset++;\n     }\n+\n     formatText = documentText.substring(formatTextStart, endOffset);\n     initialIndentLevel = computeIndentLevel(formatText, options);\n   } else {\n     formatText = documentText;\n     initialIndentLevel = 0;\n     formatTextStart = 0;\n     rangeStart = 0;\n     rangeEnd = documentText.length;\n   }\n-  const eol = getEOL(options, documentText);\n \n+  const eol = getEOL(options, documentText);\n   let lineBreak = false;\n   let indentLevel = 0;\n   let indentValue: string;\n   if (options.insertSpaces) {\n     indentValue = repeat(\" \", options.tabSize || 4);\n   } else {\n     indentValue = \"\\t\";\n   }\n \n   const scanner = createScanner(formatText, false);\n   let hasError = false;\n \n   function newLineAndIndent(): string {\n     return eol + repeat(indentValue, initialIndentLevel + indentLevel);\n   }\n+"
+  },
+  {
+    "number": 12,
+    "path": "src/vs/base/common/uriTemplate.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 318,
+    "added": 13,
+    "deleted": 2,
+    "changed": 15,
+    "percent": 4.716981132075472,
+    "oldStart": 40,
+    "newStart": 40,
+    "decisions": [
+      {
+        "line": 50,
+        "probability": 0.54,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 62,
+        "probability": 0.78,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 73,
+        "probability": 0.78,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 78,
+        "probability": 0.58,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -40,42 +40,44 @@\n   public static parse(template: string): UriTemplate {\n     const components: Array<IUriTemplateComponent | string> = [];\n     const regex = /\\{([^{}]+)\\}/g;\n     let match: RegExpExecArray | null;\n     let lastPos = 0;\n     while ((match = regex.exec(template))) {\n       const [expression, inner] = match;\n       components.push(template.slice(lastPos, match.index));\n       lastPos = match.index + expression.length;\n-\n       // Handle escaped braces: treat '{{' and '}}' as literals, not expressions\n       if (template[match.index - 1] === \"{\" || template[lastPos] === \"}\") {\n         components.push(inner);\n         continue;\n       }\n \n       let operator = \"\";\n       let rest = inner;\n       if (rest.length > 0 && UriTemplate._isOperator(rest[0])) {\n         operator = rest[0];\n         rest = rest.slice(1);\n       }\n+\n       const variables = rest.split(\",\").map((v): IUriTemplateVariable => {\n         let name = v;\n         let explodable = false;\n         let repeatable = false;\n         let prefixLength: number | undefined = undefined;\n         let optional = false;\n         if (name.endsWith(\"*\")) {\n           explodable = true;\n           repeatable = true;\n           name = name.slice(0, -1);\n         }\n+\n         const prefixMatch = name.match(/^(.*?):(\\d+)$/);\n         if (prefixMatch) {\n           name = prefixMatch[1];\n           prefixLength = parseInt(prefixMatch[2], 10);\n         }\n+\n         if (name.endsWith(\"?\")) {\n           optional = true;\n           name = name.slice(0, -1);\n         }"
+  },
+  {
+    "number": 13,
+    "path": "src/vs/editor/common/viewEventHandler.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 217,
+    "added": 17,
+    "deleted": 22,
+    "changed": 39,
+    "percent": 17.972350230414747,
+    "oldStart": 34,
+    "newStart": 34,
+    "decisions": [
+      {
+        "line": 35,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 38,
+        "probability": 0.78,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 41,
+        "probability": 0.7,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 44,
+        "probability": 0.75,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 47,
+        "probability": 0.75,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 50,
+        "probability": 0.73,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 53,
+        "probability": 0.7,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 56,
+        "probability": 0.72,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 59,
+        "probability": 0.73,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 62,
+        "probability": 0.68,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 65,
+        "probability": 0.76,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -34,34 +34,44 @@\n-\n   public onCompositionStart(e: viewEvents.ViewCompositionStartEvent): boolean {\n     return false;\n   }\n+\n   public onCompositionEnd(e: viewEvents.ViewCompositionEndEvent): boolean {\n     return false;\n   }\n+\n   public onConfigurationChanged(e: viewEvents.ViewConfigurationChangedEvent): boolean {\n     return false;\n   }\n+\n   public onCursorStateChanged(e: viewEvents.ViewCursorStateChangedEvent): boolean {\n     return false;\n   }\n+\n   public onDecorationsChanged(e: viewEvents.ViewDecorationsChangedEvent): boolean {\n     return false;\n   }\n+\n   public onFlushed(e: viewEvents.ViewFlushedEvent): boolean {\n     return false;\n   }\n+\n   public onFocusChanged(e: viewEvents.ViewFocusChangedEvent): boolean {\n     return false;\n   }\n+\n   public onLanguageConfigurationChanged(e: viewEvents.ViewLanguageConfigurationEvent): boolean {\n     return false;\n   }\n+\n   public onLineMappingChanged(e: viewEvents.ViewLineMappingChangedEvent): boolean {\n     return false;\n   }\n+\n   public onLinesChanged(e: viewEvents.ViewLinesChangedEvent): boolean {\n     return false;\n   }\n+\n   public onLinesDeleted(e: viewEvents.ViewLinesDeletedEvent): boolean {\n     return false;\n   }\n+"
+  },
+  {
+    "number": 14,
+    "path": "src/vs/editor/common/services/languageFeatures.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 114,
+    "added": 0,
+    "deleted": 33,
+    "changed": 33,
+    "percent": 28.947368421052634,
+    "oldStart": 48,
+    "newStart": 48,
+    "decisions": [
+      {
+        "line": 49,
+        "probability": 0.07,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 51,
+        "probability": 0.07,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 53,
+        "probability": 0.07,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 55,
+        "probability": 0.07,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 57,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 59,
+        "probability": 0.11,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 61,
+        "probability": 0.1,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 63,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 65,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 67,
+        "probability": 0.12,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 69,
+        "probability": 0.07,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 71,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 73,
+        "probability": 0.08,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 75,
+        "probability": 0.1,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 77,
+        "probability": 0.11,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 79,
+        "probability": 0.1,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 81,
+        "probability": 0.11,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 83,
+        "probability": 0.08,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 85,
+        "probability": 0.1,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 87,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 89,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 91,
+        "probability": 0.08,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -48,45 +48,22 @@\n-\n   readonly referenceProvider: LanguageFeatureRegistry<ReferenceProvider>;\n-\n   readonly definitionProvider: LanguageFeatureRegistry<DefinitionProvider>;\n-\n   readonly typeDefinitionProvider: LanguageFeatureRegistry<TypeDefinitionProvider>;\n-\n   readonly declarationProvider: LanguageFeatureRegistry<DeclarationProvider>;\n-\n   readonly implementationProvider: LanguageFeatureRegistry<ImplementationProvider>;\n-\n   readonly codeActionProvider: LanguageFeatureRegistry<CodeActionProvider>;\n-\n   readonly documentPasteEditProvider: LanguageFeatureRegistry<DocumentPasteEditProvider>;\n-\n   readonly renameProvider: LanguageFeatureRegistry<RenameProvider>;\n-\n   readonly newSymbolNamesProvider: LanguageFeatureRegistry<NewSymbolNamesProvider>;\n-\n   readonly documentFormattingEditProvider: LanguageFeatureRegistry<DocumentFormattingEditProvider>;\n-\n   readonly documentRangeFormattingEditProvider: LanguageFeatureRegistry<DocumentRangeFormattingEditProvider>;\n-\n   readonly onTypeFormattingEditProvider: LanguageFeatureRegistry<OnTypeFormattingEditProvider>;\n-\n   readonly documentSymbolProvider: LanguageFeatureRegistry<DocumentSymbolProvider>;\n-\n   readonly inlayHintsProvider: LanguageFeatureRegistry<InlayHintsProvider>;\n-\n   readonly colorProvider: LanguageFeatureRegistry<DocumentColorProvider>;\n-\n   readonly codeLensProvider: LanguageFeatureRegistry<CodeLensProvider>;\n-\n   readonly signatureHelpProvider: LanguageFeatureRegistry<SignatureHelpProvider>;\n-\n   readonly hoverProvider: LanguageFeatureRegistry<HoverProvider>;\n-\n   readonly documentHighlightProvider: LanguageFeatureRegistry<DocumentHighlightProvider>;\n-\n   readonly multiDocumentHighlightProvider: LanguageFeatureRegistry<MultiDocumentHighlightProvider>;\n-\n   readonly documentRangeSemanticTokensProvider: LanguageFeatureRegistry<DocumentRangeSemanticTokensProvider>;\n-\n   readonly documentSemanticTokensProvider: LanguageFeatureRegistry<DocumentSemanticTokensProvider>;\n-"
+  },
+  {
+    "number": 15,
+    "path": "src/vs/editor/common/core/textChange.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 341,
+    "added": 4,
+    "deleted": 22,
+    "changed": 26,
+    "percent": 7.624633431085044,
+    "oldStart": 114,
+    "newStart": 115,
+    "decisions": [
+      {
+        "line": 116,
+        "probability": 0.13,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 119,
+        "probability": 0.13,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 122,
+        "probability": 0.12,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 129,
+        "probability": 0.14,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 132,
+        "probability": 0.09,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 135,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 143,
+        "probability": 0.18,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 146,
+        "probability": 0.34,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 153,
+        "probability": 0.47,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -114,45 +115,35 @@\n   private _currEdits: TextChange[];\n-\n   private _result: TextChange[];\n   private _resultLen: number;\n-\n   private _prevLen: number;\n   private _prevDeltaOffset: number;\n-\n   private _currLen: number;\n   private _currDeltaOffset: number;\n \n   constructor(prevEdits: TextChange[], currEdits: TextChange[]) {\n     this._prevEdits = prevEdits;\n     this._currEdits = currEdits;\n-\n     this._result = [];\n     this._resultLen = 0;\n-\n     this._prevLen = this._prevEdits.length;\n     this._prevDeltaOffset = 0;\n-\n     this._currLen = this._currEdits.length;\n     this._currDeltaOffset = 0;\n   }\n \n   public compress(): TextChange[] {\n     let prevIndex = 0;\n     let currIndex = 0;\n-\n     let prevEdit = this._getPrev(prevIndex);\n     let currEdit = this._getCurr(currIndex);\n-\n     while (prevIndex < this._prevLen || currIndex < this._currLen) {\n       if (prevEdit === null) {\n         this._acceptCurr(currEdit!);\n         currEdit = this._getCurr(++currIndex);\n         continue;\n       }\n-\n       if (currEdit === null) {\n         this._acceptPrev(prevEdit);\n         prevEdit = this._getPrev(++prevIndex);\n         continue;\n       }\n-"
+  },
+  {
+    "number": 16,
+    "path": "src/vs/editor/common/editorContextKeys.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 372,
+    "added": 21,
+    "deleted": 5,
+    "changed": 26,
+    "percent": 6.989247311827956,
+    "oldStart": 150,
+    "newStart": 158,
+    "decisions": [
+      {
+        "line": 154,
+        "probability": 0.53,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 182,
+        "probability": 0.18,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 159,
+        "probability": 0.61,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 160,
+        "probability": 0.62,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -150,43 +158,42 @@\n     \"\",\n     nls.localize(\"diffEditorModifiedUri\", \"The uri of the modified document\"),\n   );\n-\n   export const columnSelection = new RawContextKey<boolean>(\n     \"editorColumnSelection\",\n     false,\n     nls.localize(\"editorColumnSelection\", \"Whether `editor.columnSelection` is enabled\"),\n   );\n+\n   export const writable = readOnly.toNegated();\n+\n   export const hasNonEmptySelection = new RawContextKey<boolean>(\n     \"editorHasSelection\",\n     false,\n     nls.localize(\"editorHasSelection\", \"Whether the editor has text selected\"),\n   );\n   export const hasOnlyEmptySelection = hasNonEmptySelection.toNegated();\n   export const hasMultipleSelections = new RawContextKey<boolean>(\n     \"editorHasMultipleSelections\",\n     false,\n     nls.localize(\"editorHasMultipleSelections\", \"Whether the editor has multiple selections\"),\n   );\n   export const hasSingleSelection = hasMultipleSelections.toNegated();\n   export const tabMovesFocus = new RawContextKey<boolean>(\n     \"editorTabMovesFocus\",\n     false,\n     nls.localize(\"editorTabMovesFocus\", \"Whether `Tab` will move focus out of the editor\"),\n   );\n   export const tabDoesNotMoveFocus = tabMovesFocus.toNegated();\n   export const isInEmbeddedEditor = new RawContextKey<boolean>(\"isInEmbeddedEditor\", false, true);\n   export const canUndo = new RawContextKey<boolean>(\"canUndo\", false, true);\n   export const canRedo = new RawContextKey<boolean>(\"canRedo\", false, true);\n-\n   export const hoverVisible = new RawContextKey<boolean>(\n     \"editorHoverVisible\",\n     false,\n     nls.localize(\"editorHoverVisible\", \"Whether the editor hover is visible\"),\n   );\n   export const hoverFocused = new RawContextKey<boolean>(\n     \"editorHoverFocused\",\n     false,\n     nls.localize(\"editorHoverFocused\", \"Whether the editor hover is focused\"),\n   );\n-"
+  },
+  {
+    "number": 17,
+    "path": "src/vs/editor/common/languages/linkComputer.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 369,
+    "added": 4,
+    "deleted": 21,
+    "changed": 25,
+    "percent": 6.775067750677506,
+    "oldStart": 110,
+    "newStart": 109,
+    "decisions": [
+      {
+        "line": 111,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 114,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 117,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 120,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 124,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 127,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 130,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 133,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 135,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 137,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 150,
+        "probability": 0.81,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -110,44 +109,34 @@\n-\n       [State.H, CharCode.t, State.HT],\n       [State.H, CharCode.T, State.HT],\n-\n       [State.HT, CharCode.t, State.HTT],\n       [State.HT, CharCode.T, State.HTT],\n-\n       [State.HTT, CharCode.p, State.HTTP],\n       [State.HTT, CharCode.P, State.HTTP],\n-\n       [State.HTTP, CharCode.s, State.BeforeColon],\n       [State.HTTP, CharCode.S, State.BeforeColon],\n       [State.HTTP, CharCode.Colon, State.AfterColon],\n-\n       [State.F, CharCode.i, State.FI],\n       [State.F, CharCode.I, State.FI],\n-\n       [State.FI, CharCode.l, State.FIL],\n       [State.FI, CharCode.L, State.FIL],\n-\n       [State.FIL, CharCode.e, State.BeforeColon],\n       [State.FIL, CharCode.E, State.BeforeColon],\n-\n       [State.BeforeColon, CharCode.Colon, State.AfterColon],\n-\n       [State.AfterColon, CharCode.Slash, State.AlmostThere],\n-\n       [State.AlmostThere, CharCode.Slash, State.End],\n     ]);\n   }\n   return _stateMachine;\n }\n \n const enum CharacterClass {\n   None = 0,\n   ForceTermination = 1,\n   CannotEndIn = 2,\n }\n \n let _classifier: CharacterClassifier<CharacterClass> | null = null;\n+\n function getClassifier(): CharacterClassifier<CharacterClass> {\n   if (_classifier === null) {\n     _classifier = new CharacterClassifier<CharacterClass>(CharacterClass.None);\n-"
+  },
+  {
+    "number": 18,
+    "path": "src/vs/platform/agentHost/browser/nullAgentHostService.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 303,
+    "added": 48,
+    "deleted": 2,
+    "changed": 50,
+    "percent": 16.5016501650165,
+    "oldStart": 225,
+    "newStart": 247,
+    "decisions": [
+      {
+        "line": 225,
+        "probability": 0.92,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 228,
+        "probability": 0.89,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 233,
+        "probability": 0.93,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 236,
+        "probability": 0.9,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 241,
+        "probability": 0.93,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 244,
+        "probability": 0.83,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 247,
+        "probability": 0.84,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 250,
+        "probability": 0.75,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 251,
+        "probability": 0.87,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 254,
+        "probability": 0.6,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 255,
+        "probability": 0.74,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -225,33 +247,45 @@\n+\n   async completions(_params: CompletionsParams): Promise<CompletionsResult> {\n     return { items: [] };\n   }\n+\n   async listAutomationTriggerDefinitions(\n     _params: ListAutomationTriggerDefinitionsParams,\n   ): Promise<ListAutomationTriggerDefinitionsResult> {\n     return notSupported();\n   }\n+\n   async runAutomation(_params: RunAutomationParams): Promise<RunAutomationResult> {\n     return notSupported();\n   }\n+\n   async fetchAutomationRuns(\n     _params: FetchAutomationRunsParams,\n   ): Promise<FetchAutomationRunsResult> {\n     return notSupported();\n   }\n+\n   async getCompletionTriggerCharacters(): Promise<readonly string[]> {\n     return [];\n   }\n+\n   async startWebSocketServer(): Promise<IAgentHostSocketInfo> {\n     return notSupported();\n   }\n+\n   async getInspectInfo(_tryEnable: boolean): Promise<IAgentHostInspectInfo | undefined> {\n     return undefined;\n   }\n+\n   async disposeSession(_session: URI): Promise<void> {}\n+\n   async createChat(_session: URI, _chat: URI): Promise<void> {\n     notSupported();\n   }\n+\n   async disposeChat(_chat: URI): Promise<void> {}\n+\n   async createTerminal(_params: CreateTerminalParams): Promise<void> {\n     notSupported();\n   }\n+"
+  },
+  {
+    "number": 19,
+    "path": "src/vs/platform/agentHost/common/webPubSub/chunking.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 396,
+    "added": 15,
+    "deleted": 15,
+    "changed": 30,
+    "percent": 7.575757575757576,
+    "oldStart": 143,
+    "newStart": 142,
+    "decisions": [
+      {
+        "line": 173,
+        "probability": 0.1,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 176,
+        "probability": 0.11,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 179,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 182,
+        "probability": 0.13,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 144,
+        "probability": 0.83,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 153,
+        "probability": 0.73,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 165,
+        "probability": 0.55,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -143,42 +142,40 @@\n   }\n+\n   const rawBudget = (encodedBudget / 4) * 3;\n   const total = Math.ceil(rawBytes.byteLength / rawBudget);\n   if (total > DEFAULT_MAX_SEGMENTS_PER_GROUP) {\n     throw new ChunkingError(\n       `payload requires ${total} chunks, exceeds ${DEFAULT_MAX_SEGMENTS_PER_GROUP}-chunk ceiling`,\n     );\n   }\n \n   const out: ChunkEnvelope[] = new Array<ChunkEnvelope>(total);\n+\n   for (let i = 0; i < total; i++) {\n     const start = i * rawBudget;\n     const end = Math.min(start + rawBudget, rawBytes.byteLength);\n     const slice = rawBytes.subarray(start, end);\n     out[i] = {\n       kind: \"chunk\",\n       group_id: groupId,\n       seq: i,\n       total,\n       bytes: bytesToBase64(slice),\n     };\n   }\n+\n   return out;\n }\n \n /** Options accepted by {@link Reassembler}. */\n export interface ReassemblerOptions {\n   /** Drop partial buffers older than this many milliseconds. */\n   readonly timeoutMs?: number;\n-\n   /** Maximum total decoded bytes a single in-flight group may accumulate. */\n   readonly maxBufferBytes?: number;\n-\n   /** Maximum decoded bytes retained across every in-flight group. */\n   readonly maxTotalBufferBytes?: number;\n-\n   /** Maximum number of concurrent in-flight groups. */\n   readonly maxConcurrentGroups?: number;\n-\n   /** Maximum `total` value the reassembler will accept on any chunked envelope. */\n   readonly maxSegmentsPerGroup?: number;\n-"
+  },
+  {
+    "number": 20,
+    "path": "src/vs/platform/files/common/diskFileSystemProviderClient.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 325,
+    "added": 1,
+    "deleted": 29,
+    "changed": 30,
+    "percent": 9.230769230769232,
+    "oldStart": 239,
+    "newStart": 222,
+    "decisions": [
+      {
+        "line": 251,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 253,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 271,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 273,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 277,
+        "probability": 0.46,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 279,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 281,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -239,45 +222,37 @@\n   write(\n     fd: number,\n     pos: number,\n     data: Uint8Array,\n     offset: number,\n     length: number,\n   ): Promise<number> {\n     return this.channel.call(\"write\", [fd, pos, VSBuffer.wrap(data), offset, length]);\n   }\n \n   //#endregion\n-\n   //#region Move/Copy/Delete/Create Folder\n-\n   mkdir(resource: URI): Promise<void> {\n     return this.channel.call(\"mkdir\", [resource]);\n   }\n \n   delete(resource: URI, opts: IFileDeleteOptions): Promise<void> {\n     return this.channel.call(\"delete\", [resource, opts]);\n   }\n \n   rename(resource: URI, target: URI, opts: IFileOverwriteOptions): Promise<void> {\n     return this.channel.call(\"rename\", [resource, target, opts]);\n   }\n \n   copy(resource: URI, target: URI, opts: IFileOverwriteOptions): Promise<void> {\n     return this.channel.call(\"copy\", [resource, target, opts]);\n   }\n \n   //#endregion\n-\n   //#region Clone File\n-\n   cloneFile(resource: URI, target: URI): Promise<void> {\n     return this.channel.call(\"cloneFile\", [resource, target]);\n   }\n-\n   //#endregion\n-\n   //#region File Watching\n-\n   private readonly _onDidChange = this._register(new Emitter<readonly IFileChange[]>());\n   readonly onDidChangeFile = this._onDidChange.event;\n-"
+  },
+  {
+    "number": 21,
+    "path": "src/vs/platform/agentHost/common/meta/vscode/agentUsageMeta.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 317,
+    "added": 26,
+    "deleted": 0,
+    "changed": 26,
+    "percent": 8.201892744479496,
+    "oldStart": 133,
+    "newStart": 138,
+    "decisions": [
+      {
+        "line": 138,
+        "probability": 0.77,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 142,
+        "probability": 0.58,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 146,
+        "probability": 0.66,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 147,
+        "probability": 0.55,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 158,
+        "probability": 0.75,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 166,
+        "probability": 0.77,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 167,
+        "probability": 0.68,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -133,38 +138,45 @@\n export function readUsageInfoMeta(usage: UsageInfo | undefined): UsageInfoMeta {\n   const meta = usage?._meta;\n   if (!meta) {\n     return {};\n   }\n+\n   const result: Mutable<UsageInfoMeta> = {};\n   if (typeof meta.cost === \"number\") {\n     result.cost = meta.cost;\n   }\n+\n   const autoModeResolved = readAutoModeResolvedInfo(meta.autoModeResolved);\n   if (autoModeResolved) {\n     result.autoModeResolved = autoModeResolved;\n   }\n+\n   const copilotUsage = meta.copilotUsage;\n+\n   if (copilotUsage && typeof copilotUsage === \"object\" && !Array.isArray(copilotUsage)) {\n     const rawUsage = copilotUsage as Record<string, unknown>;\n     const usage: Mutable<NonNullable<UsageInfoMeta[\"copilotUsage\"]>> = {};\n     if (typeof rawUsage.totalNanoAiu === \"number\") {\n       usage.totalNanoAiu = rawUsage.totalNanoAiu;\n     }\n     if (typeof rawUsage.sessionTotalNanoAiu === \"number\") {\n       usage.sessionTotalNanoAiu = rawUsage.sessionTotalNanoAiu;\n     }\n     result.copilotUsage = usage;\n   }\n+\n   const quotaSnapshots = meta.quotaSnapshots;\n   if (quotaSnapshots && typeof quotaSnapshots === \"object\" && !Array.isArray(quotaSnapshots)) {\n     const snapshots: Mutable<NonNullable<UsageInfoMeta[\"quotaSnapshots\"]>> = {};\n     for (const [quotaType, value] of Object.entries(quotaSnapshots as Record<string, unknown>)) {\n       snapshots[quotaType] = readAccountQuotaSnapshot(value);\n     }\n     result.quotaSnapshots = snapshots;\n   }\n+\n   const contextAttribution = readContextAttribution(meta.contextAttribution);\n+\n   if (contextAttribution) {\n     result.contextAttribution = contextAttribution;\n   }\n   const turnTokenTotals = readTurnTokenTotals(meta.turnTokenTotals);"
+  },
+  {
+    "number": 22,
+    "path": "src/vs/platform/theme/common/sizes/baseSizes.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 258,
+    "added": 0,
+    "deleted": 24,
+    "changed": 24,
+    "percent": 9.30232558139535,
+    "oldStart": 185,
+    "newStart": 173,
+    "decisions": [
+      {
+        "line": 188,
+        "probability": 0.41,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 194,
+        "probability": 0.46,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 200,
+        "probability": 0.41,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 206,
+        "probability": 0.46,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 212,
+        "probability": 0.42,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 218,
+        "probability": 0.4,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 224,
+        "probability": 0.43,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -185,45 +173,37 @@\n   nls.localize(\"spacingSize20\", \"Spacing of 2px.\"),\n );\n-\n export const spacingSize40 = registerSize(\n   \"spacing.size40\",\n   sizeForAllThemes(4, \"px\"),\n   nls.localize(\"spacingSize40\", \"Spacing of 4px.\"),\n );\n-\n export const spacingSize60 = registerSize(\n   \"spacing.size60\",\n   sizeForAllThemes(6, \"px\"),\n   nls.localize(\"spacingSize60\", \"Spacing of 6px.\"),\n );\n-\n export const spacingSize80 = registerSize(\n   \"spacing.size80\",\n   sizeForAllThemes(8, \"px\"),\n   nls.localize(\"spacingSize80\", \"Spacing of 8px.\"),\n );\n-\n export const spacingSize100 = registerSize(\n   \"spacing.size100\",\n   sizeForAllThemes(10, \"px\"),\n   nls.localize(\"spacingSize100\", \"Spacing of 10px.\"),\n );\n-\n export const spacingSize120 = registerSize(\n   \"spacing.size120\",\n   sizeForAllThemes(12, \"px\"),\n   nls.localize(\"spacingSize120\", \"Spacing of 12px.\"),\n );\n-\n export const spacingSize160 = registerSize(\n   \"spacing.size160\",\n   sizeForAllThemes(16, \"px\"),\n   nls.localize(\"spacingSize160\", \"Spacing of 16px.\"),\n );\n-\n export const spacingSize200 = registerSize(\n   \"spacing.size200\",\n   sizeForAllThemes(20, \"px\"),\n   nls.localize(\"spacingSize200\", \"Spacing of 20px.\"),\n );\n-"
+  },
+  {
+    "number": 23,
+    "path": "src/vs/workbench/contrib/debug/common/nullDebugService.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 313,
+    "added": 47,
+    "deleted": 2,
+    "changed": 49,
+    "percent": 15.654952076677317,
+    "oldStart": 236,
+    "newStart": 254,
+    "decisions": [
+      {
+        "line": 236,
+        "probability": 0.67,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 237,
+        "probability": 0.79,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 239,
+        "probability": 0.6,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 240,
+        "probability": 0.57,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 241,
+        "probability": 0.6,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 245,
+        "probability": 0.57,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 246,
+        "probability": 0.56,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 247,
+        "probability": 0.64,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 252,
+        "probability": 0.58,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 253,
+        "probability": 0.71,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 258,
+        "probability": 0.93,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 262,
+        "probability": 0.69,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 266,
+        "probability": 0.84,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -236,31 +254,45 @@\n+\n   async updateBreakpoints(): Promise<void> {}\n+\n   async enableOrDisableBreakpoints(_enable: boolean, _breakpoint?: IEnablement): Promise<void> {}\n   async setBreakpointsActivated(_activated: boolean): Promise<void> {}\n+\n   async removeBreakpoints(_id?: string | string[]): Promise<void> {}\n+\n   addFunctionBreakpoint(_opts?: IFunctionBreakpointOptions, _id?: string): void {}\n+\n   async updateFunctionBreakpoint(\n     _id: string,\n     _update: { name?: string; hitCondition?: string; condition?: string },\n   ): Promise<void> {}\n+\n   async removeFunctionBreakpoints(_id?: string): Promise<void> {}\n+\n   async addDataBreakpoint(_opts: IDataBreakpointOptions): Promise<void> {}\n+\n   async updateDataBreakpoint(\n     _id: string,\n     _update: { hitCondition?: string; condition?: string },\n   ): Promise<void> {}\n   async removeDataBreakpoints(_id?: string): Promise<void> {}\n+\n   async addInstructionBreakpoint(_opts: IInstructionBreakpointOptions): Promise<void> {}\n+\n   async removeInstructionBreakpoints(\n     _instructionReference?: string,\n     _offset?: number,\n     _address?: bigint,\n   ): Promise<void> {}\n+\n   async setExceptionBreakpointCondition(\n     _breakpoint: IExceptionBreakpoint,\n     _condition: string | undefined,\n   ): Promise<void> {}\n+\n   setExceptionBreakpointsForSession(\n     _session: IDebugSession,\n     _filters: DebugProtocol.ExceptionBreakpointsFilter[],\n   ): void {}\n+\n   async sendAllBreakpoints(_session?: IDebugSession): Promise<void> {}\n+"
+  },
+  {
+    "number": 24,
+    "path": "src/vs/workbench/contrib/chat/browser/voiceClient/ttsPlaybackService.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 273,
+    "added": 17,
+    "deleted": 8,
+    "changed": 25,
+    "percent": 9.157509157509157,
+    "oldStart": 122,
+    "newStart": 119,
+    "decisions": [
+      {
+        "line": 124,
+        "probability": 0.78,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 125,
+        "probability": 0.67,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 135,
+        "probability": 0.55,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 143,
+        "probability": 0.65,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 153,
+        "probability": 0.7,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 158,
+        "probability": 0.67,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -122,38 +119,45 @@\n       bytes[i] = binary.charCodeAt(i);\n     }\n+\n     const arrayBuf = bytes.buffer;\n+\n     turn.writeChain = turn.writeChain.then(async () => {\n       if (gen !== this._playbackGen) {\n         return;\n       }\n       try {\n         const ctx = this.ensureContext(this._window!);\n         const decoded = await ctx.decodeAudioData(arrayBuf);\n         if (gen !== this._playbackGen) {\n           return;\n         }\n+\n         this._writeToPlayBuffer(decoded);\n         if (!this._playbackTurn?.started) {\n           this._startPlayback();\n         }\n       } catch (err) {\n         this.logService.error(\"[voice] TTS decode error\", err);\n       }\n     });\n+\n     if (isFinal) {\n       turn.writeChain = turn.writeChain.then(() => this._schedulePlayStop());\n     }\n   }\n \n   stopPlayback(): void {\n     this._playbackGen++;\n     if (this._playbackTurn) {\n       this._captureSamples(this._playbackTurn);\n     }\n+\n     try {\n       this._playbackTurn?.sourceNode?.stop();\n     } catch {\n       /* already stopped */\n     }\n+\n     this._playbackTurn = null;\n     this._analyserNode = undefined;\n+"
+  },
+  {
+    "number": 25,
+    "path": "src/vs/workbench/contrib/terminal/browser/terminalConfigurationService.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 353,
+    "added": 10,
+    "deleted": 18,
+    "changed": 28,
+    "percent": 7.932011331444759,
+    "oldStart": 35,
+    "newStart": 35,
+    "decisions": [
+      {
+        "line": 37,
+        "probability": null,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 43,
+        "probability": 0.24,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 46,
+        "probability": 0.2,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 68,
+        "probability": 0.15,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 70,
+        "probability": 0.25,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 47,
+        "probability": 0.57,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 59,
+        "probability": 0.63,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -35,43 +35,40 @@\n // #region TerminalConfigurationService\n-\n export class TerminalConfigurationService\n   extends Disposable\n   implements ITerminalConfigurationService\n {\n   declare _serviceBrand: undefined;\n-\n   protected _fontMetrics: TerminalFontMetrics;\n   private _skipTerminalCommands: ReadonlySet<string> = new Set(DEFAULT_COMMANDS_TO_SKIP_SHELL);\n-\n   protected _config!: Readonly<ITerminalConfiguration>;\n+\n   get config() {\n     return this._config;\n   }\n \n   get defaultLocation(): TerminalLocation {\n     if (this.config.defaultLocation === TerminalLocationConfigValue.Editor) {\n       return TerminalLocation.Editor;\n     }\n     return TerminalLocation.Panel;\n   }\n \n   private readonly _onConfigChanged = this._register(new Emitter<void>());\n+\n   get onConfigChanged(): Event<void> {\n     return this._onConfigChanged.event;\n   }\n \n   constructor(\n     @IConfigurationService private readonly _configurationService: IConfigurationService,\n   ) {\n     super();\n-\n     this._fontMetrics = this._register(new TerminalFontMetrics(this, this._configurationService));\n-\n     this._register(\n       Event.runAndSubscribe(this._configurationService.onDidChangeConfiguration, (e) => {\n         if (!e || e.affectsConfiguration(TERMINAL_CONFIG_SECTION)) {\n           this._updateConfig();\n         }\n       }),\n     );\n   }"
+  },
+  {
+    "number": 26,
+    "path": "extensions/copilot/src/platform/telemetry/common/telemetry.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 375,
+    "added": 21,
+    "deleted": 6,
+    "changed": 27,
+    "percent": 7.199999999999999,
+    "oldStart": 107,
+    "newStart": 107,
+    "decisions": [
+      {
+        "line": 114,
+        "probability": 0.66,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 123,
+        "probability": 0.71,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 128,
+        "probability": 0.73,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 133,
+        "probability": 0.6,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 138,
+        "probability": 0.62,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 143,
+        "probability": 0.66,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 144,
+        "probability": 0.8,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -107,38 +107,45 @@\n export type TelemetryDestination = {\n   github: boolean | { eventNamePrefix: string };\n   microsoft: boolean;\n };\n \n export interface ITelemetryService extends IExperimentationTelemetry, IDisposable {\n   readonly _serviceBrand: undefined;\n+\n   /**\n    * Legacy restricted Microsoft telemetry entry point. Sending is disabled;\n    * retained so existing callers do not route restricted content through standard telemetry.\n    */\n   sendInternalMSFTTelemetryEvent(\n     eventName: string,\n     properties?: TelemetryEventProperties,\n     measurements?: TelemetryEventMeasurements,\n   ): void;\n+\n   sendMSFTTelemetryEvent(\n     eventName: string,\n     properties?: TelemetryEventProperties,\n     measurements?: TelemetryEventMeasurements,\n   ): void;\n+\n   sendMSFTTelemetryErrorEvent(\n     eventName: string,\n     properties?: TelemetryEventProperties,\n     measurements?: TelemetryEventMeasurements,\n   ): void;\n+\n   sendGHTelemetryEvent(\n     eventName: string,\n     properties?: TelemetryEventProperties,\n     measurements?: TelemetryEventMeasurements,\n   ): void;\n+\n   sendGHTelemetryErrorEvent(\n     eventName: string,\n     properties?: TelemetryEventProperties,\n     measurements?: TelemetryEventMeasurements,\n   ): void;\n+\n   sendGHTelemetryException(maybeError: unknown, origin: string): void;\n+\n   /**"
+  },
+  {
+    "number": 27,
+    "path": "extensions/copilot/src/platform/notebook/common/alternativeContentProvider.xml.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 322,
+    "added": 14,
+    "deleted": 11,
+    "changed": 25,
+    "percent": 7.763975155279502,
+    "oldStart": 138,
+    "newStart": 142,
+    "decisions": [
+      {
+        "line": 140,
+        "probability": 0.23,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 169,
+        "probability": 0.2,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 148,
+        "probability": 0.56,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 152,
+        "probability": 0.55,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 178,
+        "probability": 0.76,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -138,41 +142,43 @@\n     const cellIdMap = isNotebook ? getCellIdMap(notebookOrUri) : new Map<string, NotebookCell>();\n-\n     let index = -1;\n     let endDelimiterSeen = false;\n     const cellIdsSeen = new Set<string>();\n     let previousLineEndedWithEndCellMarker = false;\n     let previousLine: LineOfCellText | undefined = undefined;\n     const defaultLanguage = isNotebook\n       ? getLanguage(getDefaultLanguage(notebookOrUri)).languageId\n       : undefined;\n+\n     for await (const lineOfText of inputStream) {\n       if (token.isCancellationRequested) {\n         break;\n       }\n+\n       const line = lineOfText.value;\n       if (\n         (line.startsWith(StartDelimter) || line.startsWith(StartEmptyCellDelimter)) &&\n         (index < 0 || endDelimiterSeen || (previousLineEndedWithEndCellMarker && previousLine))\n       ) {\n         if (!endDelimiterSeen && previousLineEndedWithEndCellMarker && previousLine) {\n           // Last line didn't finish, emit that, but strip the end delimiter.\n           previousLine.line = previousLine.line.substring(\n             0,\n             previousLine.line.lastIndexOf(EndDelimter),\n           );\n           yield previousLine;\n           yield { type: \"end\", index: previousLine.index };\n         }\n         previousLineEndedWithEndCellMarker = false;\n         previousLine = undefined;\n-\n         index += 1;\n         endDelimiterSeen = false;\n         const lineOfCellText: LineOfCellText = {\n           type: \"start\",\n           index,\n           uri: undefined,\n           language: undefined,\n           kind: NotebookCellKind.Code,\n         };\n+\n         const cellParts = extractCellParts(line, defaultLanguage);\n+"
+  },
+  {
+    "number": 28,
+    "path": "extensions/copilot/src/platform/configuration/common/validator.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 368,
+    "added": 8,
+    "deleted": 13,
+    "changed": 21,
+    "percent": 5.706521739130435,
+    "oldStart": 159,
+    "newStart": 163,
+    "decisions": [
+      {
+        "line": 162,
+        "probability": 0.24,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 173,
+        "probability": 0.54,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 181,
+        "probability": 0.39,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 190,
+        "probability": 0.28,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 186,
+        "probability": 0.84,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -159,44 +163,40 @@\n         const validator = properties[key];\n         const fieldValue = (content as any)[key];\n-\n         // Check if field is required and missing\n         const isRequired = validator.isRequired?.() ?? false;\n         if (isRequired && fieldValue === undefined) {\n           return { content: undefined, error: { message: `Required field '${key}' is missing` } };\n         }\n \n         // If field is not required and is missing, skip validation\n         if (!isRequired && fieldValue === undefined) {\n           continue;\n         }\n-\n         const { content: value, error } = validator.validate(fieldValue);\n         if (error) {\n           return {\n             content: undefined,\n             error: { message: `Error in property '${key}': ${error.message}` },\n           };\n         }\n-\n         result[key] = value;\n       }\n \n       return { content: result, error: undefined };\n     },\n+\n     toSchema() {\n       const requiredFields: string[] = [];\n       const schemaProperties: Record<string, JsonSchema> = {};\n-\n       for (const [key, validator] of Object.entries(properties)) {\n         schemaProperties[key] = validator.toSchema();\n         if (validator.isRequired?.()) {\n           requiredFields.push(key);\n         }\n       }\n \n       const schema: JsonSchema = {\n         type: \"object\",\n         properties: schemaProperties,\n         ...(requiredFields.length > 0 ? { required: requiredFields } : {}),\n       };\n-"
+  },
+  {
+    "number": 29,
+    "path": "extensions/copilot/src/platform/workspaceChunkSearch/node/codeSearch/workspaceDiff.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 290,
+    "added": 3,
+    "deleted": 17,
+    "changed": 20,
+    "percent": 6.896551724137931,
+    "oldStart": 44,
+    "newStart": 43,
+    "decisions": [
+      {
+        "line": 45,
+        "probability": 0.16,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 47,
+        "probability": 0.28,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 49,
+        "probability": 0.18,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 51,
+        "probability": 0.52,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 56,
+        "probability": 0.24,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 59,
+        "probability": 0.23,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 61,
+        "probability": 0.23,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 72,
+        "probability": 0.15,
+        "inserted": false,
+        "originallyPresent": true
+      },
+      {
+        "line": 74,
+        "probability": 0.2,
+        "inserted": false,
+        "originallyPresent": true
+      }
+    ],
+    "diff": "@@ -44,45 +43,35 @@\n-\n   private static readonly _maxDiffFiles = 10000;\n-\n   private readonly _repos = new ResourceMap<RepoDiffState>();\n-\n   private readonly _repoTracker: CodeSearchRepoTracker;\n-\n   /**\n    * Tracks all files that have been changed in the workspace during this session.\n    */\n   private readonly _locallyChangedFiles = new ResourceSet();\n-\n   private readonly _onDidChangeDiffFiles = this._register(new Emitter<readonly URI[]>());\n   public readonly onDidChangeDiffFiles = this._onDidChangeDiffFiles.event;\n-\n   private readonly _diffRefreshTimer = this._register(new IntervalTimer());\n-\n   private readonly _initialized = new DeferredPromise<void>();\n   public readonly initialized = this._initialized.p;\n \n   constructor(\n     repoTracker: CodeSearchRepoTracker,\n     @ILogService private readonly _logService: ILogService,\n     @IWorkspaceFileIndex private readonly _workspaceFileIndex: IWorkspaceFileIndex,\n     @ISimulationTestContext private readonly _simulationTestContext: ISimulationTestContext,\n   ) {\n     super();\n-\n     this._repoTracker = repoTracker;\n-\n     this._register(\n       this._repoTracker.onDidAddOrUpdateRepo((repoEntry) => {\n         if (repoEntry.status !== CodeSearchRepoStatus.Ready) {\n           return;\n         }\n         const entry = this._repos.get(repoEntry.info.rootUri);\n         if (entry) {\n           this.refreshRepoDiff(entry);\n         } else {\n           this.openRepo(repoEntry);\n         }\n       }),\n     );\n     this._register(this._repoTracker.onDidRemoveRepo((repo) => this.closeRepo(repo)));\n-"
+  },
+  {
+    "number": 30,
+    "path": "extensions/copilot/src/platform/promptFiles/vscode-node/agentInstructionsLocator.ts",
+    "repo": "microsoft/vscode",
+    "status": "formatted",
+    "baselineLines": 355,
+    "added": 15,
+    "deleted": 3,
+    "changed": 18,
+    "percent": 5.070422535211268,
+    "oldStart": 256,
+    "newStart": 261,
+    "decisions": [
+      {
+        "line": 263,
+        "probability": 0.55,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 266,
+        "probability": 0.57,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 273,
+        "probability": 0.67,
+        "inserted": true,
+        "originallyPresent": false
+      },
+      {
+        "line": 283,
+        "probability": 0.66,
+        "inserted": true,
+        "originallyPresent": false
+      }
+    ],
+    "diff": "@@ -256,40 +261,45 @@\n     while (true) {\n       try {\n         const gitFolder = joinPath(current, \".git\");\n         const gitStat = await this.fileSystemService.stat(gitFolder).then(\n           (stat) => stat,\n           () => undefined,\n         );\n+\n         const isRepoRoot =\n           gitStat !== undefined &&\n           ((gitStat.type & FileType.Directory) !== 0 || (gitStat.type & FileType.File) !== 0);\n+\n         if (isRepoRoot) {\n           // Only include the repo root (and any intermediate parents) if the user has explicitly trusted it.\n           const trusted = await this.workspaceService.isResourceTrusted(current);\n           if (trusted) {\n             candidates.push(current);\n             return candidates;\n           }\n+\n           logger?.logInfo(\n             `Repository root found at ${current.toString()}, but it is not trusted. Skipping parent folder inclusion for this workspace folder.`,\n           );\n           return [];\n         }\n       } catch (e) {\n         const msg = e instanceof Error ? e.message : String(e);\n         logger?.logInfo(`Error checking for repo root at ${current.toString()}: ${msg}`);\n         return [];\n       }\n+\n       candidates.push(current);\n       const parent = dirname(current);\n       // Stop walking up at filesystem root, user home, or already-seen folders.\n       if (\n         isEqual(current, parent) ||\n         current.path === \"/\" ||\n         isEqual(userHome, parent) ||\n         seen.has(parent)\n       ) {\n         break;\n       }\n       current = parent;\n     }\n+"
+  }
+]

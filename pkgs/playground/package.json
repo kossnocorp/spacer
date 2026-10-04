@@ -1,0 +1,40 @@
+{
+  "name": "@spacer/playground",
+  "version": "0.1.0",
+  "description": "TypeScript blank-line formatter powered by oxfmt and Jev",
+  "type": "module",
+  "exports": {
+    ".": "./src/formatter.ts",
+    "./files": "./src/files.ts"
+  },
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "start": "node dist/ssr/index.js",
+    "format": "node src/cli.ts",
+    "experiment": "node src/experiment.ts",
+    "check": "tsc --noEmit",
+    "test": "node --test src/formatter.test.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^2.1.3",
+    "@pierre/diffs": "^1.5.1",
+    "@typesafe-ai/sdk": "^0.6.0",
+    "@void/react": "^0.24.0",
+    "ignore": "^7.0.5",
+    "oxfmt": "^0.71.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.2",
+    "void": "^0.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0"
+  },
+  "engines": {
+    "node": ">=24.21.0"
+  }
+}

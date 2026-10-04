@@ -1,0 +1,8 @@
+packages:
+  - pkgs/*
+
+onlyBuiltDependencies:
+  - '@tensorflow/tfjs-node'
+
+patchedDependencies:
+  '@tensorflow/tfjs-node@4.22.0': patches/@tensorflow__tfjs-node@4.22.0.patch
