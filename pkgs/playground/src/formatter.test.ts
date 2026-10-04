@@ -72,6 +72,44 @@ test("batches across files concurrently and maps probabilities to exact boundari
   );
 });
 
+test("credit exhaustion preserves complete files but leaves partial files unrenderable", async () => {
+  let requests = 0;
+  const client = new TypeSafeClient({
+    apiKey: "test",
+    retry: { maxRetries: 0 },
+    fetch: async () => {
+      if (++requests === 3)
+        return new Response(JSON.stringify({ error: "Insufficient credits" }), {
+          status: 402,
+          headers: { "content-type": "application/json" },
+        });
+      return new Response(
+        JSON.stringify({
+          model: "test",
+          usage: { input_tokens: 1, output_tokens: 1 },
+          answers: { b0: { type: "noul", noul: 0.9 } },
+        }),
+        { headers: { "content-type": "application/json" } },
+      );
+    },
+  });
+  const complete = await prepare("complete.ts", "const a=1;\nconst b=2;\n");
+  const partial = await prepare(
+    "partial.ts",
+    "const a=1;\nconst b=2;\nconst c=3;\n",
+  );
+  await assert.rejects(
+    new Spacer({ batchSize: 1, concurrency: 2 }, client).score([
+      complete,
+      partial,
+    ]),
+    (error: any) => error.status === 402,
+  );
+  assert.equal(render(complete), "const a = 1;\n\nconst b = 2;\n");
+  assert.equal(Object.keys(partial.probabilities).length, 1);
+  assert.throws(() => render(partial), /Missing spacing decision/);
+});
+
 test("rejects missing/invalid answers and invalid configuration", async () => {
   for (const threshold of [-1, 101, NaN])
     assert.throws(() => options({ threshold }));

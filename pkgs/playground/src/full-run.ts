@@ -17,7 +17,7 @@ import {
 
 const exec = promisify(execFile);
 const root = resolve("tmp");
-const output = join(root, "full-run");
+const output = resolve(process.env.SPACER_RUN_DIR ?? join(root, "full-run"));
 await mkdir(output, { recursive: true });
 const repos: { repo: string; commit: string }[] = JSON.parse(
   await readFile(join(root, "repos.json"), "utf8"),
@@ -130,6 +130,8 @@ if (process.argv[2] === "baseline") {
 } else if (process.argv[2] === "space") {
   const spacer = new Spacer({ cache: join(output, "cache"), concurrency: 16 });
   const start = Date.now();
+  let creditsExhausted = false;
+  const states = [];
   for (const { repo } of repos) {
     const baseline = await load(repo);
     const dir = join(root, slug(repo));
@@ -150,7 +152,16 @@ if (process.argv[2] === "baseline") {
     const remaining = baseline.files.filter(
       (file) => !file.error && !completed.has(file.path),
     );
-    for (let offset = 0; offset < remaining.length; offset += 64) {
+    states.push({ repo, baseline, dir, progressPath, remaining });
+  }
+  // Round-robin groups give every repository coverage before large repos consume the budget.
+  rounds: for (
+    let offset = 0;
+    states.some((s) => offset < s.remaining.length);
+    offset += 64
+  ) {
+    for (const { repo, baseline, dir, progressPath, remaining } of states) {
+      if (offset >= remaining.length) continue;
       const files: Awaited<ReturnType<typeof prepare>>[] = [];
       const errors: { path: string; error: string }[] = [];
       await parallel(remaining.slice(offset, offset + 64), 8, async (file) => {
@@ -172,6 +183,13 @@ if (process.argv[2] === "baseline") {
           await spacer.score(files);
           break;
         } catch (error) {
+          if ((error as { status?: number }).status === 402) {
+            creditsExhausted = true;
+            console.error(
+              "Jev credits exhausted; saving fully scored files and continuing to corpus/training.",
+            );
+            break;
+          }
           const sourceFile = (error as { sourceFile?: string }).sourceFile;
           if (!sourceFile) throw error;
           errors.push({
@@ -186,6 +204,11 @@ if (process.argv[2] === "baseline") {
       }
       const records: unknown[] = [...errors];
       for (const file of files) {
+        // A failed request can leave only part of a file scored. Never write or record that file.
+        if (
+          !file.boundaries.every((b) => Number.isFinite(file.probabilities[b]))
+        )
+          continue;
         const formatted = render(file, spacer.config.threshold);
         await writeResult(file, formatted);
         records.push({
@@ -202,15 +225,20 @@ if (process.argv[2] === "baseline") {
       console.log(
         `${repo}: ${Math.min(offset + 64, remaining.length)}/${remaining.length} remaining files; total ${spacer.questions} questions, ${spacer.requests} requests, ${Math.round((Date.now() - start) / 1000)}s`,
       );
+      if (creditsExhausted) break rounds;
+      if (offset + 64 >= remaining.length) console.log(`DONE ${repo}`);
     }
+  }
+  for (const { repo, dir, baseline } of states) {
     await saveDiff(dir, baseline.baseline, join(output, `${slug(repo)}.diff`));
-    console.log(`DONE ${repo}`);
   }
   await writeFile(
     join(output, "usage.json"),
     JSON.stringify(
       {
         config: spacer.config,
+        creditsExhausted,
+        scheduling: "round-robin groups of 64 files across repositories",
         models: [...spacer.models],
         requests: spacer.requests,
         questions: spacer.questions,
@@ -230,7 +258,13 @@ if (process.argv[2] === "baseline") {
   for (const { repo } of repos) {
     const baseline = await load(repo);
     const dir = join(root, slug(repo));
-    const progressText = await readFile(join(output, `${slug(repo)}.progress.jsonl`), "utf8").catch((error: NodeJS.ErrnoException) => { if (error.code === "ENOENT") return ""; throw error; });
+    const progressText = await readFile(
+      join(output, `${slug(repo)}.progress.jsonl`),
+      "utf8",
+    ).catch((error: NodeJS.ErrnoException) => {
+      if (error.code === "ENOENT") return "";
+      throw error;
+    });
     const progress = progressText
       .trim()
       .split("\n")
@@ -244,6 +278,8 @@ if (process.argv[2] === "baseline") {
         "--no-ext-diff",
         "--no-textconv",
         "--numstat",
+        "--text",
+        "--no-renames",
         "-z",
         baseline.baseline,
         "--",
@@ -260,6 +296,32 @@ if (process.argv[2] === "baseline") {
         ] as const;
       }),
     );
+    // Git numstat can still classify source fixtures containing NUL as binary.
+    for (const [path, counts] of changes) {
+      if (Number.isFinite(counts.added) && Number.isFinite(counts.deleted))
+        continue;
+      const patch = await git(
+        dir,
+        "diff",
+        "--text",
+        "--no-ext-diff",
+        "--no-textconv",
+        "--no-renames",
+        "--unified=0",
+        baseline.baseline,
+        "--",
+        path,
+      );
+      const lines = patch.split("\n");
+      changes.set(path, {
+        added: lines.filter(
+          (line) => line.startsWith("+") && !line.startsWith("+++"),
+        ).length,
+        deleted: lines.filter(
+          (line) => line.startsWith("-") && !line.startsWith("---"),
+        ).length,
+      });
+    }
     let lines = 0,
       added = 0,
       deleted = 0,
@@ -278,14 +340,22 @@ if (process.argv[2] === "baseline") {
             ? "formatted"
             : "not-processed";
       if (status !== "formatted") skipped++;
-      else { processed++; processedLines += file.lines; }
+      else {
+        processed++;
+        processedLines += file.lines;
+      }
       if (status === "not-processed") notProcessed++;
       lines += file.lines;
       added += change.added;
       deleted += change.deleted;
       const changed = change.added + change.deleted;
       if (changed) changedFiles++;
-      const percent = status === "formatted" ? (file.lines ? (changed / file.lines) * 100 : 0) : null;
+      const percent =
+        status === "formatted"
+          ? file.lines
+            ? (changed / file.lines) * 100
+            : 0
+          : null;
       const row = {
         repo,
         path: file.path,
@@ -348,13 +418,23 @@ if (process.argv[2] === "baseline") {
       deleted,
       changed: added + deleted,
       percent: processed ? ((added + deleted) / (lines || 1)) * 100 : null,
-      processedPercent: processed ? ((added + deleted) / (processedLines || 1)) * 100 : null,
+      processedPercent: processed
+        ? ((added + deleted) / (processedLines || 1)) * 100
+        : null,
     });
   }
   await writeFile(join(output, "files.csv"), csv.join("\n") + "\n");
   await writeFile(
     join(output, "summary.json"),
-    JSON.stringify({ complete: summary.every(repo => repo.notProcessed === 0), defaults, repositories: summary }, null, 2),
+    JSON.stringify(
+      {
+        complete: summary.every((repo) => repo.notProcessed === 0),
+        defaults,
+        repositories: summary,
+      },
+      null,
+      2,
+    ),
   );
   console.table(summary.map(({ upstream, baseline, ...row }) => row));
 } else

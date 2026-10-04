@@ -260,7 +260,7 @@ export class Spacer {
           type: "noul",
           instructions: {
             question:
-              "Does the marked boundary separate two complete logical units that should have a blank line between them in idiomatic TypeScript? Apply the formatting policy in state. Judge this exact boundary only.",
+              "According to the paragraph policy in state, should there be a blank line at the marked boundary?",
             lineImmediatelyBefore: file.lines[index - 1],
             lineImmediatelyAfter: file.lines[index],
             code: [
@@ -270,9 +270,8 @@ export class Spacer {
             ].join("\n"),
           },
           criteria: {
-            true: "A separation between complete declarations, methods, import section and implementation, or distinct processing phases. Before a new section's attached comment, not after it.",
-            false:
-              "Inside one logical unit: adjacent imports, related statements, properties, parameters, arguments or a continued expression. Directly inside opening/closing delimiters. Between a comment/decorator and its code. No blank line at the marker.",
+            true: "The boundary starts a new paragraph under the policy.",
+            false: "The boundary lies within one paragraph under the policy.",
           },
         };
       });

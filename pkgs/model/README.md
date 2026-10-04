@@ -1,5 +1,7 @@
 # Local spacing model
 
+Latest trained model: **`tmp/model-rocm-ordered`**, trained on the ordered-responsibilities Jev policy across 25 repositories. See [ORDERED-RESULTS.md](ORDERED-RESULTS.md) for corpus, training and held-out results. The playground uses this model by default; the original-run command examples below use their explicitly named artifact directories.
+
 TypeScript/Node training pipeline distilling the completed Jev formatting decisions into a local binary classifier. Uses **TensorFlow.js with native CPU TensorFlow** and the **cl100k_base LLM BPE tokenizer** from `gpt-tokenizer`.
 
 ## Run from the workspace root

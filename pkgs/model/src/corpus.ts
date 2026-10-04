@@ -73,12 +73,18 @@ for (const manifest of (await readdir(run))
   const baseline = JSON.parse(await readFile(join(run, manifest), "utf8"));
   const slug = baseline.repo.replace("/", "--"),
     repoRoot = join(root, slug);
-  const eligible = new Set<string>();
+  type Progress = {
+    path: string;
+    error?: string;
+    questions: number;
+    probabilities: Record<string, number>;
+  };
+  const eligible = new Map<string, Progress>();
   try {
-    for await (const record of jsonLines<{ path: string; error?: string }>(
+    for await (const record of jsonLines<Progress>(
       join(run, `${slug}.progress.jsonl`),
     ))
-      if (!record.error) eligible.add(record.path);
+      if (!record.error) eligible.set(record.path, record);
   } catch (error) {
     if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
     throw error;
@@ -89,7 +95,7 @@ for (const manifest of (await readdir(run))
     baseline: baseline.baseline,
     eligible: eligible.size,
   });
-  for (const path of [...eligible].sort()) {
+  for (const path of [...eligible.keys()].sort()) {
     const file = `${baseline.repo}/${path}`;
     let prepared, after: string, gaps: Set<number>;
     try {
@@ -102,6 +108,17 @@ for (const manifest of (await readdir(run))
       ).stdout;
       after = await readFile(join(repoRoot, path), "utf8");
       prepared = await prepare(path, before);
+      const completion = eligible.get(path)!;
+      if (
+        completion.questions !== prepared.boundaries.length ||
+        !prepared.boundaries.every((boundary) => {
+          const probability = completion.probabilities?.[boundary];
+          return (
+            Number.isFinite(probability) && probability >= 0 && probability <= 1
+          );
+        })
+      )
+        throw new Error("Incomplete scoring record; excluded from corpus");
       if (prepared.normalized !== before)
         throw new Error(
           "Baseline normalization changed; incompatible oxfmt version/config",
