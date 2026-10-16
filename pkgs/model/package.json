@@ -1,10 +1,23 @@
 {
-  "name": "@spacer/model",
+  "name": "@spcr/model",
   "version": "0.1.0",
-  "private": true,
+  "files": [
+    "lib"
+  ],
   "type": "module",
-  "exports": "./src/predict.ts",
+  "exports": {
+    ".": "./src/predict.ts",
+    "./tree": "./src/tree-predict.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./lib/predict.js",
+      "./tree": "./lib/tree-predict.js"
+    },
+    "access": "public"
+  },
   "scripts": {
+    "prepack": "node ../../scripts/build-package.mjs",
     "corpus": "node src/corpus.ts",
     "encode": "node src/encode.ts",
     "train": "node src/train.ts",
@@ -14,7 +27,8 @@
     "test": "node --test src/*.test.ts"
   },
   "dependencies": {
-    "@spacer/playground": "workspace:*",
+    "@spcr/playground": "workspace:*",
+    "@spcr/tree-sitter": "workspace:*",
     "@tensorflow/tfjs-node": "4.22.0",
     "gpt-tokenizer": "3.4.0"
   },

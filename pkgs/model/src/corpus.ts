@@ -2,7 +2,7 @@ import { readFile, readdir, mkdir, writeFile, rm } from "node:fs/promises";
 import { resolve, dirname, join } from "node:path";
 import { execFile } from "node:child_process";
 import { promisify, parseArgs } from "node:util";
-import { prepare, defaults } from "@spacer/playground";
+import { prepare, defaults } from "@spcr/playground";
 import {
   hash,
   splitFor,

@@ -1,0 +1,39 @@
+{
+  "name": "@spcr/tree-sitter",
+  "version": "0.1.0",
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./languages": "./src/languages.ts"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./lib/index.js",
+      "./languages": "./lib/languages.js"
+    },
+    "access": "public"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-package.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --test src/*.test.ts",
+    "inspect": "node src/inspect.ts"
+  },
+  "dependencies": {
+    "@repomix/tree-sitter-wasms": "0.1.17",
+    "tree-sitter-wasms": "0.1.13",
+    "web-tree-sitter": "^0.25.10",
+    "web-tree-sitter-legacy": "npm:web-tree-sitter@0.20.8"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

@@ -1,13 +1,24 @@
 {
-  "name": "@spacer/playground",
+  "name": "@spcr/playground",
   "version": "0.1.0",
   "description": "TypeScript blank-line formatter powered by oxfmt and Jev",
+  "files": [
+    "lib"
+  ],
   "type": "module",
   "exports": {
     ".": "./src/formatter.ts",
     "./files": "./src/files.ts"
   },
+  "publishConfig": {
+    "exports": {
+      ".": "./lib/formatter.js",
+      "./files": "./lib/files.js"
+    },
+    "access": "public"
+  },
   "scripts": {
+    "prepack": "node ../../scripts/build-package.mjs",
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "start": "node dist/ssr/index.js",

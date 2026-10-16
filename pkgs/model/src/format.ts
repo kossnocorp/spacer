@@ -1,14 +1,14 @@
 import { parseArgs } from "node:util";
 import { resolve } from "node:path";
 import { readFile } from "node:fs/promises";
-import { discover } from "@spacer/playground/files";
+import { discover } from "@spcr/playground/files";
 import {
   prepare,
   render,
   writeResult,
   parallel,
   type Prepared,
-} from "@spacer/playground";
+} from "@spcr/playground";
 import { LocalSpacer } from "./predict.ts";
 
 const { values, positionals } = parseArgs({

@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
 import type { LayersModel, Tensor } from "@tensorflow/tfjs-node";
-import type { Prepared } from "@spacer/playground";
+import { prepare, render, type Prepared } from "@spcr/playground";
 import { tf } from "./runtime.ts";
 import { encodePair, tokenizerInfo } from "./tokenizer.ts";
 import { windows } from "./data.ts";
@@ -68,5 +68,10 @@ export class LocalSpacer {
   }
   dispose() {
     this.model.dispose();
+  }
+  async formatSource(source: string, filename: string) {
+    const file = await prepare(filename, source);
+    await this.score([file]);
+    return render(file, this.threshold * 100);
   }
 }

@@ -10,7 +10,7 @@ function loadLocal() {
   local ??= import(/* @vite-ignore */ entry)
     .then((module) =>
       module.LocalSpacer.load(
-        resolve(process.env.SPACER_MODEL_DIR ?? "../../tmp/model-rocm-ordered"),
+        resolve(process.env.SPACER_MODEL_DIR ?? "../../tmp/spacer-lines-ts"),
       ),
     )
     .catch((error) => {

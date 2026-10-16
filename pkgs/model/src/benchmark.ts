@@ -3,7 +3,7 @@ import { join, resolve } from "node:path";
 import { parseArgs } from "node:util";
 import { cpus } from "node:os";
 import { createHash } from "node:crypto";
-import { prepare, render, parallel, type Prepared } from "@spacer/playground";
+import { prepare, render, parallel, type Prepared } from "@spcr/playground";
 import { LocalSpacer } from "./predict.ts";
 import { jsonLines } from "./data.ts";
 

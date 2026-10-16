@@ -3,4 +3,6 @@ node_modules/
 .venv/
 __pycache__/
 dist/
+/pkgs/*/lib/
+/pkgs/cli/models/
 .void/

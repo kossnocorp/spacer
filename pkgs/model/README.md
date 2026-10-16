@@ -1,6 +1,8 @@
 # Local spacing model
 
-Latest trained model: **`tmp/model-rocm-ordered`**, trained on the ordered-responsibilities Jev policy across 25 repositories. See [ORDERED-RESULTS.md](ORDERED-RESULTS.md) for corpus, training and held-out results. The playground uses this model by default; the original-run command examples below use their explicitly named artifact directories.
+The line model is named **`spacer-lines-ts`** (`tmp/spacer-lines-ts`, preserved from `tmp/model-rocm-ordered`). The universal tokenizer model is **`spacer-tree-sitter`** (`tmp/spacer-tree-sitter`). See [ORDERED-RESULTS.md](ORDERED-RESULTS.md) for the original corpus and [../tree-sitter/README.md](../tree-sitter/README.md) for tokenizer coverage and training. The playground defaults to the line model.
+
+See [TREE-SITTER-RESULTS.md](TREE-SITTER-RESULTS.md) for the matched quality/throughput comparison and reproduction commands.
 
 TypeScript/Node training pipeline distilling the completed Jev formatting decisions into a local binary classifier. Uses **TensorFlow.js with native CPU TensorFlow** and the **cl100k_base LLM BPE tokenizer** from `gpt-tokenizer`.
 
@@ -76,6 +78,6 @@ The learned probability threshold is selected on validation and need not equal J
 - `tmp/model-run/history.json`: training/validation curves.
 - `tmp/model-run/test-report.json`: held-out metrics and comparisons to always-no and preserve-original-spacing baselines, including performance specifically on teacher-changed boundaries.
 
-`pnpm --filter @spacer/model check` and `pnpm --filter @spacer/model test` verify types, pair alignment, splits, token placement, metrics, training and serialization. Native TensorFlow needs a supported Node/Linux binary; installation enables only the `@tensorflow/tfjs-node` build script in the workspace.
+`pnpm --filter @spcr/model check` and `pnpm --filter @spcr/model test` verify types, pair alignment, splits, token placement, metrics, training and serialization. Native TensorFlow needs a supported Node/Linux binary; installation enables only the `@tensorflow/tfjs-node` build script in the workspace.
 
 For the verified Radeon/PyTorch training setup, see [GPU.md](GPU.md). Corpus generation, tokenization and inference remain TypeScript. Measured CPU/GPU results are in [RESULTS.md](RESULTS.md).

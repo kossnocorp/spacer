@@ -1,0 +1,14 @@
+[tasks."train:tree-sitter"]
+description = "Encode the completed teacher corpus and train spacer-tree-sitter on ROCm"
+dir = "../.."
+run = [
+  "node --max-old-space-size=16384 pkgs/model/src/tree-encode.ts",
+  "uv run --project pkgs/model --frozen python pkgs/model/python/worker.py train --data tmp/model-encoded-tree-sitter --out tmp/spacer-tree-sitter",
+  "node pkgs/model/src/rocm.ts export --out tmp/spacer-tree-sitter",
+  "node pkgs/model/src/evaluate.ts --data tmp/model-encoded-tree-sitter --model tmp/spacer-tree-sitter",
+]
+
+[tasks."benchmark:models"]
+description = "Compare model quality and CPU formatting throughput"
+dir = "../.."
+run = "node pkgs/model/src/compare.ts"

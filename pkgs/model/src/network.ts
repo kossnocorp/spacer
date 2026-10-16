@@ -2,12 +2,12 @@ import { tf } from "./runtime.ts";
 import type { SymbolicTensor } from "@tensorflow/tfjs-node";
 import { tokenizerInfo } from "./tokenizer.ts";
 
-export function buildModel(length: number, seed = 42) {
+export function buildModel(length: number, seed = 42, vocabulary = tokenizerInfo.vocabulary) {
   const left = tf.input({ name: "before", shape: [length], dtype: "int32" });
   const right = tf.input({ name: "after", shape: [length], dtype: "int32" });
   const embedding = tf.layers.embedding({
     name: "bpe_embedding",
-    inputDim: tokenizerInfo.vocabulary,
+    inputDim: vocabulary,
     outputDim: 24,
     embeddingsInitializer: tf.initializers.randomUniform({
       minval: -0.05,

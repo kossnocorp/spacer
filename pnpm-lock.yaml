@@ -13,11 +13,33 @@ importers:
 
   .: {}
 
+  pkgs/cli:
+    dependencies:
+      '@spcr/model':
+        specifier: workspace:*
+        version: link:../model
+      '@spcr/tree-sitter':
+        specifier: workspace:*
+        version: link:../tree-sitter
+      ignore:
+        specifier: ^7.0.5
+        version: 7.0.12
+    devDependencies:
+      '@types/node':
+        specifier: ^22.18.0
+        version: 22.20.5
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+
   pkgs/model:
     dependencies:
-      '@spacer/playground':
+      '@spcr/playground':
         specifier: workspace:*
         version: link:../playground
+      '@spcr/tree-sitter':
+        specifier: workspace:*
+        version: link:../tree-sitter
       '@tensorflow/tfjs-node':
         specifier: 4.22.0
         version: 4.22.0(patch_hash=d16340af56a17e3b4d047ddd2ba20e996b243fc9b110749f071d6a127966e606)(seedrandom@3.0.5)
@@ -77,6 +99,28 @@ importers:
       '@types/react-dom':
         specifier: ^19.3.0
         version: 19.3.0(@types/react@19.3.0)
+
+  pkgs/tree-sitter:
+    dependencies:
+      '@repomix/tree-sitter-wasms':
+        specifier: 0.1.17
+        version: 0.1.17
+      tree-sitter-wasms:
+        specifier: 0.1.13
+        version: 0.1.13
+      web-tree-sitter:
+        specifier: ^0.25.10
+        version: 0.25.10
+      web-tree-sitter-legacy:
+        specifier: npm:web-tree-sitter@0.20.8
+        version: web-tree-sitter@0.20.8
+    devDependencies:
+      '@types/node':
+        specifier: ^22.18.0
+        version: 22.20.5
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
 packages:
 
@@ -1345,6 +1389,9 @@ packages:
 
   '@poppinss/exception@1.2.3':
     resolution: {integrity: sha512-dCED+QRChTVatE9ibtoaxc+WkdzOSjYTKi/+uacHWIsfodVfpsueo3+DKpgU5Px8qXjgmXkSvhXvSCz3fnP9lw==}
+
+  '@repomix/tree-sitter-wasms@0.1.17':
+    resolution: {integrity: sha512-tc3HnFqdMF1pXhIMzG3aTaBDpIiHK2tPfn3fwqA6P3WTbHa+1EuuTubbKshvmN7xCHP5Ojz0/VW4R+XvR88KOw==}
 
   '@rolldown/binding-android-arm-eabi@1.2.12':
     resolution: {integrity: sha512-dB/a1214qKfHMXCpgqR4OZT+jS4kTyEXbQGJPqzobt5EwH5rX080pxE37alt3RzvR1bf1Yz/yGqRfrYAxuPw0A==}
@@ -2687,6 +2734,9 @@ packages:
   tr46@0.0.3:
     resolution: {integrity: sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==}
 
+  tree-sitter-wasms@0.1.13:
+    resolution: {integrity: sha512-wT+cR6DwaIz80/vho3AvSF0N4txuNx/5bcRKoXouOfClpxh/qqrF4URNLQXbbt8MaAxeksZcZd1j8gcGjc+QxQ==}
+
   trim-lines@3.0.1:
     resolution: {integrity: sha512-kRj8B+YHZCc9kQYdWfJB2/oUl9rA99qbowYYBtr4ui4mZyAQ2JpvVBd/6U2YloATfqBhBTSMhTpgBHtU0Mf3Rg==}
 
@@ -2814,6 +2864,17 @@ packages:
       valibot:
         optional: true
       zod:
+        optional: true
+
+  web-tree-sitter@0.20.8:
+    resolution: {integrity: sha512-weOVgZ3aAARgdnb220GqYuh7+rZU0Ka9k9yfKtGAzEYMa6GgiCzW9JjQRJyCJakvibQW+dfjJdihjInKuuCAUQ==}
+
+  web-tree-sitter@0.25.10:
+    resolution: {integrity: sha512-Y09sF44/13XvgVKgO2cNDw5rGk6s26MgoZPXLESvMXeefBf7i6/73eFurre0IsTW6E14Y0ArIzhUMmjoc7xyzA==}
+    peerDependencies:
+      '@types/emscripten': ^1.40.0
+    peerDependenciesMeta:
+      '@types/emscripten':
         optional: true
 
   webidl-conversions@3.0.1:
@@ -3688,6 +3749,8 @@ snapshots:
       supports-color: 10.2.2
 
   '@poppinss/exception@1.2.3': {}
+
+  '@repomix/tree-sitter-wasms@0.1.17': {}
 
   '@rolldown/binding-android-arm-eabi@1.2.12':
     optional: true
@@ -4978,6 +5041,8 @@ snapshots:
 
   tr46@0.0.3: {}
 
+  tree-sitter-wasms@0.1.13: {}
+
   trim-lines@3.0.1: {}
 
   tslib@2.8.1:
@@ -5145,6 +5210,10 @@ snapshots:
       - vitest
       - vue
       - wrangler
+
+  web-tree-sitter@0.20.8: {}
+
+  web-tree-sitter@0.25.10: {}
 
   webidl-conversions@3.0.1: {}
 

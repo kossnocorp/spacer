@@ -12,11 +12,11 @@ The mise monorepo task runs `fnox exec -- pnpm dev` in `pkgs/playground`, inheri
 
 Open http://localhost:5173. Paste JS/TS source, set its filename (including `.tsx` for JSX), choose **Spacer · local model** or **Jev · API**, and click **Format code**. Output has plain text and a syntax-highlighted unified diff using [`@pierre/diffs`](https://diffs.com/). The diff compares the submitted input snapshot to its result, including oxfmt normalization and spacing changes. Later edits are marked as stale until another run.
 
-`POST /api/format` accepts `{ source, filename, backend: "spacer" | "jev" }` and returns `{ output, backend, elapsedMs, boundaries }`. Both backends run on the server; the API key stays server-side. Spacer lazily loads and reuses `tmp/model-rocm-ordered`, with its validation-selected threshold. Set `SPACER_MODEL_DIR` to an absolute model-directory path to choose another trained model. Jev uses the formatter defaults and requires `TYPESAFE_API_KEY`.
+`POST /api/format` accepts `{ source, filename, backend: "spacer" | "jev" }` and returns `{ output, backend, elapsedMs, boundaries }`. Both backends run on the server; the API key stays server-side. Spacer lazily loads and reuses `tmp/spacer-lines-ts`, with its validation-selected threshold. Set `SPACER_MODEL_DIR` to an absolute line-model directory path to choose another trained model. Jev uses the formatter defaults and requires `TYPESAFE_API_KEY`.
 
 ```sh
-mise exec -- pnpm --filter @spacer/playground build
-mise exec -- pnpm --filter @spacer/playground start
+mise exec -- pnpm --filter @spcr/playground build
+mise exec -- pnpm --filter @spcr/playground start
 # Built app: http://localhost:3000 (override with PORT)
 ```
 

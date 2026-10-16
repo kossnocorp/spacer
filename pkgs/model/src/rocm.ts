@@ -39,7 +39,7 @@ if (args[0] === "train" || args[0] === "export") {
     await readFile(join(root, "export.json"), "utf8"),
   );
   const bytes = await readFile(join(root, "export.bin"));
-  const model = buildModel(config.tokensPerSide);
+  const model = buildModel(config.tokensPerSide, config.seed, config.tokenizer.vocabulary);
   let offset = 0;
   const weights = specs.map((spec) => {
     const count = spec.shape.reduce((a, b) => a * b, 1);

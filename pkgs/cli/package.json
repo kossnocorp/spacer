@@ -1,0 +1,37 @@
+{
+  "name": "spcr",
+  "version": "0.1.0",
+  "description": "Local model-guided blank-line formatting with tree-sitter",
+  "bin": {
+    "spacer": "./src/cli.ts"
+  },
+  "files": [
+    "lib",
+    "models",
+    "README.md"
+  ],
+  "type": "module",
+  "publishConfig": {
+    "bin": {
+      "spacer": "./lib/cli.js"
+    },
+    "access": "public"
+  },
+  "scripts": {
+    "prepack": "node ../../scripts/build-package.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --test src/*.test.ts"
+  },
+  "dependencies": {
+    "@spcr/model": "workspace:*",
+    "@spcr/tree-sitter": "workspace:*",
+    "ignore": "^7.0.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.18.0",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

@@ -4,7 +4,7 @@ import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { pathToFileURL } from "node:url";
-import { prepare } from "@spacer/playground";
+import { prepare } from "@spcr/playground";
 import { spacingAt, splitFor, hash, windows } from "./data.ts";
 import { encodePair, tokenize } from "./tokenizer.ts";
 import { metrics, chooseThreshold } from "./metrics.ts";

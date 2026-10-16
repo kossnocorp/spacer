@@ -1,0 +1,72 @@
+{
+  "measuredAt": "2026-10-16T01:41:50.538Z",
+  "quality": {
+    "spacer-lines-ts": {
+      "examples": 689969,
+      "threshold": 0.41,
+      "tp": 205258,
+      "tn": 429869,
+      "fp": 28468,
+      "fn": 26374,
+      "accuracy": 0.9205152695266019,
+      "precision": 0.8781992589613479,
+      "recall": 0.8861383573944878,
+      "f1": 0.8821509461532842,
+      "specificity": 0.9378884968920249,
+      "logLoss": 0.18000826384756352,
+      "brier": 0.05597977538052018,
+      "approximatePrAuc": 0.960477539647013,
+      "approximateRocAuc": 0.9774925872883231,
+      "parameters": 2466481,
+      "weightsBytes": 9865924
+    },
+    "spacer-tree-sitter": {
+      "examples": 689969,
+      "threshold": 0.4,
+      "tp": 197481,
+      "tn": 418717,
+      "fp": 39620,
+      "fn": 34151,
+      "accuracy": 0.893080703625815,
+      "precision": 0.8328982163719258,
+      "recall": 0.8525635490778476,
+      "f1": 0.842616158879362,
+      "specificity": 0.9135570551799223,
+      "logLoss": 0.237823793661306,
+      "brier": 0.07398361018391705,
+      "approximatePrAuc": 0.9331764551661977,
+      "approximateRocAuc": 0.9597637483517361,
+      "parameters": 72097,
+      "weightsBytes": 288388
+    }
+  },
+  "throughput": {
+    "spacer-lines-ts": {
+      "files": 1000,
+      "bytes": 4819492,
+      "lines": 149915,
+      "sourceSha256": "aadd207da60f3530c5b1e109bd01a643e4d744d114040dfba40b6f5d4786777b",
+      "loadMs": 8.12767800000438,
+      "elapsedMs": 3160.0257009999987,
+      "bytesPerSecond": 1525143.2918646384,
+      "locPerSecond": 47441.069847172126
+    },
+    "spacer-tree-sitter": {
+      "files": 1000,
+      "bytes": 4819492,
+      "lines": 149915,
+      "sourceSha256": "aadd207da60f3530c5b1e109bd01a643e4d744d114040dfba40b6f5d4786777b",
+      "loadMs": 1.6781059999993886,
+      "elapsedMs": 5207.174220000001,
+      "bytesPerSecond": 925548.4445842104,
+      "locPerSecond": 28790.087227002743
+    }
+  },
+  "rejected": [
+    "angular/angular/packages/compiler-cli/test/compliance/test_cases/r3_compiler_compliance/components_and_directives/value_composition/inline_object_literal_access_isolated.golden.d.ts",
+    "angular/angular/packages/compiler-cli/test/compliance/test_cases/r3_view_compiler_arrow_functions/arrow_function_nested_listeners_isolated.golden.d.ts",
+    "angular/angular/packages/compiler-cli/test/compliance/test_cases/signal_inputs/transform_not_captured_isolated.golden.d.ts",
+    "angular/angular/packages/compiler-cli/test/compliance/test_cases/signal_queries/query_in_directive_isolated.golden.d.ts"
+  ],
+  "methodology": "Quality: identical held-out boundary targets; each tokenizer uses its own inputs and validation-selected threshold. Throughput: identical files, sequential full formatting including reads and syntax verification, no writes; model load reported separately. Tree training labels are TypeScript only. Grammar compatibility is not evidence of cross-language spacing quality."
+}

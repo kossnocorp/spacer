@@ -11,9 +11,9 @@ from torch import nn
 
 
 class BoundaryCNN(nn.Module):
-    def __init__(self):
+    def __init__(self, vocabulary=100278):
         super().__init__()
-        self.embedding = nn.Embedding(100278, 24)
+        self.embedding = nn.Embedding(vocabulary, 24)
         self.conv = nn.Conv1d(24, 32, 3, padding=1)
         self.hidden = nn.Linear(896, 64)
         self.dropout = nn.Dropout(0.15)
@@ -128,7 +128,11 @@ def main():
     torch.manual_seed(args.seed)
     np.random.seed(args.seed)
     device = device_for(args.device)
-    model = BoundaryCNN().to(device)
+    if args.command == "train" and (args.data / "INCOMPLETE").exists():
+        raise RuntimeError("Encoded data is incomplete")
+    raw_manifest = (args.data / "manifest.json").read_bytes() if args.command == "train" else None
+    manifest = json.loads(raw_manifest) if raw_manifest else None
+    model = BoundaryCNN(manifest["tokenizer"]["vocabulary"] if manifest else 100278).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     loss_fn = nn.BCEWithLogitsLoss()
     if args.command == "smoke":
@@ -200,7 +204,7 @@ def main():
     with torch.inference_mode():
         parity_scores = model(torch.from_numpy(parity_rows).to(device)).sigmoid().cpu().tolist()
     (args.out / "parity.json").write_text(json.dumps({"tokens": parity_rows.tolist(), "scores": parity_scores}))
-    config = {"schema": 1, "trainer": "PyTorch/ROCm", "torch": torch.__version__, "hip": torch.version.hip,
+    config = {"schema": 1, "modelName": "spacer-tree-sitter" if manifest["tokenizer"]["name"] == "spacer-tree-sitter" else "spacer-lines-ts", "trainer": "PyTorch/ROCm", "torch": torch.__version__, "hip": torch.version.hip,
               "device": torch.cuda.get_device_name(device), "context": manifest["corpus"]["context"],
               "tokensPerSide": manifest["tokensPerSide"], "tokenizer": manifest["tokenizer"],
               "threshold": chosen["threshold"], "validation": chosen, "bestEpoch": best_epoch,
