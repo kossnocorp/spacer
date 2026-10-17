@@ -25,7 +25,7 @@
     "format": "node src/cli.ts",
     "experiment": "node src/experiment.ts",
     "check": "tsc --noEmit",
-    "test": "node --test src/formatter.test.ts"
+    "test": "node --test src/*.test.ts"
   },
   "dependencies": {
     "@hono/node-server": "^2.1.3",

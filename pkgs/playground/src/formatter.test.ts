@@ -4,7 +4,17 @@ import { mkdtemp, writeFile, readFile, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { TypeSafeClient } from "@typesafe-ai/sdk";
-import { prepare, render, Spacer, options, writeResult } from "./formatter.ts";
+import { prepare, prepareUnformatted, render, Spacer, options, writeResult } from "./formatter.ts";
+
+test("playground preparation preserves wrapping, tabs and punctuation", () => {
+  const source = 'function score(label: string, description: string | undefined, allowNonContiguousMatches: boolean): number {\n\tconst result = compute(label, description, allowNonContiguousMatches);\n\treturn result;\n}\n';
+  const file = prepareUnformatted("example.ts", source);
+  assert.ok(file.boundaries.length > 0);
+  for (const probability of [0, 1]) {
+    for (const row of file.boundaries) file.probabilities[row] = probability;
+    assert.deepEqual(render(file).split("\n").filter(l => l.trim()), source.split("\n").filter(l => l.trim()));
+  }
+});
 
 test("preserves multiline literal, JSX and comment whitespace even with all-yes decisions", async () => {
   const code =

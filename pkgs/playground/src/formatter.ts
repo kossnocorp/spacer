@@ -171,7 +171,16 @@ export async function prepare(
     throw new Error(
       `${file}: ${result.errors.map((e) => e.message).join("; ")}`,
     );
-  const normalized = result.code;
+  return { ...prepareUnformatted(file, result.code, boundaryMode), original };
+}
+
+/** Prepare spacing decisions on the supplied text without running oxfmt. */
+export function prepareUnformatted(
+  file: string,
+  original: string,
+  boundaryMode: "syntax" | "all" = "syntax",
+): Prepared {
+  const normalized = original;
   const protectedLines = protectedBreaks(normalized, file);
   const starts =
     boundaryMode === "syntax" ? logicalStarts(normalized, file) : undefined;

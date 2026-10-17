@@ -3,12 +3,35 @@ description = "Encode the completed teacher corpus and train spacer-tree-sitter 
 dir = "../.."
 run = [
   "node --max-old-space-size=16384 pkgs/model/src/tree-encode.ts",
-  "uv run --project pkgs/model --frozen python pkgs/model/python/worker.py train --data tmp/model-encoded-tree-sitter --out tmp/spacer-tree-sitter",
-  "node pkgs/model/src/rocm.ts export --out tmp/spacer-tree-sitter",
-  "node pkgs/model/src/evaluate.ts --data tmp/model-encoded-tree-sitter --model tmp/spacer-tree-sitter",
+  "uv run --project pkgs/model --frozen python pkgs/model/python/worker.py train --data tmp/model-encoded-tree-sitter-compact --out tmp/spacer-tree-sitter-compact",
+  "node pkgs/model/src/rocm.ts export --out tmp/spacer-tree-sitter-compact",
 ]
 
 [tasks."benchmark:models"]
 description = "Compare model quality and CPU formatting throughput"
 dir = "../.."
 run = "node pkgs/model/src/compare.ts"
+
+[tasks."encode:compact"]
+description = "Encode compact boundary-local identifiers into a separate schema-2 dataset"
+dir = "../.."
+run = "node --max-old-space-size=16384 pkgs/model/src/tree-encode.ts"
+
+[tasks."tune:tree-sitter"]
+description = "Predeclared long-training CNN search; validation selection only, no test access"
+dir = "../.."
+run = "uv run --project pkgs/model --frozen python pkgs/model/python/tune.py"
+
+[tasks."tune:finalize"]
+description = "Evaluate frozen tuning selection once and benchmark on training-file inputs"
+dir = "../.."
+run = "node pkgs/model/src/finish-tuning.ts"
+
+[tasks."tune:resume"]
+description = "Resume tree search, reuse completed runs, and report progress every ten seconds"
+dir = "../.."
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/tune.py --resume"
+[tasks."publish:models"]
+description = "Export all catalog models, check parity, and upload inference releases to R2 (set CLOUDFLARE_ACCOUNT_ID)"
+dir = "../.."
+run = "node pkgs/model/src/publish-models.ts --upload"

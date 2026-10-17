@@ -89,6 +89,7 @@ export function languageFor(filename: string) {
   return unsupportedGrammars.has(language) ? undefined : language;
 }
 const loaded = new Map<string, Promise<Language>>();
+const reusableParsers = new Map<string, Parser>();
 export async function loadGrammar(language: string, pkg?: string) {
   if (unsupportedGrammars.has(language))
     throw new Error(
@@ -103,7 +104,7 @@ export async function loadGrammar(language: string, pkg?: string) {
   if (!promise) {
     // Isolated WASM runtimes avoid cross-grammar dynamic-symbol collisions.
     promise = (async () => {
-      if (language === "yaml") {
+      if (language === "yaml" || language === "lua") {
         const Legacy = require("web-tree-sitter-legacy") as typeof Parser & {
           Language: typeof Language;
         };
@@ -133,14 +134,22 @@ export async function parse(source: string, language: string, pkg?: string) {
     ? grammars.find((g) => g.language === language && g.package === pkg)!
     : grammars.findLast((g) => g.language === language)!;
   const Constructor = constructors.get(entry.path)!;
-  const parser = new Constructor();
-  try {
+  // The bundled Lua scanner becomes unreliable when its parser is repeatedly
+  // destroyed/recreated. Reset a worker-local parser between independent inputs.
+  const reuse = language === "lua";
+  let parser = reuse ? reusableParsers.get(entry.path) : undefined;
+  if (!parser) {
+    parser = new Constructor();
     parser.setLanguage(grammar);
+    if (reuse) reusableParsers.set(entry.path, parser);
+  }
+  try {
+    parser.reset();
     const tree = parser.parse(source);
     if (!tree) throw new Error(`Unable to parse ${language}`);
     return tree;
   } finally {
-    parser.delete();
+    if (!reuse) parser.delete();
   }
 }
 // tree-sitter 0.20 exposes these flags as methods, 0.25 as getters.

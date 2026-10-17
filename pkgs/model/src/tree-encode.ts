@@ -20,15 +20,15 @@ import { encodePair, tokenizerInfo as linesTokenizer } from "./tokenizer.ts";
 const { values } = parseArgs({
   options: {
     corpus: { type: "string", default: "tmp/model-corpus-ordered" },
-    out: { type: "string", default: "tmp/model-encoded-tree-sitter" },
+    out: { type: "string", default: "tmp/model-encoded-tree-sitter-compact" },
     "repos-root": { type: "string", default: "tmp" },
     "tokens-per-side": { type: "string", default: "128" },
   },
 });
 const out = resolve(values.out),
   length = Number(values["tokens-per-side"]);
-if (!Number.isSafeInteger(length) || length < 16)
-  throw new Error("tokens-per-side must be >=16");
+if (!Number.isSafeInteger(length) || length < 16 || length > 256)
+  throw new Error("tokens-per-side must be between 16 and 256");
 await mkdir(out);
 await writeFile(join(out, "INCOMPLETE"), "Encoding tree-sitter corpus\n");
 const raw = await readFile(join(values.corpus, "manifest.json"), "utf8"),

@@ -6,3 +6,4 @@ dist/
 /pkgs/*/lib/
 /pkgs/cli/models/
 .void/
+/reports/

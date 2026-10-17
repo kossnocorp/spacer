@@ -67,7 +67,7 @@ export const token = Object.fromEntries(
   entities.map((name, i) => [name, i]),
 ) as Record<Entity, number>;
 export const IDENTIFIER_BASE = 256;
-export const tokenizerInfo = {
+export const legacyTokenizerInfo = {
   name: "spacer-tree-sitter",
   schema: 1,
   vocabulary: 512,
@@ -77,6 +77,12 @@ export const tokenizerInfo = {
   identifierEncoding:
     "normalized UTF-8 bytes + 256, delimited by IDENTIFIER/IDENTIFIER_END",
   grammars: ["tree-sitter-wasms@0.1.13", "@repomix/tree-sitter-wasms@0.1.17"],
+};
+export const tokenizerInfo = {
+  ...legacyTokenizerInfo,
+  schema: 2,
+  identifierEncoding:
+    "IDENTIFIER + boundary-local ID 256..511; normalized spelling equality; shared before/after map in source order; atomic truncation",
 };
 export function normalizeIdentifier(name: string) {
   return name
@@ -217,6 +223,8 @@ const identifier =
 export interface Event {
   id: number;
   row: number;
+  start?: number;
+  end?: number;
 }
 export function eventsFor(root: Node, language?: string): Event[] {
   const events: Event[] = [];
@@ -224,6 +232,8 @@ export function eventsFor(root: Node, language?: string): Event[] {
     events.push({
       id,
       row: end ? node.endPosition.row : node.startPosition.row,
+      start: node.startIndex,
+      end: node.endIndex,
     });
   function visit(node: Node) {
     const type = node.type;
@@ -303,7 +313,7 @@ export async function tokenize(
     tree.delete();
   }
 }
-export function encodeContext(events: Event[], boundary: number, length = 128) {
+export function encodeLegacyContext(events: Event[], boundary: number, length = 128) {
   let low = 0,
     high = events.length;
   while (low < high) {
@@ -319,6 +329,84 @@ export function encodeContext(events: Event[], boundary: number, length = 128) {
   return values;
 }
 
+type ContextUnit = { row: number; tokens: number[]; name?: string; start?: number; end?: number };
+export interface InspectedToken {
+  id: number;
+  position: number;
+  start?: number;
+  end?: number;
+  name?: string;
+}
+const contextUnits = new WeakMap<Event[], ContextUnit[]>();
+
+// Keep the parser event stream compatible with schema 1. Collapse names once
+// per document, before taking windows, so no window can split an identifier.
+function unitsFor(events: Event[]) {
+  const cached = contextUnits.get(events);
+  if (cached) return cached;
+  const units: ContextUnit[] = [];
+  for (let i = 0; i < events.length; i++) {
+    const event = events[i]!;
+    if (event.id !== token.IDENTIFIER) {
+      units.push({ ...event, tokens: [event.id] });
+      continue;
+    }
+    const bytes: number[] = [];
+    while (++i < events.length && events[i]!.id !== token.IDENTIFIER_END) {
+      const id = events[i]!.id;
+      if (id < IDENTIFIER_BASE || id >= 512)
+        throw new Error("Malformed identifier event sequence");
+      bytes.push(id - IDENTIFIER_BASE);
+    }
+    if (i === events.length) throw new Error("Unterminated identifier event sequence");
+    units.push({ ...event, tokens: [token.IDENTIFIER, 0], name: Buffer.from(bytes).toString("utf8") });
+  }
+  contextUnits.set(events, units);
+  return units;
+}
+
+export function encodeContext(events: Event[], boundary: number, length = 128,
+  inspect?: (token: InspectedToken) => void) {
+  // At most length distinct two-token identifiers fit in both halves combined.
+  // Reject unsupported budgets instead of silently aliasing identifiers.
+  if (!Number.isSafeInteger(length) || length < 1 || length > 256)
+    throw new Error("Compact context tokens per side must be between 1 and 256");
+  const units = unitsFor(events);
+  let low = 0, high = units.length;
+  while (low < high) {
+    const middle = (low + high) >>> 1;
+    if (units[middle]!.row < boundary) low = middle + 1;
+    else high = middle;
+  }
+  let start = low, end = low, leftSize = 0, rightSize = 0;
+  while (start > 0 && leftSize + units[start - 1]!.tokens.length <= length)
+    leftSize += units[--start]!.tokens.length;
+  while (end < units.length && rightSize + units[end]!.tokens.length <= length)
+    rightSize += units[end++]!.tokens.length;
+  const names = new Map<string, number>();
+  const values = new Int32Array(length * 2);
+  let position = length - leftSize;
+  for (let i = start; i < end; i++) {
+    if (i === low) position = length;
+    const unit = units[i]!;
+    const put = (id: number) => {
+      inspect?.({ id, position, start: unit.start, end: unit.end, name: unit.name });
+      values[position++] = id;
+    };
+    if (unit.name === undefined) put(unit.tokens[0]!);
+    else {
+      let id = names.get(unit.name);
+      if (id === undefined) {
+        id = IDENTIFIER_BASE + names.size;
+        names.set(unit.name, id);
+      }
+      put(token.IDENTIFIER);
+      put(id);
+    }
+  }
+  return values;
+}
+
 const containers = new Set([
   "program",
   "module",
@@ -327,6 +415,7 @@ const containers = new Set([
   "compilation_unit",
   "class_body",
   "declaration_list",
+  "statement_list",
   "body",
   ...blocks,
 ]);

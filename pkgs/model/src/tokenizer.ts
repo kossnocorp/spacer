@@ -1,4 +1,4 @@
-import { encode } from "gpt-tokenizer/encoding/cl100k_base";
+import { encode, decode } from "gpt-tokenizer/encoding/cl100k_base";
 
 export const tokenizerInfo = {
   name: "cl100k_base",
@@ -9,6 +9,30 @@ export const tokenizerInfo = {
   vocabulary: 100278,
 };
 const cache = new Map<string, number[]>();
+// Debugging view uses the exact same line-wise tokenization, including the
+// synthetic final newline. Byte fragments of a Unicode character share its span.
+export function inspectText(text: string, offset = 0) {
+  const tokens: { id: number; label: string; start: number; end: number }[] = [];
+  let lineOffset = 0;
+  for (const line of text.split("\n")) {
+    const ids = encode(line + "\n", { disallowedSpecial: new Set() });
+    let previous = "";
+    for (let i = 0; i < ids.length; i++) {
+      const prefix = decode(ids.slice(0, i + 1));
+      const start = previous.replace(/\uFFFD+$/, "").length;
+      const validEnd = prefix.replace(/\uFFFD+$/, "").length;
+      const end = prefix.endsWith("\uFFFD")
+        ? validEnd + String.fromCodePoint((line + "\n").codePointAt(validEnd) ?? 10).length
+        : validEnd;
+      tokens.push({ id: ids[i]! + 1, label: decode([ids[i]!]),
+        start: offset + Math.min(text.length, lineOffset + start),
+        end: offset + Math.min(text.length, lineOffset + end) });
+      previous = prefix;
+    }
+    lineOffset += line.length + 1;
+  }
+  return tokens;
+}
 export function tokenize(text: string): number[] {
   const result: number[] = [];
   for (const line of text.split("\n")) {

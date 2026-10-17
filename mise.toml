@@ -9,3 +9,7 @@ node = "latest"
 oxfmt = "latest"
 pnpm = "latest"
 uv = "latest"
+
+[tasks.benchmark]
+description = "Benchmark all local models and generate docs/benchmark.md"
+run = "node pkgs/model/src/benchmark-report.ts"

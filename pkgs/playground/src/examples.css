@@ -1,0 +1,6 @@
+.example-picker { margin: 20px 0; padding: 16px; border: 1px solid #344151; border-radius: 8px; }
+.example-selects { display: flex; gap: 16px; flex-wrap: wrap; }
+.example-selects label { display: grid; gap: 6px; }
+.example-selects select { font: inherit; padding: 8px 12px; color: #e3edf6; background: #19222e; border: 1px solid #465669; border-radius: 6px; max-width: 100%; }
+.example-picker p { font-size: 13px; color: #a9b8c7; overflow-wrap: anywhere; margin: 12px 0 0; }
+.example-picker a, .tokenizer-page .example-picker a { color: #a6d6c3; font-size: inherit; }

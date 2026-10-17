@@ -1,79 +1,85 @@
-import { useState, useMemo } from "react";
-import { FileDiff } from "@pierre/diffs/react";
-import { parseDiffFromFile } from "@pierre/diffs";
+import { useState } from "react";
+import { OutputPane, type Result } from "./output-pane.tsx";
 import "./style.css";
+import { models, defaultModel } from "../../../model/src/catalog.ts";
+import { ExampleControls, useExample } from "../../src/example-controls.tsx";
+import { ResultCache, resultKey } from "../../src/result-cache.ts";
+import "../../src/examples.css";
 
-const example = `interface User {
-  name: string;
-  active: boolean;
-}
-const users: User[] = [
-  { name: "Ada", active: true },
-  { name: "Linus", active: false },
-];
-function getActiveNames(users: User[]) {
-  const active = users.filter((user) => user.active);
-  return active.map((user) => user.name);
-}
-export const names = getActiveNames(users);
-`;
-interface Result {
-  source: string;
-  filename: string;
-  output: string;
-  backend: string;
-  elapsedMs: number;
-  boundaries: number;
-}
+const modelOptions = [...models, { id: "jev", name: "Jev · API" }];
+const modelName = (id: string) =>
+  modelOptions.find((model) => model.id === id)?.name ?? id;
 
 export const Playground: React.FC = () => {
-  const [source, setSource] = useState(example);
-  const [filename, setFilename] = useState("example.ts");
-  const [backend, setBackend] = useState("spacer");
-  const [tab, setTab] = useState<"plain" | "diff">("plain");
-  const [result, setResult] = useState<Result>();
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState("");
-  const diff = useMemo(
-    () =>
-      result
-        ? parseDiffFromFile(
-            { name: result.filename, contents: result.source },
-            { name: result.filename, contents: result.output },
-          )
-        : undefined,
-    [result],
-  );
-  const stale =
-    result &&
-    (source !== result.source ||
-      filename !== result.filename ||
-      backend !== result.backend);
+  const exampleState = useExample();
+  const { source, setSource, filename, setFilename } = exampleState;
+  const [backends, setBackends] = useState([defaultModel]);
+  const [jevApiKey, setJevApiKey] = useState("");
+  const [results, setResults] = useState<Record<string, Result>>({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [cache] = useState(() => new ResultCache<Result>());
+  const [pending, setPending] = useState<Record<string, boolean>>({});
+  const busy = Object.values(pending).some(Boolean);
 
-  async function format() {
-    setBusy(true);
-    setError("");
-    const input = { source, filename, backend };
-    try {
-      const response = await fetch("/api/format", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(input),
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error ?? "Formatting failed.");
-      setResult({ ...input, ...data });
-    } catch (error) {
-      setError(
-        error instanceof Error ? error.message : "Unable to reach the backend.",
-      );
-    } finally {
-      setBusy(false);
-    }
+  async function format(targets = backends) {
+    await Promise.all(
+      targets.map(async (backend) => {
+        const input = { source, filename, backend };
+        const key = resultKey(source, filename, backend);
+        setErrors((previous) => {
+          const next = { ...previous };
+          delete next[backend];
+          return next;
+        });
+        const cached = cache.get(key);
+        if (cached) {
+          setResults((previous) => ({ ...previous, [backend]: cached }));
+          return;
+        }
+        setPending((previous) => ({ ...previous, [backend]: true }));
+        setResults((previous) => {
+          const next = { ...previous };
+          delete next[backend];
+          return next;
+        });
+        try {
+          const result = await cache.run(key, async () => {
+            const response = await fetch("/api/format", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                ...input,
+                ...(backend === "jev" && jevApiKey.trim()
+                  ? { apiKey: jevApiKey.trim() }
+                  : {}),
+              }),
+            });
+            const data = await response.json();
+            if (!response.ok)
+              throw new Error(data.error ?? "Formatting failed.");
+            return { ...input, ...data } as Result;
+          });
+          setResults((previous) => ({
+            ...previous,
+            [backend]: result,
+          }));
+        } catch (error) {
+          setErrors((previous) => ({
+            ...previous,
+            [backend]:
+              error instanceof Error
+                ? error.message
+                : "Unable to reach the backend.",
+          }));
+        } finally {
+          setPending((previous) => ({ ...previous, [backend]: false }));
+        }
+      }),
+    );
   }
 
   return (
-    <main>
+    <main className={backends.length > 1 ? "multi-model" : undefined}>
       <title>Spacer playground</title>
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <header className="masthead">
@@ -81,7 +87,9 @@ export const Playground: React.FC = () => {
           <span className="brand-icon">↕</span>spacer
           <span className="badge">PLAYGROUND</span>
         </a>
-        <span className="tagline">A little space. A lot more clarity.</span>
+        <a href="/tokenizer" className="tagline">
+          Explore tokenizers →
+        </a>
       </header>
       <section className="intro">
         <div>
@@ -90,9 +98,10 @@ export const Playground: React.FC = () => {
           <p>Paste your code, choose a model, and see the difference.</p>
         </div>
         <span className="local-note">
-          <i /> TypeScript & JavaScript
+          <i /> Tree-sitter: multiple languages · labels: TypeScript/TSX
         </span>
       </section>
+      <ExampleControls state={exampleState} />
       <div className="toolbar">
         <label>
           Filename
@@ -104,28 +113,148 @@ export const Playground: React.FC = () => {
           />
         </label>
         <div className="actions">
-          <label>
-            Backend
-            <select
-              value={backend}
-              onChange={(e) => setBackend(e.target.value)}
-            >
-              <option value="spacer">Spacer · local model</option>
-              <option value="jev">Jev · API</option>
-            </select>
-          </label>
-          <button className="format-button" disabled={busy} onClick={format}>
+          <div className="model-selectors">
+            {backends.map((id, index) => (
+              <div className="model-selector" key={index}>
+                <label>
+                  Model {backends.length > 1 ? index + 1 : ""}
+                  <select
+                    value={id}
+                    disabled={busy}
+                    onChange={(e) => {
+                      const next = e.target.value;
+                      setBackends((previous) =>
+                        previous.map((value, i) =>
+                          i === index ? next : value,
+                        ),
+                      );
+                      if (Object.keys(results).length) void format([next]);
+                    }}
+                  >
+                    {modelOptions.map((model) => (
+                      <option
+                        key={model.id}
+                        value={model.id}
+                        disabled={
+                          model.id !== id && backends.includes(model.id)
+                        }
+                      >
+                        {model.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                {backends.length > 1 && (
+                  <button
+                    className="model-button"
+                    disabled={busy}
+                    aria-label={`Remove model ${index + 1}`}
+                    onClick={() =>
+                      setBackends((previous) =>
+                        previous.filter((_, i) => i !== index),
+                      )
+                    }
+                  >
+                    −
+                  </button>
+                )}
+                {index === backends.length - 1 && (
+                  <button
+                    className="model-button"
+                    disabled={busy || backends.length >= 3}
+                    aria-label="Add model"
+                    title="Compare up to three models"
+                    onClick={() => {
+                      const next = modelOptions.find(
+                        (model) => !backends.includes(model.id),
+                      );
+                      if (next && backends.length < 3) {
+                        setBackends((previous) => [...previous, next.id]);
+                        if (Object.keys(results).length) void format([next.id]);
+                      }
+                    }}
+                  >
+                    +
+                  </button>
+                )}
+              </div>
+            ))}
+          </div>
+          <button
+            className="format-button"
+            disabled={busy}
+            onClick={() => void format()}
+          >
             {busy ? "Formatting…" : "Format code"}
             <span aria-hidden="true">↗</span>
           </button>
         </div>
       </div>
-      {error && (
-        <div className="error" role="alert">
-          {error}
-        </div>
-      )}
-      <div className="workspace" aria-busy={busy}>
+      <div className="model-descriptions">
+        {backends.map((backend) => {
+          const selectedModel = models.find((model) => model.id === backend);
+          return (
+            <section
+              key={backend}
+              className="model-description"
+              aria-live="polite"
+            >
+              <strong>
+                {models.find((m) => m.id === backend)?.name ?? "Jev · API"}
+              </strong>
+              <p>
+                {models.find((m) => m.id === backend)?.description ??
+                  "Hosted TypeSafe decision model (jev-latest). Scores blank-line placement for all supported languages without rewriting your code."}
+              </p>
+              {selectedModel && (
+                <p>
+                  <strong>Tokenizer:</strong> {selectedModel.tokenizer.label}
+                  {" · "}
+                  <a href={`/tokenizer?view=${selectedModel.tokenizer.key}`}>
+                    Explore this tokenizer →
+                  </a>
+                </p>
+              )}
+              {backend === "jev" && (
+                <div className="jev-credentials">
+                  <label htmlFor="jev-api-key">Jev API key</label>
+                  <input
+                    id="jev-api-key"
+                    type="password"
+                    value={jevApiKey}
+                    onChange={(event) => setJevApiKey(event.target.value)}
+                    autoComplete="off"
+                    spellCheck={false}
+                    maxLength={4096}
+                    placeholder="Optional if TYPESAFE_API_KEY is set on the server"
+                  />
+                  <small>
+                    Kept in page memory only; sent to the playground server for
+                    this request. Leave empty to use the server key supplied by
+                    fnox.
+                  </small>
+                </div>
+              )}
+              <small>
+                {backend}
+                {backend !== "jev" &&
+                  ` · R2: spacer-models/${backend.replace(/^spacer-/, "")}/`}
+              </small>
+            </section>
+          );
+        })}
+      </div>
+      {Object.entries(errors)
+        .filter(([id]) => backends.includes(id))
+        .map(([id, error]) => (
+          <div key={id} className="error" role="alert">
+            {modelName(id)}: {error}
+          </div>
+        ))}
+      <div
+        className={`workspace workspace-${backends.length}`}
+        aria-busy={busy}
+      >
         <section className="pane">
           <div className="pane-header">
             <h2>
@@ -150,90 +279,19 @@ export const Playground: React.FC = () => {
             </span>
           </div>
         </section>
-        <section className="pane">
-          <div className="pane-header">
-            <h2>
-              <span className="step">02</span>Output
-            </h2>
-            <div className="tabs" role="tablist" aria-label="Output view">
-              <button
-                role="tab"
-                id="plain-tab"
-                aria-selected={tab === "plain"}
-                aria-controls="plain-panel"
-                onClick={() => setTab("plain")}
-              >
-                Plain output
-              </button>
-              <button
-                role="tab"
-                id="diff-tab"
-                aria-selected={tab === "diff"}
-                aria-controls="diff-panel"
-                onClick={() => setTab("diff")}
-              >
-                Diff view
-              </button>
-            </div>
-          </div>
-          <div
-            className="output-body"
-            role="tabpanel"
-            id={`${tab}-panel`}
-            aria-labelledby={`${tab}-tab`}
-          >
-            {!result ? (
-              <div className="empty">
-                <span className="empty-icon">↵</span>
-                <h3>Good code deserves good spacing.</h3>
-                <p>
-                  Your formatted code will appear here.
-                  <br />
-                  Choose a backend and hit Format code.
-                </p>
-              </div>
-            ) : tab === "plain" ? (
-              <textarea
-                className="code"
-                aria-label="Formatted output"
-                readOnly
-                value={result.output}
-                spellCheck={false}
-              />
-            ) : (
-              <div className="diff">
-                {result.output === result.source && (
-                  <p className="unchanged">
-                    No changes — already looking good.
-                  </p>
-                )}
-                {diff && (
-                  <FileDiff
-                    fileDiff={diff}
-                    options={{
-                      diffStyle: "unified",
-                      theme: "pierre-dark",
-                      themeType: "dark",
-                      overflow: "scroll",
-                    }}
-                  />
-                )}
-              </div>
-            )}
-          </div>
-          <div className="pane-footer" role="status">
-            {result
-              ? `${result.backend === "spacer" ? "Spacer" : "Jev"} · ${Math.round(result.elapsedMs)} ms · ${result.boundaries} boundaries`
-              : "Ready when you are"}
-            <span>
-              {stale
-                ? "Input changed · run again"
-                : result
-                  ? "Formatting complete"
-                  : "No output yet"}
-            </span>
-          </div>
-        </section>
+        {backends.map((backend, index) => (
+          <OutputPane
+            key={backend}
+            backend={backend}
+            index={index}
+            backends={backends}
+            results={results}
+            errors={errors}
+            busy={busy}
+            source={source}
+            filename={filename}
+          />
+        ))}
       </div>
       <footer>
         <span>oxfmt normalization + model-guided blank lines</span>

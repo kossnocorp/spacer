@@ -6,6 +6,8 @@ import { prepare, render, type Prepared } from "@spcr/playground";
 import { tf } from "./runtime.ts";
 import { encodePair, tokenizerInfo } from "./tokenizer.ts";
 import { windows } from "./data.ts";
+import { prepareDocument, renderDocument, type Document } from "@spcr/tree-sitter";
+import { lineContext } from "./line-document.ts";
 
 export class LocalSpacer {
   model: LayersModel;
@@ -69,7 +71,16 @@ export class LocalSpacer {
   dispose() {
     this.model.dispose();
   }
+  async scoreDocument(document: Document) {
+    const file = lineContext(document);
+    await this.score([file]);
+    return file.boundaries.map(row => file.probabilities[row]!);
+  }
   async formatSource(source: string, filename: string) {
+    if (!/\.(?:[cm]?[jt]s|[jt]sx)$/.test(filename)) {
+      const document = await prepareDocument(source, filename);
+      return renderDocument(document, await this.scoreDocument(document), this.threshold);
+    }
     const file = await prepare(filename, source);
     await this.score([file]);
     return render(file, this.threshold * 100);

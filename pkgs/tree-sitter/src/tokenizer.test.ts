@@ -11,9 +11,45 @@ import {
   prepareDocument,
   renderDocument,
   tokenize,
+  encodeContext,
+  encodeLegacyContext,
 } from "./index.ts";
 import { fixtures } from "./fixtures.ts";
 after(closeParsers);
+test("compact identifiers share identity across a boundary and survive renaming", async () => {
+  const a = await tokenize("const customerRecord = loadCustomer();\nsaveCustomer(customerRecord);", "typescript");
+  const b = await tokenize("const x = f();\ng(x);", "typescript");
+  const values = encodeContext(a, 1, 32);
+  assert.deepEqual(values, encodeContext(b, 1, 32));
+  const identifiers = [...values].filter(id => id >= IDENTIFIER_BASE);
+  assert.equal(identifiers.length, 4);
+  assert.equal(identifiers[0], identifiers[3]);
+  assert.equal(new Set(identifiers).size, 3);
+  assert.ok(!values.includes(token.IDENTIFIER_END));
+  assert.notDeepEqual(encodeLegacyContext(a, 1, 32), encodeLegacyContext(b, 1, 32));
+});
+test("compact windows keep identifier pairs intact and ignore distant names", async () => {
+  const a = await tokenize("first; second; alpha; beta; gamma;\ndelta; alpha;", "typescript");
+  const b = await tokenize("unrelated;\nfirst; second; alpha; beta; gamma;\ndelta; alpha;", "typescript");
+  for (const length of [1, 3, 5, 8]) {
+    const values = encodeContext(a, 1, length);
+    assert.deepEqual(values, encodeContext(b, 2, length));
+    for (let i = 0; i < values.length; i++) {
+      if (values[i]! >= IDENTIFIER_BASE) assert.equal(values[i - 1], token.IDENTIFIER);
+      if (values[i] === token.IDENTIFIER) {
+        assert.ok(values[i + 1]! >= IDENTIFIER_BASE);
+        assert.notEqual(i, length - 1);
+      }
+    }
+  }
+  assert.throws(() => encodeContext(a, 1, 257), /between 1 and 256/);
+});
+test("compact identifier vocabulary cannot overflow at maximum context", async () => {
+  const source = Array.from({length: 300}, (_, i) => `name${i};`).join("\n");
+  const values = encodeContext(await tokenize(source, "typescript"), 150, 256);
+  assert.ok([...values].every(id => id < 512));
+  assert.equal(new Set([...values].filter(id => id >= IDENTIFIER_BASE)).size, 256);
+});
 for (const grammar of grammars)
   test(`${grammar.package}: ${grammar.language} ${unsupportedGrammars.has(grammar.language) ? "rejects unsupported ABI" : "uses shared entities"}`, async () => {
     const fixture = fixtures[grammar.language];
@@ -103,6 +139,14 @@ test("formatting preserves syntax and literal whitespace in TS, Rust and Python"
 });
 test("invalid syntax is rejected instead of partially rewriting a file", async () => {
   await assert.rejects(prepareDocument("def (:", "broken.py"), /Invalid/);
+});
+test("Go statement lists expose gaps inside function bodies", async () => {
+  const source = "package main\nfunc process() {\n  value := read()\n  check(value)\n  save(value)\n}\n";
+  const doc = await prepareDocument(source, "example.go");
+  assert.ok(doc.boundaries.some(b => b.row === 3));
+  assert.ok(doc.boundaries.some(b => b.row === 4));
+  const output = await renderDocument(doc, doc.boundaries.map(() => 1), 0.5);
+  assert.ok(output.includes("  value := read()\n\n  check(value)\n\n  save(value)"));
 });
 test("Ruby each blocks and Python for loops share LOOP without treating identifier spelling as syntax", async () => {
   for (const [language, source] of [

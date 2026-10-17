@@ -5,6 +5,8 @@ import type { LayersModel, Tensor } from "@tensorflow/tfjs-node";
 import { tf } from "./runtime.ts";
 import {
   tokenizerInfo,
+  legacyTokenizerInfo,
+  encodeLegacyContext,
   encodeContext,
   prepareDocument,
   renderDocument,
@@ -15,16 +17,20 @@ export class TreeSpacer {
   readonly model: LayersModel;
   readonly tokensPerSide: number;
   readonly threshold: number;
-  constructor(model: LayersModel, tokensPerSide: number, threshold: number) {
+  readonly tokenizerSchema: number;
+  constructor(model: LayersModel, tokensPerSide: number, threshold: number,
+    tokenizerSchema = 2) {
     this.model = model;
     this.tokensPerSide = tokensPerSide;
     this.threshold = threshold;
+    this.tokenizerSchema = tokenizerSchema;
   }
   static async load(directory: string) {
     const config = JSON.parse(
       await readFile(join(directory, "config.json"), "utf8"),
     );
-    if (JSON.stringify(config.tokenizer) !== JSON.stringify(tokenizerInfo))
+    const expected = config.tokenizer?.schema === 1 ? legacyTokenizerInfo : tokenizerInfo;
+    if (JSON.stringify(config.tokenizer) !== JSON.stringify(expected))
       throw new Error(
         "Incompatible tree-sitter tokenizer; retrain or use matching package version",
       );
@@ -34,6 +40,7 @@ export class TreeSpacer {
       ),
       config.tokensPerSide,
       config.threshold,
+      config.tokenizer.schema,
     );
   }
   async score(document: Document, batchSize = 512) {
@@ -44,7 +51,7 @@ export class TreeSpacer {
       const left = new Int32Array(boundaries.length * n),
         right = new Int32Array(left.length);
       boundaries.forEach((b, i) => {
-        const tokens = encodeContext(document.events, b.row, n);
+        const tokens = (this.tokenizerSchema === 1 ? encodeLegacyContext : encodeContext)(document.events, b.row, n);
         left.set(tokens.subarray(0, n), i * n);
         right.set(tokens.subarray(n), i * n);
       });
