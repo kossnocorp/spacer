@@ -12,7 +12,8 @@ const cache = new Map<string, number[]>();
 // Debugging view uses the exact same line-wise tokenization, including the
 // synthetic final newline. Byte fragments of a Unicode character share its span.
 export function inspectText(text: string, offset = 0) {
-  const tokens: { id: number; label: string; start: number; end: number }[] = [];
+  const tokens: { id: number; label: string; start: number; end: number }[] =
+    [];
   let lineOffset = 0;
   for (const line of text.split("\n")) {
     const ids = encode(line + "\n", { disallowedSpecial: new Set() });
@@ -22,11 +23,15 @@ export function inspectText(text: string, offset = 0) {
       const start = previous.replace(/\uFFFD+$/, "").length;
       const validEnd = prefix.replace(/\uFFFD+$/, "").length;
       const end = prefix.endsWith("\uFFFD")
-        ? validEnd + String.fromCodePoint((line + "\n").codePointAt(validEnd) ?? 10).length
+        ? validEnd +
+          String.fromCodePoint((line + "\n").codePointAt(validEnd) ?? 10).length
         : validEnd;
-      tokens.push({ id: ids[i]! + 1, label: decode([ids[i]!]),
+      tokens.push({
+        id: ids[i]! + 1,
+        label: decode([ids[i]!]),
         start: offset + Math.min(text.length, lineOffset + start),
-        end: offset + Math.min(text.length, lineOffset + end) });
+        end: offset + Math.min(text.length, lineOffset + end),
+      });
       previous = prefix;
     }
     lineOffset += line.length + 1;
@@ -41,10 +46,14 @@ export function tokenize(text: string): number[] {
       tokens = encode(line + "\n", { disallowedSpecial: new Set() }).map(
         (id) => id + 1,
       );
-      if (cache.size >= 50_000) cache.delete(cache.keys().next().value!);
-      cache.set(line, tokens);
+      // Generated/minified upstream files can contain enormous single lines.
+      // Keep their encodings out of the line cache, without changing the tokens.
+      if (tokens.length <= 4096) {
+        if (cache.size >= 50_000) cache.delete(cache.keys().next().value!);
+        cache.set(line, tokens);
+      }
     }
-    result.push(...tokens);
+    for (const token of tokens) result.push(token);
   }
   return result;
 }

@@ -30,6 +30,7 @@
     "@spcr/playground": "workspace:*",
     "@spcr/tree-sitter": "workspace:*",
     "@tensorflow/tfjs-node": "4.22.0",
+    "@typesafe-ai/sdk": "^0.6.0",
     "gpt-tokenizer": "3.4.0"
   },
   "devDependencies": {

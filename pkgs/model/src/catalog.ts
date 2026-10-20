@@ -16,6 +16,19 @@ export const modelTokenizers = {
 
 export const models = [
   {
+    id: "spacer-tree-sitter-cross-attention-1",
+    name: "Spacer Tree-Sitter Cross-Attention v1",
+    family: "attention",
+    tokenizer: {
+      key: "compact",
+      label:
+        "Hybrid v1 · cl100k_base BPE (128/side, 5 lines) + Tree-Sitter compact schema 2 (64/side)",
+    },
+    directory: "tmp/spacer-tree-sitter-cross-attention-1",
+    description:
+      "3.61M-parameter lexical–syntax cross-attention model, seed 42. Held-out accuracy 92.49% versus matched Lines 92.22%. Higher accuracy but slower CPU inference. Trained on TypeScript/TSX; cross-language accuracy is unmeasured. Inspect compact syntax here and BPE via the inspector's BPE view.",
+  },
+  {
     id: "spacer-lines-1-ts",
     name: "Spacer Lines v1 TypeScript",
     family: "lines",
@@ -75,7 +88,7 @@ export const models = [
     directory: "tmp/tree-tuning/ensemble",
     tokenizer: modelTokenizers.bytes,
     description:
-      "Averages three regularized contextual CNNs. Best measured tree-model quality, with larger weights and slower CPU inference.",
+      "Averages three regularized contextual CNNs. Best validation loss in the original byte-tokenizer search, with larger weights and slower CPU inference.",
   },
   {
     id: "spacer-tree-sitter-compact-1",

@@ -3,23 +3,41 @@ import { join } from "node:path";
 import { createHash } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { models } from "./catalog.ts";
+import { parseArgs } from "node:util";
 
-const upload = process.argv.includes("--upload");
+const { values } = parseArgs({
+  options: {
+    upload: { type: "boolean", default: false },
+    model: { type: "string" },
+  },
+});
+const upload = values.upload;
+const selected = values.model
+  ? models.filter((model) => model.id === values.model)
+  : models;
+if (!selected.length) throw new Error("Unknown model ID");
 const root = "tmp/model-releases";
 const releases = [];
-for (const model of models) {
+for (const model of selected) {
   // Export every trial, including those that were not selected for test evaluation.
-  const exported = spawnSync(
-    process.execPath,
-    ["pkgs/model/src/rocm.ts", "export", "--out", model.directory],
-    { stdio: "inherit" },
-  );
+  const exported =
+    model.family === "attention"
+      ? spawnSync(
+          process.execPath,
+          ["--test", "pkgs/model/src/attention.test.ts"],
+          { stdio: "inherit" },
+        )
+      : spawnSync(
+          process.execPath,
+          ["pkgs/model/src/rocm.ts", "export", "--out", model.directory],
+          { stdio: "inherit" },
+        );
   if (exported.status !== 0) throw new Error(`Export failed: ${model.id}`);
   const parity = JSON.parse(
     await readFile(join(model.directory, "export-check.json"), "utf8"),
   );
   if (!parity.passed) throw new Error(`Parity failed: ${model.id}`);
-  const prefix = model.id.replace(/^spacer-/, "");
+  const prefix = `models/${model.id.replace(/^spacer-/, "")}`;
   const destination = join(root, prefix);
   await mkdir(join(destination, "best"), { recursive: true });
   const config = JSON.parse(
@@ -75,8 +93,13 @@ for (const model of models) {
       const path = join(destination, file);
       console.log(`Uploading ${model.id}: ${file}`);
       const result = spawnSync(
-        "cf",
+        "fnox",
         [
+          "exec",
+          "--",
+          "env",
+          "CLOUDFLARE_ACCOUNT_ID=a882f484593b0536f22686b11f8ccc05",
+          "cf",
           "r2",
           "objects",
           "put",
@@ -100,10 +123,11 @@ for (const model of models) {
   }
   releases.push(release);
 }
-await writeFile(
-  join(root, "catalog.json"),
-  JSON.stringify(releases, null, 2) + "\n",
+const catalogPath = join(
+  root,
+  values.model ? `catalog-${values.model}.json` : "catalog.json",
 );
+await writeFile(catalogPath, JSON.stringify(releases, null, 2) + "\n");
 console.log(
-  `${upload ? "Uploaded" : "Staged"} ${releases.length} models. Catalog: ${root}/catalog.json`,
+  `${upload ? "Uploaded" : "Staged"} ${releases.length} models. Catalog: ${catalogPath}`,
 );

@@ -1,0 +1,180 @@
+{
+  "methodology": {
+    "schema": 1,
+    "sampling": "16 evenly distributed admitted boundaries per language; no warmups or repeats",
+    "labels": "none; exploratory boundary probe, not corpus accuracy or full-file throughput",
+    "threshold": 55,
+    "context": 5,
+    "questionStyle": "marked",
+    "formatterSha256": "25ccbdb7289660ffba78b2659c105cca5e80f1b979e6fc45a63ae1688285190a"
+  },
+  "complete": true,
+  "results": [
+    {
+      "key": "b63a141328b727e82f3c706b1cb17a1716688572ad41d192a91ae24ab7b2302d",
+      "language": "typescript",
+      "rows": [
+        8, 28, 39, 53, 75, 92, 109, 123, 144, 157, 169, 188, 211, 218, 227, 235
+      ],
+      "status": "cached",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "b0": {
+            "type": "noul",
+            "noul": 0.62
+          },
+          "b1": {
+            "type": "noul",
+            "noul": 0.81
+          },
+          "b2": {
+            "type": "noul",
+            "noul": 0.5
+          },
+          "b3": {
+            "type": "noul",
+            "noul": 0.15
+          },
+          "b4": {
+            "type": "noul",
+            "noul": 0.35
+          },
+          "b5": {
+            "type": "noul",
+            "noul": 0.36
+          },
+          "b6": {
+            "type": "noul",
+            "noul": 0.91
+          },
+          "b7": {
+            "type": "noul",
+            "noul": 0.43
+          },
+          "b8": {
+            "type": "noul",
+            "noul": 0.88
+          },
+          "b9": {
+            "type": "noul",
+            "noul": 0.2
+          },
+          "b10": {
+            "type": "noul",
+            "noul": 0.79
+          },
+          "b11": {
+            "type": "noul",
+            "noul": 0.3
+          },
+          "b12": {
+            "type": "noul",
+            "noul": 0.83
+          },
+          "b13": {
+            "type": "noul",
+            "noul": 0.31
+          },
+          "b14": {
+            "type": "noul",
+            "noul": 0.16
+          },
+          "b15": {
+            "type": "noul",
+            "noul": 0.24
+          }
+        },
+        "usage": {
+          "input_tokens": 5138,
+          "output_tokens": 282
+        }
+      },
+      "elapsedMs": 363.12565199999995,
+      "measuredAt": "2026-10-19T21:54:13.304Z"
+    },
+    {
+      "key": "53ccd324d9e1582301360bec64ca438749e0d00e2e3df119910b3dfa922dbb77",
+      "language": "rust",
+      "rows": [
+        1, 15, 27, 32, 60, 67, 74, 84, 108, 115, 128, 135, 148, 161, 174, 187
+      ],
+      "status": "cached",
+      "response": {
+        "model": "jev-1.13.0",
+        "answers": {
+          "b0": {
+            "type": "noul",
+            "noul": 0.31
+          },
+          "b1": {
+            "type": "noul",
+            "noul": 0.54
+          },
+          "b2": {
+            "type": "noul",
+            "noul": 0.29
+          },
+          "b3": {
+            "type": "noul",
+            "noul": 0.74
+          },
+          "b4": {
+            "type": "noul",
+            "noul": 0.38
+          },
+          "b5": {
+            "type": "noul",
+            "noul": 0.7
+          },
+          "b6": {
+            "type": "noul",
+            "noul": 0.74
+          },
+          "b7": {
+            "type": "noul",
+            "noul": 0.26
+          },
+          "b8": {
+            "type": "noul",
+            "noul": 0.3
+          },
+          "b9": {
+            "type": "noul",
+            "noul": 0.6
+          },
+          "b10": {
+            "type": "noul",
+            "noul": 0.29
+          },
+          "b11": {
+            "type": "noul",
+            "noul": 0.72
+          },
+          "b12": {
+            "type": "noul",
+            "noul": 0.73
+          },
+          "b13": {
+            "type": "noul",
+            "noul": 0.86
+          },
+          "b14": {
+            "type": "noul",
+            "noul": 0.75
+          },
+          "b15": {
+            "type": "noul",
+            "noul": 0.34
+          }
+        },
+        "usage": {
+          "input_tokens": 3745,
+          "output_tokens": 282
+        }
+      },
+      "elapsedMs": 231.05110100000002,
+      "measuredAt": "2026-10-19T21:54:13.536Z"
+    }
+  ]
+}

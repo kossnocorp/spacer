@@ -21,6 +21,7 @@ import { encodePair } from "./tokenizer.ts";
 import { metrics } from "./metrics.ts";
 import { LocalSpacer } from "./predict.ts";
 import { TreeSpacer } from "./tree-predict.ts";
+import { AttentionSpacer } from "./attention-predict.ts";
 import { tf } from "./runtime.ts";
 
 const { values } = parseArgs({
@@ -207,9 +208,11 @@ for (let repeat = 0; repeat < repeats; repeat++) {
     const config = JSON.parse(configRaw);
     const startedLoad = performance.now();
     const model =
-      entry.family === "lines"
-        ? await LocalSpacer.load(root)
-        : await TreeSpacer.load(root);
+      entry.family === "attention"
+        ? await AttentionSpacer.load(root)
+        : entry.family === "lines"
+          ? await LocalSpacer.load(root)
+          : await TreeSpacer.load(root);
     const loadMs = performance.now() - startedLoad;
     try {
       let result = results.find((result) => result.id === entry.id);
@@ -217,9 +220,24 @@ for (let repeat = 0; repeat < repeats; repeat++) {
         if (model instanceof LocalSpacer && model.context !== corpus.context)
           throw new Error("Lines context differs from corpus");
         const scores: number[] = [];
-        const n = model.tokensPerSide;
+        const n = model instanceof AttentionSpacer ? 128 : model.tokensPerSide;
         for (let start = 0; start < examples.length; start += 512) {
           const batch = examples.slice(start, start + 512);
+          if (model instanceof AttentionSpacer) {
+            const tokens = new Int32Array(batch.length * 384);
+            batch.forEach(({ example, events }, i) => {
+              tokens.set(
+                encodePair(example.before, example.after, 128).values,
+                i * 384,
+              );
+              tokens.set(
+                encodeContext(events, example.boundary, 64),
+                i * 384 + 256,
+              );
+            });
+            scores.push(...(await model.scoreTokens(tokens, batch.length)));
+            continue;
+          }
           const left = new Int32Array(batch.length * n),
             right = new Int32Array(batch.length * n);
           batch.forEach(({ example, events }, i) => {
@@ -248,7 +266,13 @@ for (let repeat = 0; repeat < repeats; repeat++) {
         result = {
           id: entry.id,
           name: entry.name,
-          parameters: model.model.countParams(),
+          parameters:
+            model instanceof AttentionSpacer
+              ? Object.values(model.weights).reduce(
+                  (sum, tensor) => sum + tensor.size,
+                  0,
+                )
+              : model.model.countParams(),
           weightsBytes: weights.length,
           weightsSha256: digest(weights),
           configSha256: hash(configRaw),

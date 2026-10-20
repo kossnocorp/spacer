@@ -7,3 +7,7 @@ dist/
 /pkgs/cli/models/
 .void/
 /reports/
+/corpora/
+/docs/benchmark-data/jev/.lock
+/docs/benchmark-data/jev/*.pending
+/docs/benchmark-data/jev/*.tmp

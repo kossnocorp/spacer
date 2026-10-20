@@ -43,6 +43,9 @@ importers:
       '@tensorflow/tfjs-node':
         specifier: 4.22.0
         version: 4.22.0(patch_hash=d16340af56a17e3b4d047ddd2ba20e996b243fc9b110749f071d6a127966e606)(seedrandom@3.0.5)
+      '@typesafe-ai/sdk':
+        specifier: ^0.6.0
+        version: 0.6.0
       gpt-tokenizer:
         specifier: 3.4.0
         version: 3.4.0

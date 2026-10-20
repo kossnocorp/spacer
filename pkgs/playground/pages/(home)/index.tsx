@@ -238,7 +238,7 @@ export const Playground: React.FC = () => {
               <small>
                 {backend}
                 {backend !== "jev" &&
-                  ` · R2: spacer-models/${backend.replace(/^spacer-/, "")}/`}
+                  ` · R2: spacer-models/models/${backend.replace(/^spacer-/, "")}/`}
               </small>
             </section>
           );

@@ -9,7 +9,69 @@ node = "latest"
 oxfmt = "latest"
 pnpm = "latest"
 uv = "latest"
+"github:unxed/zipper" = "0.1.178"
+
+[tasks."corpus:teacher"]
+description = "Materialize hash-verified Jev-completed TS corpus"
+run = "python3 scripts/corpora.py teacher"
+
+[tasks."corpus:collect"]
+description = "Collect pinned top-100 TypeScript and Rust sparse repositories without formatting"
+run = "python3 scripts/corpora.py collect"
+
+[tasks."corpus:archive"]
+description = "Compress, checksum, and upload a corpus (pass its ID)"
+run = "python3 scripts/corpora.py archive"
+
+[tasks."corpus:fetch"]
+description = "Fetch and verify an archived corpus (pass its ID)"
+run = "python3 scripts/corpora.py fetch"
+
+[tasks."corpus:clean"]
+description = "Create an audited UTF-8-only successor snapshot (source ID and --out-id required)"
+run = "python3 scripts/corpora.py clean"
+
+[tasks."models:migrate"]
+description = "Copy and verify bucket models under models/ before deleting old objects"
+run = "python3 scripts/corpora.py migrate-models"
 
 [tasks.benchmark]
 description = "Benchmark all local models and generate docs/benchmark.md"
-run = "node pkgs/model/src/benchmark-report.ts"
+run = "node pkgs/model/src/benchmark-summary.ts"
+
+[tasks."research:encode-teacher"]
+run = "node --max-old-space-size=12288 pkgs/model/src/encode-v2.ts"
+
+[tasks."research:encode-original"]
+run = "node --max-old-space-size=12288 pkgs/model/src/encode-v2.ts --raw --corpus corpora/github-top100-typescript-2026-10-17-v2,corpora/github-top100-rust-2026-10-17-v2 --out tmp/encoded-v2-original"
+
+[tasks."research:train"]
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/research_v2.py"
+
+[tasks."research:evaluate"]
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/evaluate_v2.py"
+
+[tasks."research:finalize"]
+description = "One-shot frozen teacher test comparison; refuses repeated test opening"
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/finalize_v2.py"
+
+[tasks."benchmark:jev"]
+description = "Plan economical Jev probe; reuse tracked responses (paid calls require --execute)"
+run = "node pkgs/model/src/benchmark-jev.ts"
+
+[tasks."research:export-attention"]
+description = "Export frozen attention checkpoint and check PyTorch/TFJS parity"
+run = [
+  "uv run --project pkgs/model --frozen python pkgs/model/python/export_attention.py",
+  "node --test pkgs/model/src/attention.test.ts",
+]
+
+[tasks."research:train-original"]
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/campaign_v2.py --original"
+
+[tasks."research:campaign"]
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/campaign_v2.py"
+
+[tasks."research:status"]
+description = "Show durable training progress without opening test data"
+run = "python3 pkgs/model/python/research_status.py"

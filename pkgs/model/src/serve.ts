@@ -1,10 +1,14 @@
 import { resolve } from "node:path";
 import { LocalSpacer } from "./predict.ts";
 import { TreeSpacer } from "./tree-predict.ts";
+import { AttentionSpacer } from "./attention-predict.ts";
 import { prepareDocument, renderDocument } from "@spcr/tree-sitter";
 import { models } from "./catalog.ts";
 
-const cache = new Map<string, Promise<LocalSpacer | TreeSpacer>>();
+const cache = new Map<
+  string,
+  Promise<LocalSpacer | TreeSpacer | AttentionSpacer>
+>();
 export async function formatModel(
   source: string,
   filename: string,
@@ -17,17 +21,20 @@ export async function formatModel(
   if (!pending) {
     const directory = resolve("../..", entry.directory);
     pending =
-      entry.family === "lines"
-        ? LocalSpacer.load(directory)
-        : TreeSpacer.load(directory);
+      entry.family === "attention"
+        ? AttentionSpacer.load(directory)
+        : entry.family === "lines"
+          ? LocalSpacer.load(directory)
+          : TreeSpacer.load(directory);
     cache.set(id, pending);
     pending.catch(() => cache.delete(id));
   }
   const model = await pending;
   const doc = await prepareDocument(source, filename);
-  const scores = model instanceof TreeSpacer
-    ? await model.score(doc)
-    : await model.scoreDocument(doc);
+  const scores =
+    model instanceof LocalSpacer
+      ? await model.scoreDocument(doc)
+      : await model.score(doc);
   const output = await renderDocument(doc, scores, model.threshold);
   const boundaries = doc.boundaries.length;
   return {
