@@ -1,0 +1,51 @@
+{
+  "epochs": 40,
+  "candidates": {
+    "baseline": {
+      "embedding": 24,
+      "channels": 32,
+      "hidden": 64,
+      "dilations": [
+        1
+      ],
+      "nearest": 16,
+      "contextualNearest": 0,
+      "dropout": 0.15
+    },
+    "context-small": {
+      "embedding": 32,
+      "channels": 32,
+      "hidden": 128,
+      "dilations": [
+        1
+      ],
+      "nearest": 24,
+      "contextualNearest": 8,
+      "dropout": 0.25
+    },
+    "context-dilated": {
+      "embedding": 32,
+      "channels": 48,
+      "hidden": 128,
+      "dilations": [
+        1,
+        2
+      ],
+      "nearest": 24,
+      "contextualNearest": 8,
+      "dropout": 0.3
+    }
+  },
+  "primarySeed": 42,
+  "confirmationSeed": 123,
+  "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+  "implementationSha256": "60438dc6a36aa815136b97ab0002f47ace70cc52d64f5bee74258b527f9bfd92",
+  "checkpointSelection": "minimum validation loss; minimum improvement .0001; patience 7",
+  "thresholdSelection": "single shared threshold; validation accuracy then F1; .100:.005:.900",
+  "architectureSelection": "maximum macro language validation accuracy; then overall F1",
+  "training": "full mixed train membership, natural language frequency, batch 512, FP32, AdamW .001/.001",
+  "testAccess": "none; freeze selection before a separate one-shot evaluation",
+  "referenceWeightsSha256": "02f3f8df95a970dfcc11fea1644eab8ea3e8b31c4d7515c0f0fb62a57c59fa7a",
+  "torch": "2.10.0+rocm7.1",
+  "device": "AMD Radeon Graphics"
+}

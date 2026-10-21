@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-10-21T03:42:03.030938+00:00",
+  "bucket": "spacer-models",
+  "prefix": "models/lines-mixed-1",
+  "files": [
+    {
+      "file": "config.json",
+      "bytes": 2292,
+      "sha256": "ee9c643c034f30f3c68f75d56f3f9f7fcf0a365aaafbf20b327fdf4a7b46ea75"
+    },
+    {
+      "file": "best/model.json",
+      "bytes": 8030,
+      "sha256": "76a53e407177362a757862a565b62773d19f70aa017b3e8dcfb066a819dbd43f"
+    },
+    {
+      "file": "best/weights.bin",
+      "bytes": 14161028,
+      "sha256": "36cb9139a385eb46711aa302bfba186cad9d3ab0dc51eee9e036ec97fbdc7b9c"
+    },
+    {
+      "file": "export-check.json",
+      "bytes": 83,
+      "sha256": "c80036f862b7f2e394e1676e158a23a72b73a0267db089dc701336d62069cd63"
+    },
+    {
+      "file": "release.json",
+      "bytes": 2499,
+      "sha256": "f533283c753877011c850fedc59da65b4900962d46e60f057b90d25ae2601084"
+    }
+  ]
+}

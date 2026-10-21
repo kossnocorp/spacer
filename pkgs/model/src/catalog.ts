@@ -16,6 +16,28 @@ export const modelTokenizers = {
 
 export const models = [
   {
+    id: "spacer-lines-mixed-1",
+    name: "Spacer Lines v1 Rust + TypeScript",
+    family: "lines",
+    tokenizer: modelTokenizers.bpe,
+    directory: "tmp/spacer-lines-mixed-1",
+    description:
+      "One 3.54M-parameter lexical CNN trained from scratch on original Rust and TypeScript spacing. Held-out accuracy: 88.03% TS / 88.45% Rust. Frozen seed 42, shared threshold 0.52. Faster full-file formatting than the original-trained cross-attention model on the pinned examples.",
+  },
+  {
+    id: "spacer-tree-sitter-cross-attention-original-1",
+    name: "Spacer Cross-Attention v1 Rust + TypeScript",
+    family: "attention",
+    tokenizer: {
+      key: "compact",
+      label:
+        "Hybrid v1 · cl100k_base BPE (128/side, 5 lines) + Tree-Sitter compact schema 2 (64/side)",
+    },
+    directory: "tmp/spacer-tree-sitter-cross-attention-original-1",
+    description:
+      "One 3.61M-parameter lexical–syntax model trained on original Rust and TypeScript spacing. Held-out accuracy: 88.46% TS / 88.68% Rust. Frozen seed 42, shared threshold 0.52. Higher accuracy but slower formatting than bilingual Lines on the pinned examples.",
+  },
+  {
     id: "spacer-tree-sitter-cross-attention-1",
     name: "Spacer Tree-Sitter Cross-Attention v1",
     family: "attention",

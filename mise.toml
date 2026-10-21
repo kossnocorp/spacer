@@ -75,3 +75,25 @@ run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/campaign
 [tasks."research:status"]
 description = "Show durable training progress without opening test data"
 run = "python3 pkgs/model/python/research_status.py"
+
+[tasks."research:lines-mixed"]
+description = "GPU from-scratch bilingual lexical CNN search; validation only, resumable"
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/lines_mixed.py"
+
+[tasks."research:finalize-lines-mixed"]
+description = "One-shot frozen bilingual held-out comparison on CPU; resumable"
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/finalize_lines_mixed.py"
+
+[tasks."research:export-lines-mixed"]
+description = "Export frozen bilingual Lines and check PyTorch/TFJS parity"
+run = [
+  "uv run --project pkgs/model --frozen python pkgs/model/python/export_lines_mixed.py",
+  "node pkgs/model/src/rocm.ts export --out tmp/spacer-lines-mixed-1",
+]
+
+[tasks."research:export-original-attention"]
+description = "Export the original-source attention control for matched runtime measurements"
+run = [
+  "uv run --project pkgs/model --frozen python pkgs/model/python/export_attention.py --root tmp/research-v2-original-gpu/cross-attention-mixed-seed42 --out tmp/spacer-tree-sitter-cross-attention-original-1 --data tmp/encoded-v2-original --training-languages typescript tsx rust",
+  "node --test pkgs/model/src/attention.test.ts",
+]

@@ -1,0 +1,78 @@
+{
+  "verifiedAt": "2026-10-21T04:33:33.414274+00:00",
+  "bucket": "spacer-models",
+  "releases": [
+    {
+      "id": "spacer-lines-mixed-1",
+      "prefix": "models/lines-mixed-1",
+      "trainingLanguages": [
+        "typescript",
+        "tsx",
+        "rust"
+      ],
+      "files": [
+        {
+          "file": "config.json",
+          "bytes": 2292,
+          "sha256": "ee9c643c034f30f3c68f75d56f3f9f7fcf0a365aaafbf20b327fdf4a7b46ea75"
+        },
+        {
+          "file": "best/model.json",
+          "bytes": 8030,
+          "sha256": "76a53e407177362a757862a565b62773d19f70aa017b3e8dcfb066a819dbd43f"
+        },
+        {
+          "file": "best/weights.bin",
+          "bytes": 14161028,
+          "sha256": "36cb9139a385eb46711aa302bfba186cad9d3ab0dc51eee9e036ec97fbdc7b9c"
+        },
+        {
+          "file": "export-check.json",
+          "bytes": 83,
+          "sha256": "c80036f862b7f2e394e1676e158a23a72b73a0267db089dc701336d62069cd63"
+        },
+        {
+          "file": "release.json",
+          "bytes": 2518,
+          "sha256": "1a8c0863a2e9e4c7a1a91fa601f0d1da7f944a53ecfbca54a14c82fbc611d1f8"
+        }
+      ]
+    },
+    {
+      "id": "spacer-tree-sitter-cross-attention-original-1",
+      "prefix": "models/tree-sitter-cross-attention-original-1",
+      "trainingLanguages": [
+        "typescript",
+        "tsx",
+        "rust"
+      ],
+      "files": [
+        {
+          "file": "config.json",
+          "bytes": 2478,
+          "sha256": "2b823639c6834a800f8025bea7feef45fa6b968a1bb268d925c842e83a051c73"
+        },
+        {
+          "file": "best/model.json",
+          "bytes": 1554,
+          "sha256": "f21b2310534e89f218509f572a1be220991adb072afb8390afd2013e8a16a853"
+        },
+        {
+          "file": "best/weights.bin",
+          "bytes": 14455044,
+          "sha256": "48e0759d4bfbcf0e75522b62a00c53a82433fe5c040434ed8084ff3b421e8b00"
+        },
+        {
+          "file": "export-check.json",
+          "bytes": 120,
+          "sha256": "f0a1863edafc68ed62e1aed95039060da7acc928648c3b0aa263fa6c5e29c436"
+        },
+        {
+          "file": "release.json",
+          "bytes": 1878,
+          "sha256": "f53963a2f7012d26b6ced6cc698e8b17756b1552e12e4d6f8bbe0711f33ce7df"
+        }
+      ]
+    }
+  ]
+}

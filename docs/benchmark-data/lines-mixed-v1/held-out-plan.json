@@ -1,0 +1,69 @@
+{
+  "models": [
+    {
+      "name": "context-dilated-seed42",
+      "path": "tmp/lines-mixed-v1/context-dilated-seed42",
+      "spec": {
+        "embedding": 32,
+        "channels": 48,
+        "hidden": 128,
+        "dilations": [
+          1,
+          2
+        ],
+        "nearest": 24,
+        "contextualNearest": 8,
+        "dropout": 0.3
+      },
+      "weightsSha256": "94d3e3cb2f896c258946ce0efa9e0aeb60c9706e978dc986e9530c586c88c238",
+      "threshold": 0.52
+    },
+    {
+      "name": "baseline-seed42",
+      "path": "tmp/lines-mixed-v1/baseline-seed42",
+      "spec": {
+        "embedding": 24,
+        "channels": 32,
+        "hidden": 64,
+        "dilations": [
+          1
+        ],
+        "nearest": 16,
+        "contextualNearest": 0,
+        "dropout": 0.15
+      },
+      "weightsSha256": "552d124e40a47d175dc9825a813d7154503303cdc814dc2d207b8fe4e0011060",
+      "threshold": 0.505
+    },
+    {
+      "name": "context-dilated-seed123",
+      "path": "tmp/lines-mixed-v1/context-dilated-seed123",
+      "spec": {
+        "embedding": 32,
+        "channels": 48,
+        "hidden": 128,
+        "dilations": [
+          1,
+          2
+        ],
+        "nearest": 24,
+        "contextualNearest": 8,
+        "dropout": 0.3
+      },
+      "weightsSha256": "09fd14e53736641b1b80156a718a899d777f5832dab2e12eae4c3d2aff419474",
+      "threshold": 0.515
+    },
+    {
+      "name": "cross-attention",
+      "path": "tmp/research-v2-original-gpu/cross-attention-mixed-seed42",
+      "spec": null,
+      "weightsSha256": "02f3f8df95a970dfcc11fea1644eab8ea3e8b31c4d7515c0f0fb62a57c59fa7a",
+      "threshold": 0.52
+    }
+  ],
+  "primary": "context-dilated-seed42",
+  "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+  "selectionSha256": "b4410e86d6b0dd52cf12745c321f9bc8ccd203fa95c4fe3d282266444c666ccb",
+  "implementationSha256": "1fd52258bdb92cedd6a2c7c61d404e4fd2034b0d469ca8d498581a17301f7d81",
+  "methodology": "One shared validation-calibrated threshold per model; no test selection or retuning; CPU FP32"
+}

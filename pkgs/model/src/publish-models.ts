@@ -81,7 +81,7 @@ for (const model of selected) {
     parameters: config.parameters,
     tokenizer: config.tokenizer,
     validation: config.validation,
-    trainingLanguages: ["typescript", "tsx"],
+    trainingLanguages: config.trainingLanguages ?? ["typescript", "tsx"],
     files,
   };
   await writeFile(

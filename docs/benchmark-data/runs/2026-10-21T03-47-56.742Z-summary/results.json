@@ -1,0 +1,2224 @@
+{
+  "created": "2026-10-21T03:47:56.742Z",
+  "cpu": "AMD Ryzen 9 9950X 16-Core Processor",
+  "node": "v26.12.0",
+  "logicalCpus": 32,
+  "results": [
+    {
+      "family": "lines",
+      "language": "typescript",
+      "directory": "tmp/spacer-lines-ts",
+      "lines": 255,
+      "repetitions": 20,
+      "locPerSecond": 19283.573646992616,
+      "p95Ms": 16.550340000000006,
+      "cpuPercent": 143.09356919286515,
+      "cpuMsPerKloc": 74.20490196078433,
+      "peakRssMiB": 371.7265625,
+      "warmRssMiB": 332.7265625,
+      "weightsMiB": 9.408878326416016,
+      "weightsSha256": "defd66a645180a89b00fdc431f020ee39f4043dab66e8565282cfb3b4479eb3c",
+      "configSha256": "cc92e91366e9081d74a90acc1c035fa99116230f555d589d730a547d57f153ba",
+      "threshold": 0.41,
+      "input": {
+        "repository": "microsoft/vscode",
+        "commit": "e97039dd9293ef2b9df8876d0bc8c0c8ff87f871",
+        "path": "src/vs/base/common/fuzzyScorer.ts",
+        "sha256": "989573c8c0111b5df89ce59fe6d21d05cfabc9d0a59e8ef50d48f08841618102"
+      },
+      "durations": [
+        18.889618999999982,
+        16.550340000000006,
+        13.800555999999972,
+        14.548673000000008,
+        13.507644000000028,
+        12.947318999999993,
+        12.839318999999989,
+        12.75991700000003,
+        12.622736000000032,
+        12.341764000000012,
+        13.014220000000023,
+        12.15335200000004,
+        12.032862000000023,
+        13.163430999999946,
+        12.370143999999982,
+        13.046640000000025,
+        12.418934000000036,
+        11.913021000000072,
+        11.957341000000042,
+        11.59596799999997
+      ],
+      "cpuTimes": [
+        33.081,
+        30.042,
+        21.207,
+        19.36,
+        16.584,
+        17.247,
+        16.885,
+        16.064,
+        15.729,
+        16.651,
+        20.477,
+        15.489,
+        20.637,
+        19.434,
+        21.56,
+        21.193,
+        15.057,
+        13.932,
+        14.181,
+        13.635
+      ]
+    },
+    {
+      "family": "lines",
+      "language": "rust",
+      "directory": "tmp/spacer-lines-ts",
+      "lines": 199,
+      "repetitions": 20,
+      "locPerSecond": 21262.24685385259,
+      "p95Ms": 11.391406000000018,
+      "cpuPercent": 145.58709171771497,
+      "cpuMsPerKloc": 68.47211055276384,
+      "peakRssMiB": 364.9140625,
+      "warmRssMiB": 329.4140625,
+      "weightsMiB": 9.408878326416016,
+      "weightsSha256": "defd66a645180a89b00fdc431f020ee39f4043dab66e8565282cfb3b4479eb3c",
+      "configSha256": "cc92e91366e9081d74a90acc1c035fa99116230f555d589d730a547d57f153ba",
+      "threshold": 0.41,
+      "input": {
+        "repository": "BurntSushi/ripgrep",
+        "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+        "path": "crates/searcher/src/searcher/glue.rs",
+        "sha256": "1ba0cddefcfe93a781050bd7b00b4ed145789c3b5bde5d9acbc18a0701982b56"
+      },
+      "durations": [
+        12.556286,
+        11.391406000000018,
+        9.996313999999984,
+        10.259456,
+        8.756074000000012,
+        9.021685999999988,
+        8.872995000000003,
+        9.359639000000016,
+        9.652561999999989,
+        9.106217000000015,
+        9.356658000000039,
+        9.389468999999963,
+        8.401260999999977,
+        8.74122299999999,
+        9.130258000000026,
+        8.64489199999997,
+        8.319300999999996,
+        8.548141999999984,
+        8.463000999999963,
+        9.219397999999956
+      ],
+      "cpuTimes": [
+        22.162,
+        22.169,
+        14.864,
+        17.68,
+        11.601,
+        11.811,
+        10.124,
+        11.318,
+        11.851,
+        11.835,
+        11.961,
+        13.384,
+        9.846,
+        17.303,
+        11.392,
+        12.275,
+        9.434,
+        10.454,
+        15.717,
+        15.338
+      ]
+    },
+    {
+      "family": "attention",
+      "language": "typescript",
+      "directory": "tmp/spacer-tree-sitter-cross-attention-1",
+      "lines": 255,
+      "repetitions": 20,
+      "locPerSecond": 14157.305148637131,
+      "p95Ms": 20.750405,
+      "cpuPercent": 295.8263292842053,
+      "cpuMsPerKloc": 208.95666666666668,
+      "peakRssMiB": 483.2265625,
+      "warmRssMiB": 441.9765625,
+      "weightsMiB": 13.785404205322266,
+      "weightsSha256": "480a9d7ac441b5854903649a74b557f41f5a950ec2514300ce1067dd2be4f759",
+      "configSha256": "fc2d6205660ca16f4649786401aed06ea7eccccaf65818a099727b5615687acc",
+      "threshold": 0.5,
+      "input": {
+        "repository": "microsoft/vscode",
+        "commit": "e97039dd9293ef2b9df8876d0bc8c0c8ff87f871",
+        "path": "src/vs/base/common/fuzzyScorer.ts",
+        "sha256": "989573c8c0111b5df89ce59fe6d21d05cfabc9d0a59e8ef50d48f08841618102"
+      },
+      "durations": [
+        22.287787999999978,
+        20.412233000000015,
+        20.750405,
+        18.599876999999992,
+        19.422194000000047,
+        18.417485,
+        17.933232000000032,
+        17.630798000000027,
+        18.026283000000035,
+        17.53141800000003,
+        17.222714999999994,
+        17.470686999999998,
+        16.99495300000001,
+        17.26839599999994,
+        16.988653,
+        16.629200000000083,
+        16.864152999999988,
+        15.988914999999906,
+        17.200324999999907,
+        16.598340000000007
+      ],
+      "cpuTimes": [
+        73.189,
+        62.48,
+        65.67,
+        51.331,
+        52.739,
+        52.086,
+        50.446,
+        47.524,
+        51.579,
+        49.879,
+        53.611,
+        55.196,
+        57.206,
+        51.525,
+        48.024,
+        54.271,
+        47.556,
+        44.829,
+        48.637,
+        47.901
+      ]
+    },
+    {
+      "family": "attention",
+      "language": "rust",
+      "directory": "tmp/spacer-tree-sitter-cross-attention-1",
+      "lines": 199,
+      "repetitions": 20,
+      "locPerSecond": 16194.10109604605,
+      "p95Ms": 13.457963000000007,
+      "cpuPercent": 239.99820579125137,
+      "cpuMsPerKloc": 148.20100502512565,
+      "peakRssMiB": 419.77734375,
+      "warmRssMiB": 382.02734375,
+      "weightsMiB": 13.785404205322266,
+      "weightsSha256": "480a9d7ac441b5854903649a74b557f41f5a950ec2514300ce1067dd2be4f759",
+      "configSha256": "fc2d6205660ca16f4649786401aed06ea7eccccaf65818a099727b5615687acc",
+      "threshold": 0.5,
+      "input": {
+        "repository": "BurntSushi/ripgrep",
+        "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+        "path": "crates/searcher/src/searcher/glue.rs",
+        "sha256": "1ba0cddefcfe93a781050bd7b00b4ed145789c3b5bde5d9acbc18a0701982b56"
+      },
+      "durations": [
+        14.831514999999968,
+        13.457963000000007,
+        12.442744000000005,
+        12.579677000000004,
+        12.627435999999989,
+        12.580286999999998,
+        12.853367999999989,
+        11.950660999999968,
+        12.565485999999964,
+        12.457055000000025,
+        11.775360000000035,
+        12.372314000000074,
+        11.210255000000075,
+        11.64105799999993,
+        12.667467000000102,
+        11.071984000000043,
+        11.54909699999996,
+        11.645218,
+        11.698709000000008,
+        11.790849999999978
+      ],
+      "cpuTimes": [
+        41.381,
+        36.066,
+        31.989,
+        30.413,
+        29.826,
+        27.273,
+        34.806,
+        25.901,
+        27.713,
+        26.35,
+        26.444,
+        27.439,
+        24.042,
+        33.948,
+        27.897,
+        24.218,
+        26.289,
+        25.274,
+        33.952,
+        28.619
+      ]
+    },
+    {
+      "family": "lines-mixed",
+      "language": "typescript",
+      "directory": "tmp/spacer-lines-mixed-1",
+      "lines": 255,
+      "repetitions": 20,
+      "locPerSecond": 16991.817816687955,
+      "p95Ms": 17.04727399999996,
+      "cpuPercent": 162.5503926924043,
+      "cpuMsPerKloc": 95.66392156862744,
+      "peakRssMiB": 394.69140625,
+      "warmRssMiB": 352.69140625,
+      "weightsMiB": 13.505008697509766,
+      "weightsSha256": "36cb9139a385eb46711aa302bfba186cad9d3ab0dc51eee9e036ec97fbdc7b9c",
+      "configSha256": "03c3c3ae52004c9362fa187eb2b220ecabc7c16922955f5430c8f609849c5f7c",
+      "threshold": 0.52,
+      "input": {
+        "repository": "microsoft/vscode",
+        "commit": "e97039dd9293ef2b9df8876d0bc8c0c8ff87f871",
+        "path": "src/vs/base/common/fuzzyScorer.ts",
+        "sha256": "989573c8c0111b5df89ce59fe6d21d05cfabc9d0a59e8ef50d48f08841618102"
+      },
+      "durations": [
+        20.89003600000001,
+        16.935971999999992,
+        17.04727399999996,
+        16.624539999999968,
+        15.140606999999989,
+        14.26251099999996,
+        14.347330999999997,
+        14.957126000000017,
+        15.007206999999994,
+        14.393321000000014,
+        14.049699000000032,
+        14.338810999999964,
+        14.825064999999995,
+        13.902147000000014,
+        13.685975999999982,
+        14.862295000000017,
+        13.43797399999994,
+        14.067547999999988,
+        13.984308000000055,
+        13.38471299999992
+      ],
+      "cpuTimes": [
+        39.451,
+        34.286,
+        27.726,
+        24.319,
+        22.15,
+        22.753,
+        20.366,
+        22.386,
+        21.738,
+        22.23,
+        22.729,
+        29.265,
+        23.824,
+        20.813,
+        27.559,
+        26.2,
+        20.17,
+        21.639,
+        19.407,
+        18.875
+      ]
+    },
+    {
+      "family": "lines-mixed",
+      "language": "rust",
+      "directory": "tmp/spacer-lines-mixed-1",
+      "lines": 199,
+      "repetitions": 20,
+      "locPerSecond": 18647.705941644985,
+      "p95Ms": 12.728048000000001,
+      "cpuPercent": 160.06478606613797,
+      "cpuMsPerKloc": 85.83618090452259,
+      "peakRssMiB": 387.5546875,
+      "warmRssMiB": 346.8046875,
+      "weightsMiB": 13.505008697509766,
+      "weightsSha256": "36cb9139a385eb46711aa302bfba186cad9d3ab0dc51eee9e036ec97fbdc7b9c",
+      "configSha256": "03c3c3ae52004c9362fa187eb2b220ecabc7c16922955f5430c8f609849c5f7c",
+      "threshold": 0.52,
+      "input": {
+        "repository": "BurntSushi/ripgrep",
+        "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+        "path": "crates/searcher/src/searcher/glue.rs",
+        "sha256": "1ba0cddefcfe93a781050bd7b00b4ed145789c3b5bde5d9acbc18a0701982b56"
+      },
+      "durations": [
+        14.414410999999973,
+        12.728048000000001,
+        11.993941000000007,
+        10.927471999999966,
+        10.129785999999967,
+        10.708429999999964,
+        11.274774999999977,
+        10.058504000000028,
+        10.27725700000002,
+        10.702769999999987,
+        10.289847000000009,
+        10.34447700000004,
+        10.322377000000017,
+        9.867203000000018,
+        9.906424000000015,
+        9.913853000000017,
+        9.931684000000018,
+        9.616820999999959,
+        10.171065999999996,
+        9.851933000000031
+      ],
+      "cpuTimes": [
+        29.496,
+        25.676,
+        20.827,
+        20.208,
+        13.871,
+        14.576,
+        16.446,
+        14.505,
+        14.766,
+        15.612,
+        13.867,
+        18.609,
+        14.2,
+        20.677,
+        14.517,
+        13.453,
+        13.258,
+        12.927,
+        13.96,
+        20.177
+      ]
+    },
+    {
+      "family": "attention-original",
+      "language": "typescript",
+      "directory": "tmp/spacer-tree-sitter-cross-attention-original-1",
+      "lines": 255,
+      "repetitions": 20,
+      "locPerSecond": 14064.41873315493,
+      "p95Ms": 20.504122999999993,
+      "cpuPercent": 308.8720090738114,
+      "cpuMsPerKloc": 219.61235294117648,
+      "peakRssMiB": 482.9921875,
+      "warmRssMiB": 440.2421875,
+      "weightsMiB": 13.785404205322266,
+      "weightsSha256": "48e0759d4bfbcf0e75522b62a00c53a82433fe5c040434ed8084ff3b421e8b00",
+      "configSha256": "99d799d70ec77b0e1fd78fb47945a3067983552130c9e5aefc1079a57569a81d",
+      "threshold": 0.52,
+      "input": {
+        "repository": "microsoft/vscode",
+        "commit": "e97039dd9293ef2b9df8876d0bc8c0c8ff87f871",
+        "path": "src/vs/base/common/fuzzyScorer.ts",
+        "sha256": "989573c8c0111b5df89ce59fe6d21d05cfabc9d0a59e8ef50d48f08841618102"
+      },
+      "durations": [
+        22.023406000000023,
+        20.504122999999993,
+        19.846288000000015,
+        19.042651000000035,
+        19.34142300000002,
+        17.770659999999964,
+        17.651798999999983,
+        17.640698999999927,
+        18.148363000000018,
+        17.495018000000073,
+        17.511978,
+        17.294054999999958,
+        17.112113999999906,
+        18.361744999999928,
+        17.41958699999998,
+        17.13033500000006,
+        17.403727000000003,
+        16.81437200000005,
+        17.226845000000026,
+        16.878002000000038
+      ],
+      "cpuTimes": [
+        74.654,
+        65.562,
+        67.292,
+        55.088,
+        57.991,
+        50.82,
+        53.172,
+        52.099,
+        53.669,
+        52.841,
+        55.531,
+        57.853,
+        58.469,
+        55.955,
+        50.78,
+        58.843,
+        51.785,
+        48.494,
+        49.655,
+        49.47
+      ]
+    },
+    {
+      "family": "attention-original",
+      "language": "rust",
+      "directory": "tmp/spacer-tree-sitter-cross-attention-original-1",
+      "lines": 199,
+      "repetitions": 20,
+      "locPerSecond": 15825.20952696699,
+      "p95Ms": 13.942436999999984,
+      "cpuPercent": 247.69832665506834,
+      "cpuMsPerKloc": 156.52135678391957,
+      "peakRssMiB": 424.04296875,
+      "warmRssMiB": 380.54296875,
+      "weightsMiB": 13.785404205322266,
+      "weightsSha256": "48e0759d4bfbcf0e75522b62a00c53a82433fe5c040434ed8084ff3b421e8b00",
+      "configSha256": "99d799d70ec77b0e1fd78fb47945a3067983552130c9e5aefc1079a57569a81d",
+      "threshold": 0.52,
+      "input": {
+        "repository": "BurntSushi/ripgrep",
+        "commit": "3fce3b5bb0236da2df6d99672afb8a719642eca7",
+        "path": "crates/searcher/src/searcher/glue.rs",
+        "sha256": "1ba0cddefcfe93a781050bd7b00b4ed145789c3b5bde5d9acbc18a0701982b56"
+      },
+      "durations": [
+        16.228635999999995,
+        13.896946999999955,
+        12.355884000000003,
+        12.820358000000056,
+        12.860968000000014,
+        12.630506999999966,
+        13.942436999999984,
+        12.130222000000003,
+        11.652357999999992,
+        12.288253999999995,
+        11.365655999999944,
+        11.500316999999995,
+        11.732889,
+        11.53448800000001,
+        13.252882,
+        13.314582000000087,
+        12.067722000000003,
+        11.679088999999976,
+        12.365003999999999,
+        11.878260000000068
+      ],
+      "cpuTimes": [
+        45.879,
+        37.71,
+        34.188,
+        33.528,
+        30.663,
+        29.097,
+        39.199,
+        28.034,
+        26.275,
+        26.972,
+        26.224,
+        28.006,
+        26.978,
+        33.694,
+        38.317,
+        30.398,
+        26.262,
+        26.131,
+        28.596,
+        26.804
+      ]
+    }
+  ],
+  "originalConfigs": {
+    "lines-typescript": {
+      "architecture": "lines",
+      "language": "typescript",
+      "epochs": 40,
+      "seed": 42,
+      "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+      "implementationSha256": "ff16845150075e0f9d46e0271d263b644bcf5eb37f4347694b882dde15c960e0",
+      "batchSize": 512,
+      "inputStorage": "read-only memory-mapped files; batch transfer to GPU",
+      "data": "tmp/encoded-v2-original",
+      "parameters": 2466481,
+      "validation": {
+        "examples": 2739595,
+        "threshold": 0.54,
+        "tp": 716705,
+        "fp": 127976,
+        "fn": 217895,
+        "tn": 1677019,
+        "accuracy": 0.8737510471438297,
+        "precision": 0.8484919158830375,
+        "recall": 0.766857479135459,
+        "f1": 0.8056119297626401,
+        "logLoss": 0.2938076985903569
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2739595,
+          "threshold": 0.54,
+          "tp": 716705,
+          "fp": 127976,
+          "fn": 217895,
+          "tn": 1677019,
+          "accuracy": 0.8737510471438297,
+          "precision": 0.8484919158830375,
+          "recall": 0.766857479135459,
+          "f1": 0.8056119297626401,
+          "logLoss": 0.2938076985903569
+        }
+      },
+      "checkpointSelection": "minimum validation log loss",
+      "thresholdSelection": "maximum validation accuracy; F1 tie break",
+      "device": "AMD Radeon Graphics",
+      "torch": "2.10.0+rocm7.1"
+    },
+    "lines-rust": {
+      "architecture": "lines",
+      "language": "rust",
+      "epochs": 40,
+      "seed": 42,
+      "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+      "implementationSha256": "ff16845150075e0f9d46e0271d263b644bcf5eb37f4347694b882dde15c960e0",
+      "batchSize": 512,
+      "inputStorage": "read-only memory-mapped files; batch transfer to GPU",
+      "data": "tmp/encoded-v2-original",
+      "parameters": 2466481,
+      "validation": {
+        "examples": 1283192,
+        "threshold": 0.545,
+        "tp": 334953,
+        "fp": 48464,
+        "fn": 102072,
+        "tn": 797703,
+        "accuracy": 0.8826863010367895,
+        "precision": 0.8735997621388722,
+        "recall": 0.7664389909044105,
+        "f1": 0.8165184132455433,
+        "logLoss": 0.27509477968288437
+      },
+      "byLanguage": {
+        "rust": {
+          "examples": 1283192,
+          "threshold": 0.545,
+          "tp": 334953,
+          "fp": 48464,
+          "fn": 102072,
+          "tn": 797703,
+          "accuracy": 0.8826863010367895,
+          "precision": 0.8735997621388722,
+          "recall": 0.7664389909044105,
+          "f1": 0.8165184132455433,
+          "logLoss": 0.27509477968288437
+        }
+      },
+      "checkpointSelection": "minimum validation log loss",
+      "thresholdSelection": "maximum validation accuracy; F1 tie break",
+      "device": "AMD Radeon Graphics",
+      "torch": "2.10.0+rocm7.1"
+    },
+    "cross-attention-mixed": {
+      "architecture": "cross-attention",
+      "language": "mixed",
+      "epochs": 40,
+      "seed": 42,
+      "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+      "implementationSha256": "ff16845150075e0f9d46e0271d263b644bcf5eb37f4347694b882dde15c960e0",
+      "batchSize": 512,
+      "inputStorage": "read-only memory-mapped files; batch transfer to GPU",
+      "data": "tmp/encoded-v2-original",
+      "parameters": 3613761,
+      "validation": {
+        "examples": 4022787,
+        "threshold": 0.52,
+        "tp": 1073880,
+        "fp": 171810,
+        "fn": 297745,
+        "tn": 2479352,
+        "accuracy": 0.8832761963285652,
+        "precision": 0.8620764395636153,
+        "recall": 0.7829253622528023,
+        "f1": 0.82059668018561,
+        "logLoss": 0.2729158938671859
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2739595,
+          "threshold": 0.52,
+          "tp": 736389,
+          "fp": 124933,
+          "fn": 198211,
+          "tn": 1680062,
+          "accuracy": 0.8820467988881568,
+          "precision": 0.8549520388426164,
+          "recall": 0.7879188957842927,
+          "f1": 0.8200679094080924,
+          "logLoss": 0.27634357782460456
+        },
+        "rust": {
+          "examples": 1283192,
+          "threshold": 0.52,
+          "tp": 337491,
+          "fp": 46877,
+          "fn": 99534,
+          "tn": 799290,
+          "accuracy": 0.8859009407789326,
+          "precision": 0.878041356200308,
+          "recall": 0.7722464389909044,
+          "f1": 0.8217528028605064,
+          "logLoss": 0.2655978418287348
+        }
+      },
+      "checkpointSelection": "minimum validation log loss",
+      "thresholdSelection": "maximum validation accuracy; F1 tie break",
+      "device": "AMD Radeon Graphics",
+      "torch": "2.10.0+rocm7.1"
+    }
+  },
+  "teacher": {
+    "complete": true,
+    "plan": {
+      "selection": {
+        "architecture": "cross-attention",
+        "seed42Winner": "tmp/research-v2-gpu/cross-attention-mixed-seed42",
+        "selection": "maximum validation accuracy, log-loss tie break; no test access",
+        "trials": [
+          {
+            "path": "tmp/research-v2-gpu/hybrid-mixed-seed42",
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.56,
+              "tp": 204027,
+              "fp": 22463,
+              "fn": 32105,
+              "tn": 456662,
+              "accuracy": 0.9237085411257772,
+              "precision": 0.9008212283103006,
+              "recall": 0.8640379109989328,
+              "f1": 0.8820462494217741,
+              "logLoss": 0.17910059842146883
+            }
+          },
+          {
+            "path": "tmp/research-v2-gpu/lines-mixed-seed42",
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.52,
+              "tp": 203158,
+              "fp": 23609,
+              "fn": 32974,
+              "tn": 455516,
+              "accuracy": 0.9208913719124734,
+              "precision": 0.8958887316055687,
+              "recall": 0.8603577659952908,
+              "f1": 0.8777638318510085,
+              "logLoss": 0.1850536263680959
+            }
+          },
+          {
+            "path": "tmp/research-v2-gpu/cross-attention-mixed-seed42",
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.5,
+              "tp": 204647,
+              "fp": 23070,
+              "fn": 31485,
+              "tn": 456055,
+              "accuracy": 0.9237267164110243,
+              "precision": 0.8986900407084232,
+              "recall": 0.8666635610590686,
+              "f1": 0.8823862938154442,
+              "logLoss": 0.17729970730296488
+            }
+          },
+          {
+            "path": "tmp/research-v2-gpu/hybrid-wide-mixed-seed42",
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.56,
+              "tp": 204759,
+              "fp": 23378,
+              "fn": 31373,
+              "tn": 455747,
+              "accuracy": 0.9234526890334523,
+              "precision": 0.897526486277982,
+              "recall": 0.8671378720376739,
+              "f1": 0.8820705237696249,
+              "logLoss": 0.17711073360198545
+            }
+          }
+        ]
+      },
+      "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+      "models": [
+        {
+          "name": "cross-attention-mixed-seed42",
+          "path": "tmp/research-v2-gpu/cross-attention-mixed-seed42",
+          "architecture": "cross-attention",
+          "threshold": 0.5,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "cross-attention",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 42,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 3613761,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.5,
+              "tp": 204647,
+              "fp": 23070,
+              "fn": 31485,
+              "tn": 456055,
+              "accuracy": 0.9237267164110243,
+              "precision": 0.8986900407084232,
+              "recall": 0.8666635610590686,
+              "f1": 0.8823862938154442,
+              "logLoss": 0.17729970730296488
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.5,
+                "tp": 204647,
+                "fp": 23070,
+                "fn": 31485,
+                "tn": 456055,
+                "accuracy": 0.9237267164110243,
+                "precision": 0.8986900407084232,
+                "recall": 0.8666635610590686,
+                "f1": 0.8823862938154442,
+                "logLoss": 0.17729970730296488
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 1049.6957314500032,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "27f406bd5656ad3c9efba63c8e58f0784a1fcb751f4247aaedbdea84a11550b5"
+        },
+        {
+          "name": "cross-attention-mixed-seed123",
+          "path": "tmp/research-v2-gpu/cross-attention-mixed-seed123",
+          "architecture": "cross-attention",
+          "threshold": 0.505,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "cross-attention",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 123,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 3613761,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.505,
+              "tp": 205834,
+              "fp": 24380,
+              "fn": 30298,
+              "tn": 454745,
+              "accuracy": 0.9235547502506092,
+              "precision": 0.8940985344071168,
+              "recall": 0.8716904104483932,
+              "f1": 0.8827522912172507,
+              "logLoss": 0.17732209070740676
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.505,
+                "tp": 205834,
+                "fp": 24380,
+                "fn": 30298,
+                "tn": 454745,
+                "accuracy": 0.9235547502506092,
+                "precision": 0.8940985344071168,
+                "recall": 0.8716904104483932,
+                "f1": 0.8827522912172507,
+                "logLoss": 0.17732209070740676
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 1047.452053497007,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "e916605a06894703e568e537afe545d9b49251cb49709b30ec01797fa6f4bf1d"
+        },
+        {
+          "name": "cross-attention-mixed-seed2026",
+          "path": "tmp/research-v2-gpu/cross-attention-mixed-seed2026",
+          "architecture": "cross-attention",
+          "threshold": 0.525,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "cross-attention",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 2026,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 3613761,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.525,
+              "tp": 204327,
+              "fp": 22980,
+              "fn": 31805,
+              "tn": 456145,
+              "accuracy": 0.9234051536720368,
+              "precision": 0.8989032453905951,
+              "recall": 0.8653083868344824,
+              "f1": 0.8817859524122916,
+              "logLoss": 0.17678141469674877
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.525,
+                "tp": 204327,
+                "fp": 22980,
+                "fn": 31805,
+                "tn": 456145,
+                "accuracy": 0.9234051536720368,
+                "precision": 0.8989032453905951,
+                "recall": 0.8653083868344824,
+                "f1": 0.8817859524122916,
+                "logLoss": 0.17678141469674877
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 1050.2342324100027,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "a5dabdd6e8c0c0e2bbcb8cb15a403dbd16c33cec6efa83c8220a256826f3b9bc"
+        },
+        {
+          "name": "lines-mixed-seed42",
+          "path": "tmp/research-v2-gpu/lines-mixed-seed42",
+          "architecture": "lines",
+          "threshold": 0.52,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "lines",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 42,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 2466481,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.52,
+              "tp": 203158,
+              "fp": 23609,
+              "fn": 32974,
+              "tn": 455516,
+              "accuracy": 0.9208913719124734,
+              "precision": 0.8958887316055687,
+              "recall": 0.8603577659952908,
+              "f1": 0.8777638318510085,
+              "logLoss": 0.1850536263680959
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.52,
+                "tp": 203158,
+                "fp": 23609,
+                "fn": 32974,
+                "tn": 455516,
+                "accuracy": 0.9208913719124734,
+                "precision": 0.8958887316055687,
+                "recall": 0.8603577659952908,
+                "f1": 0.8777638318510085,
+                "logLoss": 0.1850536263680959
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 438.30281219098833,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "30273c901e63b30a5afc80ef836d40f8d8e0646fa163756cc825934a444a9d20"
+        },
+        {
+          "name": "lines-mixed-seed123",
+          "path": "tmp/research-v2-gpu/lines-mixed-seed123",
+          "architecture": "lines",
+          "threshold": 0.525,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "lines",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 123,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 2466481,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.525,
+              "tp": 202226,
+              "fp": 22546,
+              "fn": 33906,
+              "tn": 456579,
+              "accuracy": 0.9210745228638098,
+              "precision": 0.8996939120531027,
+              "recall": 0.8564108210661833,
+              "f1": 0.8775189627341051,
+              "logLoss": 0.18386469092455793
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.525,
+                "tp": 202226,
+                "fp": 22546,
+                "fn": 33906,
+                "tn": 456579,
+                "accuracy": 0.9210745228638098,
+                "precision": 0.8996939120531027,
+                "recall": 0.8564108210661833,
+                "f1": 0.8775189627341051,
+                "logLoss": 0.18386469092455793
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 438.01898268199875,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "df0fc5b1828f20c885677dc32a6cd22482bcf93102b7ae93df0f352194dbae2b"
+        },
+        {
+          "name": "lines-mixed-seed2026",
+          "path": "tmp/research-v2-gpu/lines-mixed-seed2026",
+          "architecture": "lines",
+          "threshold": 0.565,
+          "config": {
+            "data": "tmp/encoded-v2-teacher",
+            "out": "tmp/research-v2-gpu",
+            "architecture": "lines",
+            "language": "mixed",
+            "epochs": 40,
+            "patience": 7,
+            "batch_size": 512,
+            "seed": 2026,
+            "device": "AMD Radeon Graphics",
+            "resume_from": null,
+            "encodedManifestSha256": "1a90e8091f2b8dfda8fcd187a06e88c9ce77ceb442f67c3eef7c4bbfc49b16e5",
+            "implementationSha256": "e873d10eaafc560d0848b57a6dcc95378f8aa36490ae0dba340931c27c8e3369",
+            "parameters": 2466481,
+            "validation": {
+              "examples": 715257,
+              "threshold": 0.565,
+              "tp": 202468,
+              "fp": 22976,
+              "fn": 33664,
+              "tn": 456149,
+              "accuracy": 0.9208116802771591,
+              "precision": 0.8980855556146982,
+              "recall": 0.8574356715735266,
+              "f1": 0.8772899804149262,
+              "logLoss": 0.18435299075588385
+            },
+            "byLanguage": {
+              "typescript": {
+                "examples": 715257,
+                "threshold": 0.565,
+                "tp": 202468,
+                "fp": 22976,
+                "fn": 33664,
+                "tn": 456149,
+                "accuracy": 0.9208116802771591,
+                "precision": 0.8980855556146982,
+                "recall": 0.8574356715735266,
+                "f1": 0.8772899804149262,
+                "logLoss": 0.18435299075588385
+              }
+            },
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation accuracy, F1 tie break",
+            "elapsedSeconds": 438.795631216999,
+            "torch": "2.10.0+rocm7.1"
+          },
+          "weightsSha256": "af60e190c0063471a79d6d9dcb18daef1154264f03638e7929b7f065e1513eca"
+        },
+        {
+          "name": "historical-lines",
+          "path": "tmp/spacer-lines-ts",
+          "architecture": "lines",
+          "threshold": 0.41,
+          "accuracyThreshold": 0.48,
+          "weightsSha256": "99dfbad99ec56a9f050d3729bf453f2e0881e9cdaefb702430d4cb3b3ed5d14c",
+          "config": {
+            "schema": 1,
+            "trainer": "PyTorch/ROCm",
+            "torch": "2.10.0+rocm7.1",
+            "hip": "7.1.25424",
+            "device": "AMD Radeon Graphics",
+            "context": 5,
+            "tokensPerSide": 128,
+            "tokenizer": {
+              "name": "cl100k_base",
+              "implementation": "gpt-tokenizer@3.4.0",
+              "mode": "line-wise BPE; literal special-token strings are ordinary text",
+              "pad": 0,
+              "offset": 1,
+              "vocabulary": 100278
+            },
+            "threshold": 0.41,
+            "validation": {
+              "examples": 760194,
+              "threshold": 0.41,
+              "tp": 220066,
+              "fp": 31157,
+              "fn": 29416,
+              "tn": 479555,
+              "accuracy": 0.9203190238281281,
+              "precision": 0.8759787121402101,
+              "recall": 0.8820916939899471,
+              "f1": 0.8790245753487582,
+              "logLoss": 0.18402929080836977
+            },
+            "bestEpoch": 1,
+            "epochsCompleted": 3,
+            "parameters": 2466481,
+            "seed": 42,
+            "batchSize": 512,
+            "checkpointSelection": "minimum validation log loss",
+            "thresholdSelection": "maximum validation F1",
+            "encodedManifestHash": "64c5feff65516b22882d606c6daf1546e4ea8add6ac6132ddd917a987c9c8dcd",
+            "corpusManifestHash": "655ed4095a0453544acb99009220b64308b7e71be02de97d3a7b1d7e9c13d53c",
+            "elapsedMs": 163432.3547849781,
+            "modelName": "spacer-lines-ts"
+          }
+        }
+      ],
+      "primaryCandidate": "tmp/research-v2-gpu/cross-attention-mixed-seed42",
+      "testSelection": "none"
+    },
+    "results": {
+      "cross-attention-mixed-seed42": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.5,
+          "tp": 208990,
+          "fp": 22973,
+          "fn": 31248,
+          "tn": 458932,
+          "accuracy": 0.9249165331520212,
+          "precision": 0.9009626535266401,
+          "recall": 0.8699289870878046,
+          "f1": 0.8851738984034341,
+          "logLoss": 0.17259527705590536
+        }
+      },
+      "cross-attention-mixed-seed123": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.505,
+          "tp": 210101,
+          "fp": 24358,
+          "fn": 30137,
+          "tn": 457547,
+          "accuracy": 0.9245371069164972,
+          "precision": 0.8961097675926282,
+          "recall": 0.8745535677120189,
+          "f1": 0.8852004541844587,
+          "logLoss": 0.17299880641405035
+        }
+      },
+      "cross-attention-mixed-seed2026": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.525,
+          "tp": 208840,
+          "fp": 22978,
+          "fn": 31398,
+          "tn": 458927,
+          "accuracy": 0.9247018942231663,
+          "precision": 0.9008791379444219,
+          "recall": 0.8693046062654535,
+          "f1": 0.8848102767468267,
+          "logLoss": 0.17326033127380597
+        }
+      },
+      "lines-mixed-seed42": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.52,
+          "tp": 207316,
+          "fp": 23269,
+          "fn": 32922,
+          "tn": 458636,
+          "accuracy": 0.9221885416046406,
+          "precision": 0.8990871045384565,
+          "recall": 0.8629608971103655,
+          "f1": 0.8806536639034201,
+          "logLoss": 0.17910332092710635
+        }
+      },
+      "lines-mixed-seed123": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.525,
+          "tp": 206676,
+          "fp": 22800,
+          "fn": 33562,
+          "tn": 459105,
+          "accuracy": 0.9219517463992589,
+          "precision": 0.9006432045181195,
+          "recall": 0.860296872268334,
+          "f1": 0.8800078345546439,
+          "logLoss": 0.17934429748407588
+        }
+      },
+      "lines-mixed-seed2026": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.565,
+          "tp": 207211,
+          "fp": 23013,
+          "fn": 33027,
+          "tn": 458892,
+          "accuracy": 0.9223976414643638,
+          "precision": 0.9000408298005421,
+          "recall": 0.8625238305347197,
+          "f1": 0.8808830468773249,
+          "logLoss": 0.17851184344623655
+        }
+      },
+      "historical-lines": {
+        "savedThreshold": {
+          "examples": 722143,
+          "threshold": 0.41,
+          "tp": 213055,
+          "fp": 29829,
+          "fn": 27183,
+          "tn": 452076,
+          "accuracy": 0.9210516476653516,
+          "precision": 0.8771882874129214,
+          "recall": 0.8868497073735213,
+          "f1": 0.8819925401865367,
+          "logLoss": 0.17888119152517526
+        },
+        "validationAccuracyThreshold": {
+          "examples": 722143,
+          "threshold": 0.48,
+          "tp": 207475,
+          "fp": 23615,
+          "fn": 32763,
+          "tn": 458290,
+          "accuracy": 0.9219295901227319,
+          "precision": 0.8978103769094292,
+          "recall": 0.8636227407820578,
+          "f1": 0.8803847851177948,
+          "logLoss": 0.17888119152517526
+        }
+      }
+    },
+    "paired": {
+      "42": {
+        "candidateOnlyCorrect": 19213,
+        "linesOnlyCorrect": 17243,
+        "accuracyDifference": 0.0027279915473805705
+      },
+      "123": {
+        "candidateOnlyCorrect": 19108,
+        "linesOnlyCorrect": 17241,
+        "accuracyDifference": 0.0025853605172382332
+      },
+      "2026": {
+        "candidateOnlyCorrect": 18764,
+        "linesOnlyCorrect": 17100,
+        "accuracyDifference": 0.0023042527588025274
+      }
+    }
+  },
+  "heldOut": {
+    "complete": true,
+    "plan": {
+      "models": [
+        {
+          "name": "context-dilated-seed42",
+          "path": "tmp/lines-mixed-v1/context-dilated-seed42",
+          "spec": {
+            "embedding": 32,
+            "channels": 48,
+            "hidden": 128,
+            "dilations": [
+              1,
+              2
+            ],
+            "nearest": 24,
+            "contextualNearest": 8,
+            "dropout": 0.3
+          },
+          "weightsSha256": "94d3e3cb2f896c258946ce0efa9e0aeb60c9706e978dc986e9530c586c88c238",
+          "threshold": 0.52
+        },
+        {
+          "name": "baseline-seed42",
+          "path": "tmp/lines-mixed-v1/baseline-seed42",
+          "spec": {
+            "embedding": 24,
+            "channels": 32,
+            "hidden": 64,
+            "dilations": [
+              1
+            ],
+            "nearest": 16,
+            "contextualNearest": 0,
+            "dropout": 0.15
+          },
+          "weightsSha256": "552d124e40a47d175dc9825a813d7154503303cdc814dc2d207b8fe4e0011060",
+          "threshold": 0.505
+        },
+        {
+          "name": "context-dilated-seed123",
+          "path": "tmp/lines-mixed-v1/context-dilated-seed123",
+          "spec": {
+            "embedding": 32,
+            "channels": 48,
+            "hidden": 128,
+            "dilations": [
+              1,
+              2
+            ],
+            "nearest": 24,
+            "contextualNearest": 8,
+            "dropout": 0.3
+          },
+          "weightsSha256": "09fd14e53736641b1b80156a718a899d777f5832dab2e12eae4c3d2aff419474",
+          "threshold": 0.515
+        },
+        {
+          "name": "cross-attention",
+          "path": "tmp/research-v2-original-gpu/cross-attention-mixed-seed42",
+          "spec": null,
+          "weightsSha256": "02f3f8df95a970dfcc11fea1644eab8ea3e8b31c4d7515c0f0fb62a57c59fa7a",
+          "threshold": 0.52
+        }
+      ],
+      "primary": "context-dilated-seed42",
+      "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+      "selectionSha256": "b4410e86d6b0dd52cf12745c321f9bc8ccd203fa95c4fe3d282266444c666ccb",
+      "implementationSha256": "1fd52258bdb92cedd6a2c7c61d404e4fd2034b0d469ca8d498581a17301f7d81",
+      "methodology": "One shared validation-calibrated threshold per model; no test selection or retuning; CPU FP32"
+    },
+    "results": {
+      "context-dilated-seed42": {
+        "overall": {
+          "examples": 4087878,
+          "threshold": 0.52,
+          "tp": 1078291,
+          "fp": 166393,
+          "fn": 317586,
+          "tn": 2525608,
+          "accuracy": 0.8816063003837199,
+          "precision": 0.8663170732491138,
+          "recall": 0.7724828190449445,
+          "f1": 0.8167135695785858,
+          "logLoss": 0.27669811451525833
+        },
+        "byLanguage": {
+          "typescript": {
+            "examples": 2801959,
+            "threshold": 0.52,
+            "tp": 742058,
+            "fp": 116305,
+            "fn": 219091,
+            "tn": 1724505,
+            "accuracy": 0.8802994619121836,
+            "precision": 0.8645037122988759,
+            "recall": 0.7720530323602272,
+            "f1": 0.8156670579803815,
+            "logLoss": 0.28009978745012737
+          },
+          "rust": {
+            "examples": 1285919,
+            "threshold": 0.52,
+            "tp": 336233,
+            "fp": 50088,
+            "fn": 98495,
+            "tn": 801103,
+            "accuracy": 0.8844538419604967,
+            "precision": 0.8703461629059771,
+            "recall": 0.7734330431902247,
+            "f1": 0.8190327252088487,
+            "logLoss": 0.2692860239443026
+          }
+        }
+      },
+      "baseline-seed42": {
+        "overall": {
+          "examples": 4087878,
+          "threshold": 0.505,
+          "tp": 1066423,
+          "fp": 165019,
+          "fn": 329454,
+          "tn": 2526982,
+          "accuracy": 0.8790391983322399,
+          "precision": 0.865995312812134,
+          "recall": 0.7639806372624522,
+          "f1": 0.8117955984789057,
+          "logLoss": 0.2836808568580962
+        },
+        "byLanguage": {
+          "typescript": {
+            "examples": 2801959,
+            "threshold": 0.505,
+            "tp": 733483,
+            "fp": 115484,
+            "fn": 227666,
+            "tn": 1725326,
+            "accuracy": 0.8775321123542493,
+            "precision": 0.863971155533725,
+            "recall": 0.7631314187498505,
+            "f1": 0.8104265141018586,
+            "logLoss": 0.28728715475181377
+          },
+          "rust": {
+            "examples": 1285919,
+            "threshold": 0.505,
+            "tp": 332940,
+            "fp": 49535,
+            "fn": 101788,
+            "tn": 801656,
+            "accuracy": 0.8823230701156138,
+            "precision": 0.870488267207007,
+            "recall": 0.7658581917888887,
+            "f1": 0.8148281393974325,
+            "logLoss": 0.2758228978109221
+          }
+        }
+      },
+      "context-dilated-seed123": {
+        "overall": {
+          "examples": 4087878,
+          "threshold": 0.515,
+          "tp": 1087846,
+          "fp": 172098,
+          "fn": 308031,
+          "tn": 2519903,
+          "accuracy": 0.8825481093124599,
+          "precision": 0.8634082149682843,
+          "recall": 0.7793279780381795,
+          "f1": 0.8192163553191273,
+          "logLoss": 0.2784323709954301
+        },
+        "byLanguage": {
+          "typescript": {
+            "examples": 2801959,
+            "threshold": 0.515,
+            "tp": 750245,
+            "fp": 120721,
+            "fn": 210904,
+            "tn": 1720089,
+            "accuracy": 0.881645306016255,
+            "precision": 0.8613941301956678,
+            "recall": 0.7805709624626359,
+            "f1": 0.8189933492166158,
+            "logLoss": 0.28118513391573263
+          },
+          "rust": {
+            "examples": 1285919,
+            "threshold": 0.515,
+            "tp": 337601,
+            "fp": 51377,
+            "fn": 97127,
+            "tn": 799814,
+            "accuracy": 0.8845152766231776,
+            "precision": 0.8679179799371687,
+            "recall": 0.7765798384277065,
+            "f1": 0.8197123731039958,
+            "logLoss": 0.272434225825005
+          }
+        }
+      },
+      "cross-attention": {
+        "overall": {
+          "examples": 4087878,
+          "threshold": 0.52,
+          "tp": 1093093,
+          "fp": 166053,
+          "fn": 302784,
+          "tn": 2525948,
+          "accuracy": 0.8853104226691697,
+          "precision": 0.8681225211373423,
+          "recall": 0.7830869052215919,
+          "f1": 0.8234150890594921,
+          "logLoss": 0.26951798755453216
+        },
+        "byLanguage": {
+          "typescript": {
+            "examples": 2801959,
+            "threshold": 0.52,
+            "tp": 756102,
+            "fp": 118256,
+            "fn": 205047,
+            "tn": 1722554,
+            "accuracy": 0.8846153708887247,
+            "precision": 0.8647510516287379,
+            "recall": 0.7866647106744116,
+            "f1": 0.8238617450110515,
+            "logLoss": 0.2722496121815223
+          },
+          "rust": {
+            "examples": 1285919,
+            "threshold": 0.52,
+            "tp": 336991,
+            "fp": 47797,
+            "fn": 97737,
+            "tn": 803394,
+            "accuracy": 0.8868249088783975,
+            "precision": 0.8757835483435035,
+            "recall": 0.7751766621887709,
+            "f1": 0.8224146935508275,
+            "logLoss": 0.2635659017635787
+          }
+        }
+      }
+    },
+    "paired": {
+      "baseline-seed42": {
+        "overall": {
+          "primaryOnlyCorrect": 104444,
+          "controlOnlyCorrect": 93950,
+          "accuracyDifference": 0.0025671020514800302
+        },
+        "typescript": {
+          "primaryOnlyCorrect": 73961,
+          "controlOnlyCorrect": 66207,
+          "accuracyDifference": 0.002767349557934229
+        },
+        "rust": {
+          "primaryOnlyCorrect": 30483,
+          "controlOnlyCorrect": 27743,
+          "accuracyDifference": 0.0021307718448828616
+        }
+      },
+      "context-dilated-seed123": {
+        "overall": {
+          "primaryOnlyCorrect": 104396,
+          "controlOnlyCorrect": 108246,
+          "accuracyDifference": -0.0009418089287399622
+        },
+        "typescript": {
+          "primaryOnlyCorrect": 73380,
+          "controlOnlyCorrect": 77151,
+          "accuracyDifference": -0.0013458441040714586
+        },
+        "rust": {
+          "primaryOnlyCorrect": 31016,
+          "controlOnlyCorrect": 31095,
+          "accuracyDifference": -0.000061434662680937
+        }
+      },
+      "cross-attention": {
+        "overall": {
+          "primaryOnlyCorrect": 116470,
+          "controlOnlyCorrect": 131612,
+          "accuracyDifference": -0.003704122285449807
+        },
+        "typescript": {
+          "primaryOnlyCorrect": 82737,
+          "controlOnlyCorrect": 94830,
+          "accuracyDifference": -0.004315908976541105
+        },
+        "rust": {
+          "primaryOnlyCorrect": 33733,
+          "controlOnlyCorrect": 36782,
+          "accuracyDifference": -0.002371066917900788
+        }
+      }
+    },
+    "inference": "CPU FP32; no confidence intervals assuming independent boundaries"
+  },
+  "scoring": {
+    "metrics": {
+      "baseline-seed42": {
+        "typescript/batch1": {
+          "boundariesPerSecond": 20270.575729671364,
+          "seconds": [
+            0.006839509995188564,
+            0.006302435998804867,
+            0.006297156010987237,
+            0.006323727022390813,
+            0.006251946004340425,
+            0.006320106011116877,
+            0.006271656020544469,
+            0.006282715999986976,
+            0.006316266022622585,
+            0.006278176006162539,
+            0.006377596000675112,
+            0.006312656973022968,
+            0.0062741349975112826,
+            0.0063128769979812205,
+            0.00628084602067247,
+            0.00808289900305681,
+            0.006814180000219494,
+            0.006647578004049137,
+            0.00658073800150305,
+            0.006697959004668519
+          ],
+          "boundaries": 128
+        },
+        "typescript/batch512": {
+          "boundariesPerSecond": 213804.95695225763,
+          "seconds": [
+            0.038527700991835445,
+            0.038816984015284106,
+            0.03687410001293756,
+            0.035521130019333214,
+            0.0384468010161072,
+            0.03818378900177777,
+            0.03802855798858218,
+            0.03913533699233085,
+            0.040323024993995205,
+            0.03889443399384618,
+            0.03999586298596114,
+            0.038508561003254727,
+            0.03373526700306684,
+            0.03864834300475195,
+            0.03980126098031178,
+            0.038097818003734574,
+            0.03814628999680281,
+            0.03760941501241177,
+            0.03767192500527017,
+            0.037706995994085446
+          ],
+          "boundaries": 8192
+        },
+        "rust/batch1": {
+          "boundariesPerSecond": 19309.53762441837,
+          "seconds": [
+            0.00892637501237914,
+            0.009196928003802896,
+            0.007081380987074226,
+            0.0063341769855469465,
+            0.006353115983074531,
+            0.006332235992886126,
+            0.006407246983144432,
+            0.006364426983054727,
+            0.006418006989406422,
+            0.006386836001183838,
+            0.0067638799955602735,
+            0.006936040997970849,
+            0.006758778996299952,
+            0.0066457690263632685,
+            0.006433436996303499,
+            0.006762239005183801,
+            0.00620622601127252,
+            0.006611928023630753,
+            0.006649649003520608,
+            0.006749318999936804
+          ],
+          "boundaries": 128
+        },
+        "rust/batch512": {
+          "boundariesPerSecond": 197271.6051222977,
+          "seconds": [
+            0.04238021999481134,
+            0.04222364898305386,
+            0.037959796987706795,
+            0.041320932999951765,
+            0.04118992097210139,
+            0.04122972101322375,
+            0.04111684099189006,
+            0.041080650000367314,
+            0.04510865098563954,
+            0.03751792397815734,
+            0.04303877500933595,
+            0.04383722000056878,
+            0.04126052197534591,
+            0.04269704199396074,
+            0.042339780018664896,
+            0.041416152991587296,
+            0.0422071990033146,
+            0.04163685400271788,
+            0.041665224998723716,
+            0.03958914999384433
+          ],
+          "boundaries": 8192
+        }
+      },
+      "context-small-seed42": {
+        "typescript/batch1": {
+          "boundariesPerSecond": 14686.623882517068,
+          "seconds": [
+            0.011454033985501155,
+            0.008761673991102725,
+            0.008563272014725953,
+            0.008520803006831557,
+            0.008542772004147992,
+            0.008559793001040816,
+            0.008669862989336252,
+            0.009664170996984467,
+            0.008760964003158733,
+            0.008607522991951555,
+            0.008534811990102753,
+            0.008535862987628207,
+            0.008525462006218731,
+            0.008542292023776099,
+            0.009212517994455993,
+            0.010709668014897034,
+            0.010151904978556558,
+            0.009869602014077827,
+            0.010082053020596504,
+            0.009932143002515659
+          ],
+          "boundaries": 128
+        },
+        "typescript/batch512": {
+          "boundariesPerSecond": 165452.07568910267,
+          "seconds": [
+            0.050627229997189716,
+            0.049413672008085996,
+            0.04941601102473214,
+            0.04988465501810424,
+            0.050477738986955956,
+            0.043016985000576824,
+            0.04987265501404181,
+            0.050866102013969794,
+            0.04949870199197903,
+            0.049404491001041606,
+            0.04952695200336166,
+            0.050149257003795356,
+            0.049234890000661835,
+            0.049231240001972765,
+            0.049583373009227216,
+            0.04981053399387747,
+            0.05021191801642999,
+            0.04169972499948926,
+            0.04427930302335881,
+            0.04890934799914248
+          ],
+          "boundaries": 8192
+        },
+        "rust/batch1": {
+          "boundariesPerSecond": 14958.65771943189,
+          "seconds": [
+            0.009179836983093992,
+            0.008523791999323294,
+            0.008524412987753749,
+            0.009516858990537003,
+            0.00909661699552089,
+            0.008563462004531175,
+            0.008531962987035513,
+            0.008559772017179057,
+            0.00852105297963135,
+            0.008503431978169829,
+            0.008525682002073154,
+            0.008551612991141155,
+            0.00855976200546138,
+            0.008564882999053225,
+            0.008558122994145378,
+            0.008525281999027357,
+            0.008591652993345633,
+            0.008555712003726512,
+            0.008573063008952886,
+            0.008528572012437508
+          ],
+          "boundaries": 128
+        },
+        "rust/batch512": {
+          "boundariesPerSecond": 165076.6785095009,
+          "seconds": [
+            0.04986582399578765,
+            0.049694364017341286,
+            0.049416360998293385,
+            0.0499231849971693,
+            0.04965849401196465,
+            0.049833603989100084,
+            0.04471838701283559,
+            0.04824399299104698,
+            0.0492609299835749,
+            0.0495633429964073,
+            0.049592352006584406,
+            0.04930685099679977,
+            0.049355850991560146,
+            0.05012945699854754,
+            0.050198677025036886,
+            0.052347723016282544,
+            0.049879355006851256,
+            0.05068635998759419,
+            0.04528497200226411,
+            0.03973310999572277
+          ],
+          "boundaries": 8192
+        }
+      },
+      "context-dilated-seed42": {
+        "typescript/batch1": {
+          "boundariesPerSecond": 8852.277346548708,
+          "seconds": [
+            0.018301614007214084,
+            0.014261003991123289,
+            0.014368645002832636,
+            0.014315414999146014,
+            0.014540425996528938,
+            0.014482175989542156,
+            0.014457835990469903,
+            0.01442307498655282,
+            0.014576946996385232,
+            0.01449673602473922,
+            0.014473465998889878,
+            0.014461276005022228,
+            0.022220592014491558,
+            0.01891932901344262,
+            0.015300101018510759,
+            0.01423280400922522,
+            0.014086404000408947,
+            0.014077592000830919,
+            0.014087643998209387,
+            0.014089601987507194
+          ],
+          "boundaries": 128
+        },
+        "typescript/batch512": {
+          "boundariesPerSecond": 64699.38442574547,
+          "seconds": [
+            0.12887942302040756,
+            0.12730706098955125,
+            0.12816012700204737,
+            0.12720179100870155,
+            0.12408208698616363,
+            0.12344500300241634,
+            0.12740619198302738,
+            0.12855148999369703,
+            0.1262730940070469,
+            0.11566826599300839,
+            0.1271609899995383,
+            0.12742157198954374,
+            0.12605814199196175,
+            0.12615603301674128,
+            0.12458607100415975,
+            0.12245632501435466,
+            0.12787985600880347,
+            0.1269596089841798,
+            0.12562116800108925,
+            0.12610252300510183
+          ],
+          "boundaries": 8192
+        },
+        "rust/batch1": {
+          "boundariesPerSecond": 9144.73965066705,
+          "seconds": [
+            0.014233653986593708,
+            0.01399428301374428,
+            0.013903921004384756,
+            0.013909671979490668,
+            0.013869560993043706,
+            0.01382634200854227,
+            0.013830381009029225,
+            0.01383688100031577,
+            0.013854321005055681,
+            0.01383936099591665,
+            0.014054152998141944,
+            0.013992842985317111,
+            0.014014352025697008,
+            0.01399995299289003,
+            0.014107002993114293,
+            0.014099443011218682,
+            0.014017221983522177,
+            0.014201773999957368,
+            0.026662655000109226,
+            0.023673693009186536
+          ],
+          "boundaries": 128
+        },
+        "rust/batch512": {
+          "boundariesPerSecond": 62276.78576965979,
+          "seconds": [
+            0.11580193700501695,
+            0.12449079001089558,
+            0.14998716698028147,
+            0.14602983798249625,
+            0.1370619630033616,
+            0.14670375300920568,
+            0.1557347289926838,
+            0.14509826098219492,
+            0.16102259801118635,
+            0.1188613390258979,
+            0.12229141499847174,
+            0.12161441901116632,
+            0.1165446330269333,
+            0.14147475501522422,
+            0.13775065701338463,
+            0.12520839599892497,
+            0.1205416820012033,
+            0.12602162099210545,
+            0.12463288201251999,
+            0.1432153269997798
+          ],
+          "boundaries": 8192
+        }
+      },
+      "cross-attention": {
+        "typescript/batch1": {
+          "boundariesPerSecond": 6887.513346144891,
+          "seconds": [
+            0.025549896992743015,
+            0.018449015013175085,
+            0.017759180016582832,
+            0.017485877993749455,
+            0.017932871007360518,
+            0.018759836995741352,
+            0.018719696992775425,
+            0.017229285993380472,
+            0.018940568988909945,
+            0.022961306996876374,
+            0.02337594100390561,
+            0.02372807398205623,
+            0.02308047900442034,
+            0.023479780997149646,
+            0.021022294007707387,
+            0.01803124198340811,
+            0.018190792994573712,
+            0.017531777994008735,
+            0.01731309699243866,
+            0.017517558007966727
+          ],
+          "boundaries": 128
+        },
+        "typescript/batch512": {
+          "boundariesPerSecond": 9281.63014649462,
+          "seconds": [
+            0.8440955529804341,
+            0.8031214850198012,
+            0.7834624899842311,
+            0.8491431209840812,
+            0.8672754729923327,
+            0.860997538024094,
+            1.0482721070002299,
+            0.9227616089920048,
+            0.9269493999890983,
+            0.886067800980527,
+            0.7987870820215903,
+            0.919505375000881,
+            1.00174648698885,
+            0.8523821450071409,
+            0.8791393599822186,
+            0.8525824059906881,
+            0.9593810670194216,
+            0.9728139950020704,
+            0.9128351669933181,
+            1.024214581004344
+          ],
+          "boundaries": 8192
+        },
+        "rust/batch1": {
+          "boundariesPerSecond": 7749.398498030392,
+          "seconds": [
+            0.016960314009338617,
+            0.01644605098408647,
+            0.016398930019931868,
+            0.01636424899334088,
+            0.01635625000926666,
+            0.016387500014388934,
+            0.016379019973101094,
+            0.016277249000268057,
+            0.016292738990159705,
+            0.01632942899595946,
+            0.016583660995820537,
+            0.016607122001005337,
+            0.016586600977461785,
+            0.01645116100553423,
+            0.020578089985065162,
+            0.024373379012104124,
+            0.031509060005191714,
+            0.030482833011774346,
+            0.030328461987664923,
+            0.02239386399742216
+          ],
+          "boundaries": 128
+        },
+        "rust/batch512": {
+          "boundariesPerSecond": 9034.649553558636,
+          "seconds": [
+            0.9668526620080229,
+            0.904431584989652,
+            0.9384708240104374,
+            0.8780084919999354,
+            0.8671604520059191,
+            1.0262760469922796,
+            0.8749314090237021,
+            1.113507073983783,
+            0.9304675160092302,
+            0.920286931010196,
+            0.9020702179986984,
+            0.922570017981343,
+            0.90903111800435,
+            0.936055207013851,
+            0.9416703169990797,
+            0.8388959160074592,
+            0.835429150989512,
+            0.8293585859937593,
+            0.8208484839997254,
+            0.8470276150037535
+          ],
+          "boundaries": 8192
+        }
+      }
+    },
+    "threads": 8,
+    "processor": "",
+    "methodology": "FP32 PyTorch CPU, matched evenly spaced validation inputs per language; 1 warmup, 20 repeats, median; scoring only, excludes tokenization/rendering"
+  },
+  "jev": {
+    "methodology": {
+      "schema": 1,
+      "sampling": "16 evenly distributed admitted boundaries per language; no warmups or repeats",
+      "labels": "none; exploratory boundary probe, not corpus accuracy or full-file throughput",
+      "threshold": 55,
+      "context": 5,
+      "questionStyle": "marked",
+      "formatterSha256": "25ccbdb7289660ffba78b2659c105cca5e80f1b979e6fc45a63ae1688285190a"
+    },
+    "complete": true,
+    "results": [
+      {
+        "key": "b63a141328b727e82f3c706b1cb17a1716688572ad41d192a91ae24ab7b2302d",
+        "language": "typescript",
+        "rows": [
+          8,
+          28,
+          39,
+          53,
+          75,
+          92,
+          109,
+          123,
+          144,
+          157,
+          169,
+          188,
+          211,
+          218,
+          227,
+          235
+        ],
+        "status": "cached",
+        "response": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "b0": {
+              "type": "noul",
+              "noul": 0.62
+            },
+            "b1": {
+              "type": "noul",
+              "noul": 0.81
+            },
+            "b2": {
+              "type": "noul",
+              "noul": 0.5
+            },
+            "b3": {
+              "type": "noul",
+              "noul": 0.15
+            },
+            "b4": {
+              "type": "noul",
+              "noul": 0.35
+            },
+            "b5": {
+              "type": "noul",
+              "noul": 0.36
+            },
+            "b6": {
+              "type": "noul",
+              "noul": 0.91
+            },
+            "b7": {
+              "type": "noul",
+              "noul": 0.43
+            },
+            "b8": {
+              "type": "noul",
+              "noul": 0.88
+            },
+            "b9": {
+              "type": "noul",
+              "noul": 0.2
+            },
+            "b10": {
+              "type": "noul",
+              "noul": 0.79
+            },
+            "b11": {
+              "type": "noul",
+              "noul": 0.3
+            },
+            "b12": {
+              "type": "noul",
+              "noul": 0.83
+            },
+            "b13": {
+              "type": "noul",
+              "noul": 0.31
+            },
+            "b14": {
+              "type": "noul",
+              "noul": 0.16
+            },
+            "b15": {
+              "type": "noul",
+              "noul": 0.24
+            }
+          },
+          "usage": {
+            "input_tokens": 5138,
+            "output_tokens": 282
+          }
+        },
+        "elapsedMs": 363.12565199999995,
+        "measuredAt": "2026-10-19T21:54:13.304Z"
+      },
+      {
+        "key": "53ccd324d9e1582301360bec64ca438749e0d00e2e3df119910b3dfa922dbb77",
+        "language": "rust",
+        "rows": [
+          1,
+          15,
+          27,
+          32,
+          60,
+          67,
+          74,
+          84,
+          108,
+          115,
+          128,
+          135,
+          148,
+          161,
+          174,
+          187
+        ],
+        "status": "cached",
+        "response": {
+          "model": "jev-1.13.0",
+          "answers": {
+            "b0": {
+              "type": "noul",
+              "noul": 0.31
+            },
+            "b1": {
+              "type": "noul",
+              "noul": 0.54
+            },
+            "b2": {
+              "type": "noul",
+              "noul": 0.29
+            },
+            "b3": {
+              "type": "noul",
+              "noul": 0.74
+            },
+            "b4": {
+              "type": "noul",
+              "noul": 0.38
+            },
+            "b5": {
+              "type": "noul",
+              "noul": 0.7
+            },
+            "b6": {
+              "type": "noul",
+              "noul": 0.74
+            },
+            "b7": {
+              "type": "noul",
+              "noul": 0.26
+            },
+            "b8": {
+              "type": "noul",
+              "noul": 0.3
+            },
+            "b9": {
+              "type": "noul",
+              "noul": 0.6
+            },
+            "b10": {
+              "type": "noul",
+              "noul": 0.29
+            },
+            "b11": {
+              "type": "noul",
+              "noul": 0.72
+            },
+            "b12": {
+              "type": "noul",
+              "noul": 0.73
+            },
+            "b13": {
+              "type": "noul",
+              "noul": 0.86
+            },
+            "b14": {
+              "type": "noul",
+              "noul": 0.75
+            },
+            "b15": {
+              "type": "noul",
+              "noul": 0.34
+            }
+          },
+          "usage": {
+            "input_tokens": 3745,
+            "output_tokens": 282
+          }
+        },
+        "elapsedMs": 231.05110100000002,
+        "measuredAt": "2026-10-19T21:54:13.536Z"
+      }
+    ]
+  }
+}

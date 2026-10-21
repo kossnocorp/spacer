@@ -1,0 +1,300 @@
+{
+  "complete": true,
+  "plan": {
+    "models": [
+      {
+        "name": "context-dilated-seed42",
+        "path": "tmp/lines-mixed-v1/context-dilated-seed42",
+        "spec": {
+          "embedding": 32,
+          "channels": 48,
+          "hidden": 128,
+          "dilations": [
+            1,
+            2
+          ],
+          "nearest": 24,
+          "contextualNearest": 8,
+          "dropout": 0.3
+        },
+        "weightsSha256": "94d3e3cb2f896c258946ce0efa9e0aeb60c9706e978dc986e9530c586c88c238",
+        "threshold": 0.52
+      },
+      {
+        "name": "baseline-seed42",
+        "path": "tmp/lines-mixed-v1/baseline-seed42",
+        "spec": {
+          "embedding": 24,
+          "channels": 32,
+          "hidden": 64,
+          "dilations": [
+            1
+          ],
+          "nearest": 16,
+          "contextualNearest": 0,
+          "dropout": 0.15
+        },
+        "weightsSha256": "552d124e40a47d175dc9825a813d7154503303cdc814dc2d207b8fe4e0011060",
+        "threshold": 0.505
+      },
+      {
+        "name": "context-dilated-seed123",
+        "path": "tmp/lines-mixed-v1/context-dilated-seed123",
+        "spec": {
+          "embedding": 32,
+          "channels": 48,
+          "hidden": 128,
+          "dilations": [
+            1,
+            2
+          ],
+          "nearest": 24,
+          "contextualNearest": 8,
+          "dropout": 0.3
+        },
+        "weightsSha256": "09fd14e53736641b1b80156a718a899d777f5832dab2e12eae4c3d2aff419474",
+        "threshold": 0.515
+      },
+      {
+        "name": "cross-attention",
+        "path": "tmp/research-v2-original-gpu/cross-attention-mixed-seed42",
+        "spec": null,
+        "weightsSha256": "02f3f8df95a970dfcc11fea1644eab8ea3e8b31c4d7515c0f0fb62a57c59fa7a",
+        "threshold": 0.52
+      }
+    ],
+    "primary": "context-dilated-seed42",
+    "encodedManifestSha256": "5dc811854264f45f830695a8611c6d94036e5e22ace61fa5ab4ad183f1d35393",
+    "selectionSha256": "b4410e86d6b0dd52cf12745c321f9bc8ccd203fa95c4fe3d282266444c666ccb",
+    "implementationSha256": "1fd52258bdb92cedd6a2c7c61d404e4fd2034b0d469ca8d498581a17301f7d81",
+    "methodology": "One shared validation-calibrated threshold per model; no test selection or retuning; CPU FP32"
+  },
+  "results": {
+    "context-dilated-seed42": {
+      "overall": {
+        "examples": 4087878,
+        "threshold": 0.52,
+        "tp": 1078291,
+        "fp": 166393,
+        "fn": 317586,
+        "tn": 2525608,
+        "accuracy": 0.8816063003837199,
+        "precision": 0.8663170732491138,
+        "recall": 0.7724828190449445,
+        "f1": 0.8167135695785858,
+        "logLoss": 0.27669811451525833
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2801959,
+          "threshold": 0.52,
+          "tp": 742058,
+          "fp": 116305,
+          "fn": 219091,
+          "tn": 1724505,
+          "accuracy": 0.8802994619121836,
+          "precision": 0.8645037122988759,
+          "recall": 0.7720530323602272,
+          "f1": 0.8156670579803815,
+          "logLoss": 0.28009978745012737
+        },
+        "rust": {
+          "examples": 1285919,
+          "threshold": 0.52,
+          "tp": 336233,
+          "fp": 50088,
+          "fn": 98495,
+          "tn": 801103,
+          "accuracy": 0.8844538419604967,
+          "precision": 0.8703461629059771,
+          "recall": 0.7734330431902247,
+          "f1": 0.8190327252088487,
+          "logLoss": 0.2692860239443026
+        }
+      }
+    },
+    "baseline-seed42": {
+      "overall": {
+        "examples": 4087878,
+        "threshold": 0.505,
+        "tp": 1066423,
+        "fp": 165019,
+        "fn": 329454,
+        "tn": 2526982,
+        "accuracy": 0.8790391983322399,
+        "precision": 0.865995312812134,
+        "recall": 0.7639806372624522,
+        "f1": 0.8117955984789057,
+        "logLoss": 0.2836808568580962
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2801959,
+          "threshold": 0.505,
+          "tp": 733483,
+          "fp": 115484,
+          "fn": 227666,
+          "tn": 1725326,
+          "accuracy": 0.8775321123542493,
+          "precision": 0.863971155533725,
+          "recall": 0.7631314187498505,
+          "f1": 0.8104265141018586,
+          "logLoss": 0.28728715475181377
+        },
+        "rust": {
+          "examples": 1285919,
+          "threshold": 0.505,
+          "tp": 332940,
+          "fp": 49535,
+          "fn": 101788,
+          "tn": 801656,
+          "accuracy": 0.8823230701156138,
+          "precision": 0.870488267207007,
+          "recall": 0.7658581917888887,
+          "f1": 0.8148281393974325,
+          "logLoss": 0.2758228978109221
+        }
+      }
+    },
+    "context-dilated-seed123": {
+      "overall": {
+        "examples": 4087878,
+        "threshold": 0.515,
+        "tp": 1087846,
+        "fp": 172098,
+        "fn": 308031,
+        "tn": 2519903,
+        "accuracy": 0.8825481093124599,
+        "precision": 0.8634082149682843,
+        "recall": 0.7793279780381795,
+        "f1": 0.8192163553191273,
+        "logLoss": 0.2784323709954301
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2801959,
+          "threshold": 0.515,
+          "tp": 750245,
+          "fp": 120721,
+          "fn": 210904,
+          "tn": 1720089,
+          "accuracy": 0.881645306016255,
+          "precision": 0.8613941301956678,
+          "recall": 0.7805709624626359,
+          "f1": 0.8189933492166158,
+          "logLoss": 0.28118513391573263
+        },
+        "rust": {
+          "examples": 1285919,
+          "threshold": 0.515,
+          "tp": 337601,
+          "fp": 51377,
+          "fn": 97127,
+          "tn": 799814,
+          "accuracy": 0.8845152766231776,
+          "precision": 0.8679179799371687,
+          "recall": 0.7765798384277065,
+          "f1": 0.8197123731039958,
+          "logLoss": 0.272434225825005
+        }
+      }
+    },
+    "cross-attention": {
+      "overall": {
+        "examples": 4087878,
+        "threshold": 0.52,
+        "tp": 1093093,
+        "fp": 166053,
+        "fn": 302784,
+        "tn": 2525948,
+        "accuracy": 0.8853104226691697,
+        "precision": 0.8681225211373423,
+        "recall": 0.7830869052215919,
+        "f1": 0.8234150890594921,
+        "logLoss": 0.26951798755453216
+      },
+      "byLanguage": {
+        "typescript": {
+          "examples": 2801959,
+          "threshold": 0.52,
+          "tp": 756102,
+          "fp": 118256,
+          "fn": 205047,
+          "tn": 1722554,
+          "accuracy": 0.8846153708887247,
+          "precision": 0.8647510516287379,
+          "recall": 0.7866647106744116,
+          "f1": 0.8238617450110515,
+          "logLoss": 0.2722496121815223
+        },
+        "rust": {
+          "examples": 1285919,
+          "threshold": 0.52,
+          "tp": 336991,
+          "fp": 47797,
+          "fn": 97737,
+          "tn": 803394,
+          "accuracy": 0.8868249088783975,
+          "precision": 0.8757835483435035,
+          "recall": 0.7751766621887709,
+          "f1": 0.8224146935508275,
+          "logLoss": 0.2635659017635787
+        }
+      }
+    }
+  },
+  "paired": {
+    "baseline-seed42": {
+      "overall": {
+        "primaryOnlyCorrect": 104444,
+        "controlOnlyCorrect": 93950,
+        "accuracyDifference": 0.0025671020514800302
+      },
+      "typescript": {
+        "primaryOnlyCorrect": 73961,
+        "controlOnlyCorrect": 66207,
+        "accuracyDifference": 0.002767349557934229
+      },
+      "rust": {
+        "primaryOnlyCorrect": 30483,
+        "controlOnlyCorrect": 27743,
+        "accuracyDifference": 0.0021307718448828616
+      }
+    },
+    "context-dilated-seed123": {
+      "overall": {
+        "primaryOnlyCorrect": 104396,
+        "controlOnlyCorrect": 108246,
+        "accuracyDifference": -0.0009418089287399622
+      },
+      "typescript": {
+        "primaryOnlyCorrect": 73380,
+        "controlOnlyCorrect": 77151,
+        "accuracyDifference": -0.0013458441040714586
+      },
+      "rust": {
+        "primaryOnlyCorrect": 31016,
+        "controlOnlyCorrect": 31095,
+        "accuracyDifference": -6.1434662680937e-05
+      }
+    },
+    "cross-attention": {
+      "overall": {
+        "primaryOnlyCorrect": 116470,
+        "controlOnlyCorrect": 131612,
+        "accuracyDifference": -0.003704122285449807
+      },
+      "typescript": {
+        "primaryOnlyCorrect": 82737,
+        "controlOnlyCorrect": 94830,
+        "accuracyDifference": -0.004315908976541105
+      },
+      "rust": {
+        "primaryOnlyCorrect": 33733,
+        "controlOnlyCorrect": 36782,
+        "accuracyDifference": -0.002371066917900788
+      }
+    }
+  },
+  "inference": "CPU FP32; no confidence intervals assuming independent boundaries"
+}
