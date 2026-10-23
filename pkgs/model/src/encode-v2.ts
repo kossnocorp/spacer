@@ -17,15 +17,19 @@ import {
 } from "@spcr/tree-sitter";
 import { encodePair, tokenizerInfo } from "./tokenizer.ts";
 import { jsonLines, hash, splitFor, windows, type Example } from "./data.ts";
+import { spacingContext } from "./spacing-context.ts";
 
 const { values } = parseArgs({
   options: {
     corpus: { type: "string", default: "corpora/jev-typescript-ordered-v1" },
     out: { type: "string", default: "tmp/encoded-v2-teacher" },
     raw: { type: "boolean", default: false },
+    "spacing-context": { type: "boolean", default: false },
   },
 });
 const roots = values.corpus.split(",");
+if (values["spacing-context"] && !values.raw)
+  throw new Error("Spacing context requires original-source mode");
 if (!values.raw && roots.length !== 1)
   throw new Error("Teacher mode expects one corpus");
 for (const root of roots) {
@@ -55,6 +59,7 @@ const counts = Object.fromEntries(
   ["train", "eval", "test"].map((split) => [split, { count: 0, positive: 0 }]),
 );
 const exclusions = createWriteStream(join(values.out, "excluded.jsonl"));
+const membership = createWriteStream(join(values.out, "files.jsonl"));
 // V8 limits each Set to 2^24 entries. Partition by SHA-256 prefix while
 // retaining the complete hash, so admission/deduplication stays identical.
 const seen = Array.from({ length: 256 }, () => new Set<string>());
@@ -144,8 +149,15 @@ try {
           seenFiles.add(group);
           let document, events: Event[];
           try {
-            document = await prepareDocument(source, filename);
-            events = await tokenize(lines.join("\n"), languageFor(filename)!);
+            document = await prepareDocument(
+              source,
+              filename,
+              undefined,
+              values["spacing-context"],
+            );
+            events = values["spacing-context"]
+              ? document.events
+              : await tokenize(lines.join("\n"), languageFor(filename)!);
           } catch (error) {
             omitted++;
             exclusions.write(
@@ -159,15 +171,26 @@ try {
             rows.push(number);
             if (line.trim()) number++;
           }
+          membership.write(
+            JSON.stringify({
+              filename,
+              sha256: row.sha256,
+              group,
+              split,
+              boundaries: document.boundaries.length,
+            }) + "\n",
+          );
           for (const gap of document.boundaries) {
             const boundary = rows[gap.row]!;
-            const context = windows(lines, boundary, 5);
+            const context = values["spacing-context"]
+              ? spacingContext(document.lines, gap.from, gap.to)
+              : windows(lines, boundary, 5);
             await emit(
               split,
               context.before,
               context.after,
               events,
-              boundary,
+              values["spacing-context"] ? gap.row : boundary,
               Number(gap.existing),
               Number(gap.existing),
               row.language === "rust" ? 1 : 0,
@@ -228,7 +251,8 @@ try {
   }
   for (const stream of Object.values(streams)) stream.end();
   exclusions.end();
-  await Promise.all([...done, finished(exclusions)]);
+  membership.end();
+  await Promise.all([...done, finished(exclusions), finished(membership)]);
   const manifests = await Promise.all(
     roots.map(async (root) => ({
       root,
@@ -247,8 +271,12 @@ try {
         lexicalTokenizer: tokenizerInfo,
         structuralTokenizer:
           "Tree-sitter compact identifier schema 2, 64 tokens per side",
-        architectureInput:
-          "lexical BPE + independent structural context; blank lines removed before tokenization",
+        architectureInput: values["spacing-context"]
+          ? "spacing-context-v1: all safe inter-line gaps; target gap omitted; five nonempty lines/side with internal spacing; raw syntax events"
+          : "lexical BPE + independent structural context; blank lines removed before tokenization",
+        contextMode: values["spacing-context"]
+          ? "spacing-context-v1"
+          : "stripped",
         deduplication:
           "exact truncated lexical context, train first; identical membership for all architectures",
         corpus: manifests,

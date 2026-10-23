@@ -429,6 +429,7 @@ export interface Boundary {
   existing: boolean;
 }
 export interface Document {
+  preserveBlankLines?: boolean;
   source: string;
   language: string;
   lines: string[];
@@ -452,9 +453,10 @@ export async function prepareDocument(
   source: string,
   filename: string,
   language = languageFor(filename),
+  allLines = false,
 ): Promise<Document> {
   if (!language) throw new Error(`Unsupported file: ${filename}`);
-  if (isMainThread) return request(language, "prepare", [source, filename]);
+  if (isMainThread) return request(language, "prepare", [source, filename, allLines]);
   const tree = await parse(source, language);
   try {
     if (flag(tree.rootNode, "hasError"))
@@ -505,6 +507,30 @@ export async function prepareDocument(
       for (const child of node.namedChildren) if (child) visit(child);
     }
     visit(tree.rootNode);
+    if (allLines) {
+      candidates.clear();
+      const protectedRows = new Set<number>();
+      function protect(node: Node) {
+        if (isProtected(node.type) || /jsx|html|element|attribute/.test(node.type) || !node.childCount) {
+          for (let row = node.startPosition.row + 1; row <= node.endPosition.row; row++) protectedRows.add(row);
+          return;
+        }
+        for (const child of node.children) if (child) protect(child);
+      }
+      protect(tree.rootNode);
+      let previous = -1;
+      for (let row = 0; row < lines.length; row++) {
+        if (!lines[row].trim()) continue;
+        if (previous >= 0) {
+          let safe = true;
+          for (let gap = previous + 1; gap <= row; gap++) {
+            if (protectedRows.has(gap) || lines[previous].trimEnd().endsWith("\\")) safe = false;
+          }
+          if (safe) candidates.set(row, { row, from: previous + 1, to: row, existing: row > previous + 1 });
+        }
+        previous = row;
+      }
+    }
     return {
       source,
       language,

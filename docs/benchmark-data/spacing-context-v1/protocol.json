@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "seed": 42,
+  "architecture": "cross-attention",
+  "contextMode": "spacing-context-v1",
+  "corpus": [
+    {
+      "root": "corpora/github-top100-typescript-2026-10-17-v2",
+      "sha256": "d8139fd5e02d8ce1ef24d96141187b15195fce0dd7d2fd3185f3a52976145696"
+    },
+    {
+      "root": "corpora/github-top100-rust-2026-10-17-v2",
+      "sha256": "633c8335f458f346ee530c0a33f34a4e1cd312a264b90f472166fcda3a10570e"
+    }
+  ],
+  "implementation": {
+    "pkgs/model/src/encode-v2.ts": "198cfea91e5af94d7e4593110da37389c5b73052fda4a4fd6bac0676f79f088c",
+    "pkgs/model/src/spacing-context.ts": "b44b56a47fb5a1f56a9dffb6c99f9a97cc939d55b15f60bc154c722326f1656e",
+    "pkgs/model/src/tokenizer.ts": "0d22b1cd6427bed0b9124cc8e74b416562c9bae0e798ec9eed136f7d3f59db27",
+    "pkgs/tree-sitter/src/index.ts": "e3c32c40e8f425bf93490f001d765a81b2110a28e11aa9b2fbb0091b9165f4b3",
+    "pkgs/tree-sitter/src/worker.ts": "f69c974e94d6371a0d5c68401cd03875aad44d11b871be65d4dfbea9c92ebf4e",
+    "pkgs/model/python/research_v2.py": "2a71ef8cedee36ded37f5ebbc8051afb09b792a8750db95c55c6ece68091dc89",
+    "pkgs/model/python/tune.py": "18e6c364c05b2f2c170b5a89c63e67a89fd9042479066c56b5b60f22cd7afd37",
+    "pkgs/model/python/worker.py": "1bd144add269c5080a1699660b9b2344869ce316018040be052530a67bd6480e",
+    "pkgs/model/src/attention-predict.ts": "131b2f1cbadcd2bc6f6d3e626d83f4b5b248eb130d840071744bd8d7b06b6787",
+    "pkgs/model/src/evaluate-spacing-context.ts": "80f9d3ee962de984f8acbb3e95d51ab18f7c2afd971bf4048c1cba39aa7b07df",
+    "pkgs/model/python/export_attention.py": "9ef74f4f8eff896493f564c189520c4a5c20bb33647a5b8e11e05b45e0bd99ff",
+    "pkgs/model/src/attention.test.ts": "0f223349cb27c32a0ef2bb157af261d04c1a430d5b00ae5c17a3cd1facb94794",
+    "pkgs/model/python/spacing_campaign.py": "8b506bdaffd0847d182bb21bff0b8d4a36b2bf2d25af7f8474029bca7f43596a",
+    "docs/research/spacing-context-v1.md": "b472255999c7edbc0560d6d9b4887365bda241b1e7b2fd6fece7145d686ee66a"
+  },
+  "targetGap": "entire blank run omitted from both lexical streams; syntax row offsets not encoded",
+  "corruption": "none",
+  "training": "teacher-forced original surrounding spacing",
+  "inference": "top-to-bottom, prior decisions + unprocessed future spacing, target gap hidden",
+  "selection": "minimum validation log loss; global threshold maximizes validation accuracy, F1 tie-break",
+  "test": "legacy split previously evaluated by other experiments; not opened by this campaign"
+}

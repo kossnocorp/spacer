@@ -1,8 +1,46 @@
 # Spacer benchmark
 
-Updated 2026-10-21T03:47:56.742Z. **This report generation makes no Jev API calls.** Approved Jev probe results are reused from the persistent cache below.
+Updated 2026-10-23T02:37:42.681Z. **This report generation makes no Jev API calls.** Approved Jev probe results are reused from the persistent cache below.
 
-**Result:** the new bilingual Lines model trades a small held-out accuracy loss for faster full-file formatting on the pinned examples. **TS: 1.21× cross-attention throughput** (16,992 vs 14,064 LoC/sec); **Rust: 1.18× cross-attention throughput** (18,648 vs 15,825 LoC/sec). Its frozen held-out accuracy is **88.03% TS / 88.45% Rust**, versus **88.46% / 88.68%** for the original-trained cross-attention control.
+## Sequential cross-attention — surrounding spacing and all-line boundaries
+
+**New playground release:** Spacer Sequential Cross-Attention v1 Rust + TypeScript (`spacer-tree-sitter-spacing-context-1`). One 3,613,761-parameter bilingual model, trained from scratch on **64,039,150 boundaries**. Training stopped after 12 epochs; epoch 5 was selected by minimum validation loss. The frozen shared threshold is **0.47**.
+
+At each safe inter-line gap, the model hides the entire current gap, retains internal blank lines in the five-nonempty-line context blocks, and predicts top-to-bottom. Earlier model decisions become context for later predictions; future context keeps its input spacing. Protected literal/comment interiors remain untouched. This trained behavior is always enabled, independently of the playground's experimental checkbox for older models.
+
+**Sequential validation, not a new held-out test:** 100 TS and 100 Rust validation files selected deterministically by file hash, restricted to 1–512 eligible boundaries/file. The same files and original labels are used in both conditions. “Stripped” removes blank lines only at eligible gaps before formatting; protected content stays intact.
+
+| Input condition | Language | Boundaries | Accuracy | F1 | Precision | Recall |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Original spacing | TS | 9,502 | 96.35% | 84.38% | 88.65% | 80.50% |
+| Original spacing | Rust | 9,682 | 97.26% | 87.92% | 94.05% | 82.53% |
+| Eligible gaps stripped | TS | 9,502 | 95.30% | 78.62% | 88.67% | 70.62% |
+| Eligible gaps stripped | Rust | 9,682 | 96.91% | 86.07% | 94.38% | 79.11% |
+
+```mermaid
+xychart-beta horizontal
+  title "Sequential validation — accuracy"
+  x-axis ["TS original", "Rust original", "TS stripped", "Rust stripped"]
+  y-axis "%" 0 --> 100
+  bar [96.35, 97.26, 95.30, 96.91]
+```
+
+```mermaid
+xychart-beta horizontal
+  title "Sequential validation — F1"
+  x-axis ["TS original", "Rust original", "TS stripped", "Rust stripped"]
+  y-axis "%" 0 --> 100
+  bar [84.38, 87.92, 78.62, 86.07]
+```
+
+Surrounding spacing helps on this sample, particularly TS: F1 falls from **84.38% to 78.62%** when eligible input gaps are stripped (Rust: **87.92% to 86.07%**). This is not a controlled comparison against the earlier architecture/checkpoints. Many newly admitted gaps correctly need no blank line, so the ~96–97% accuracy **must not be compared directly with the older ~88% sibling-boundary results**.
+
+Full teacher-forced validation uses original surrounding context rather than previous model decisions: **13,331,614 boundaries**, **96.37% accuracy / 82.53% F1** overall. Per-language accuracy/F1: **96.28% / 82.72% TS**, **96.54% / 82.12% Rust**. These are separate measurements from the sequential sample above.
+
+Release: `spacer-models/models/tree-sitter-spacing-context-1/`. Export parity passed (maximum probability difference **2.69×10⁻⁷**). [Bucket read-back verification](benchmark-data/spacing-context-v1/release-verification.json), [training history](benchmark-data/spacing-context-v1/training.json), [sequential results](benchmark-data/spacing-context-v1/sequential-validation.json), [protocol](research/spacing-context-v1.md). The legacy test partition was not reopened by this campaign.
+
+
+**Earlier bilingual comparison:** Lines trades a small held-out accuracy loss for faster full-file formatting on the pinned examples. **TS: 1.55× cross-attention throughput** (11,418 vs 7,366 LoC/sec); **Rust: 1.48× cross-attention throughput** (10,932 vs 7,378 LoC/sec). Its frozen held-out accuracy is **88.03% TS / 88.45% Rust**, versus **88.46% / 88.68%** for the original-trained cross-attention control. Speed now uses expanded playground boundaries; the held-out accuracy below retains its original sibling-boundary scope.
 
 ## Bilingual original-source models — held-out test
 
@@ -77,72 +115,74 @@ Earlier cross-attention advantages over language-specific Lines: **+0.83 percent
 
 ## CPU formatting performance and resource use
 
-Measured with both the historical Jev-trained playground checkpoints and the **original-trained bilingual Lines and matched cross-attention control**. The bilingual Lines export is the frozen seed-42 checkpoint evaluated above, not the confirmation seed. All model/language combinations are rerun with the same runtime and inputs. Both original-trained models are available in the playground and published to R2.
+Measured with the historical Jev-trained checkpoints, original-trained bilingual Lines/cross-attention, and the new sequential model. **All use the current playground's expanded safe inter-line boundaries** on the same inputs. Older models score independently with stripped lexical context; the new model scores top-to-bottom with spacing feedback. These timings replace the older sibling-only workload and should not be treated as a runtime regression at fixed boundary coverage. All listed models are available in the playground and published to R2.
 
 | Model | Input language | LoC/sec ↑ | p95 file ms ↓ | CPU %¹ | CPU ms / 1k LoC ↓ | Peak RAM MiB² | Weights MiB |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Lines (Jev-trained) | TS | 19,284 | 16.6 | 143.1 | 74.2 | 371.7 | 9.41 |
-| Lines (Jev-trained) | Rust | 21,262 | 11.4 | 145.6 | 68.5 | 364.9 | 9.41 |
-| Cross-attention (Jev-trained) | TS | 14,157 | 20.8 | 295.8 | 209.0 | 483.2 | 13.79 |
-| Cross-attention (Jev-trained) | Rust | 16,194 | 13.5 | 240.0 | 148.2 | 419.8 | 13.79 |
-| Bilingual Lines (original-trained) | TS | 16,992 | 17.0 | 162.6 | 95.7 | 394.7 | 13.51 |
-| Bilingual Lines (original-trained) | Rust | 18,648 | 12.7 | 160.1 | 85.8 | 387.6 | 13.51 |
-| Cross-attention (original-trained) | TS | 14,064 | 20.5 | 308.9 | 219.6 | 483.0 | 13.79 |
-| Cross-attention (original-trained) | Rust | 15,825 | 13.9 | 247.7 | 156.5 | 424.0 | 13.79 |
+| Lines (Jev-trained) | TS | 13,878 | 21.5 | 152.5 | 109.9 | 381.1 | 9.41 |
+| Lines (Jev-trained) | Rust | 13,778 | 19.5 | 154.9 | 112.4 | 370.1 | 9.41 |
+| Cross-attention (Jev-trained) | TS | 7,673 | 36.5 | 410.4 | 534.9 | 534.1 | 13.79 |
+| Cross-attention (Jev-trained) | Rust | 7,556 | 30.5 | 398.4 | 527.2 | 539.6 | 13.79 |
+| Bilingual Lines (original-trained) | TS | 11,418 | 25.9 | 189.8 | 166.2 | 397.7 | 13.51 |
+| Bilingual Lines (original-trained) | Rust | 10,932 | 23.3 | 193.9 | 177.4 | 396.0 | 13.51 |
+| Cross-attention (original-trained) | TS | 7,366 | 42.3 | 408.6 | 554.7 | 531.8 | 13.79 |
+| Cross-attention (original-trained) | Rust | 7,378 | 30.9 | 396.9 | 538.0 | 540.0 | 13.79 |
+| Sequential Tree | TS | 1,365 | 198.7 | 135.8 | 995.1 | 432.0 | 13.79 |
+| Sequential Tree | Rust | 1,328 | 161.7 | 142.1 | 1070.1 | 407.4 | 13.79 |
 
 ```mermaid
 xychart-beta horizontal
   title "Formatting throughput — higher is faster"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
-  y-axis "LoC/sec" 0 --> 23389
-  bar [19284, 21262, 14157, 16194, 16992, 18648, 14064, 15825]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
+  y-axis "LoC/sec" 0 --> 15266
+  bar [13878, 13778, 7673, 7556, 11418, 10932, 7366, 7378, 1365, 1328]
 ```
 
 ```mermaid
 xychart-beta horizontal
   title "p95 file latency — lower is faster"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
-  y-axis "Milliseconds" 0 --> 23
-  bar [16.6, 11.4, 20.8, 13.5, 17, 12.7, 20.5, 13.9]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
+  y-axis "Milliseconds" 0 --> 219
+  bar [21.5, 19.5, 36.5, 30.5, 25.9, 23.3, 42.3, 30.9, 198.7, 161.7]
 ```
 
 ```mermaid
 xychart-beta horizontal
   title "Process CPU utilization"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
-  y-axis "CPU (%)" 0 --> 340
-  bar [143.1, 145.6, 295.8, 240, 162.6, 160.1, 308.9, 247.7]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
+  y-axis "CPU (%)" 0 --> 452
+  bar [152.5, 154.9, 410.4, 398.4, 189.8, 193.9, 408.6, 396.9, 135.8, 142.1]
 ```
 
 ```mermaid
 xychart-beta horizontal
   title "CPU work — lower is better"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
-  y-axis "CPU ms / 1k LoC" 0 --> 242
-  bar [74.2, 68.5, 209, 148.2, 95.7, 85.8, 219.6, 156.5]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
+  y-axis "CPU ms / 1k LoC" 0 --> 1178
+  bar [109.9, 112.4, 534.9, 527.2, 166.2, 177.4, 554.7, 538, 995.1, 1070.1]
 ```
 
 ```mermaid
 xychart-beta horizontal
   title "Peak process RAM — lower is smaller"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
-  y-axis "MiB" 0 --> 532
-  bar [371.7, 364.9, 483.2, 419.8, 394.7, 387.6, 483, 424]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
+  y-axis "MiB" 0 --> 594
+  bar [381.1, 370.1, 534.1, 539.6, 397.7, 396, 531.8, 540, 432, 407.4]
 ```
 
 ```mermaid
 xychart-beta horizontal
   title "Model weights — lower is smaller"
-  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust"]
+  x-axis ["Lines Jev TS", "Lines Jev Rust", "Tree Jev TS", "Tree Jev Rust", "Lines original TS", "Lines original Rust", "Tree original TS", "Tree original Rust", "Sequential Tree TS", "Sequential Tree Rust"]
   y-axis "MiB" 0 --> 16
-  bar [9.41, 9.41, 13.79, 13.79, 13.51, 13.51, 13.79, 13.79]
+  bar [9.41, 9.41, 13.79, 13.79, 13.51, 13.51, 13.79, 13.79, 13.79, 13.79]
 ```
 
 ¹ Process CPU time divided by wall time: **100% = one fully occupied logical CPU**, and multi-threaded use can exceed 100%. Includes parser workers/native inference threads; excludes other machine processes. CPU ms/1k LoC measures total CPU work.
 
 ² Peak process RSS from process startup through the benchmark, including Node, TensorFlow, parser workers, model and temporary allocations. It is **not** model-only RAM or GPU VRAM. Separate subprocesses prevent previous models contaminating the peak. Raw results also record post-warmup RSS.
 
-Original-trained matched full-file comparison: **TS: 1.21× cross-attention throughput** (16,992 vs 14,064 LoC/sec); **Rust: 1.18× cross-attention throughput** (18,648 vs 15,825 LoC/sec). Ratios above 1 mean Lines is faster; below 1 mean cross-attention is faster. These two short examples establish neither repository-wide throughput nor a universal speedup.
+Original-trained matched full-file comparison: **TS: 1.55× cross-attention throughput** (11,418 vs 7,366 LoC/sec); **Rust: 1.48× cross-attention throughput** (10,932 vs 7,378 LoC/sec). Ratios above 1 mean Lines is faster; below 1 mean cross-attention is faster. These two short examples establish neither repository-wide throughput nor a universal speedup.
 
 The new playground model is **Spacer Lines v1 Rust + TypeScript** (`spacer-lines-mixed-1`). Its release lives at `spacer-models/models/lines-mixed-1/`; [all five objects were read-back verified](benchmark-data/lines-mixed-v1/release-verification.json). PyTorch/TFJS export parity passed with maximum probability error 2.4×10⁻⁷, and both languages passed blank-line-only formatting checks.
 
@@ -188,7 +228,7 @@ xychart-beta horizontal
 - Tree is a **lexical–Tree-sitter hybrid**, combining BPE and compact syntax-ID streams with cross-attention. Lines is also token-based (line-wise BPE). The new bilingual Lines and original-trained Tree both see both languages; only the historical language-specific Lines controls see one language each. Neither blank lines nor language IDs enter the new Lines model.
 - **Performance workload:** pinned shared playground excerpts: VS Code fuzzy scoring for TS, ripgrep processing for Rust. One file per language, 255 TS LoC and 199 Rust LoC after removing original spacing. These are a small illustrative workload, not a representative repository-wide speed estimate or accuracy dataset. Both models receive identical input per language.
 - One warm-up and 20 measured sequential full-format runs per model/language. Throughput = total input LoC / total wall time; p95 is nearest-rank file latency. Includes Tree-sitter preparation, model tokenization/scoring, and syntax-checked rendering. Excludes model loading, file I/O and HTTP. No code reformatter runs.
-- CPU runtime: TensorFlow.js Node 4.22.0; AMD Ryzen 9 9950X 16-Core Processor; 32 logical CPUs; Node v26.12.0. Default thread pools: intra 8, inter 2, OMP 8. Shared-machine activity can affect timings; GPU training performance is not being conflated with CPU inference.
+- CPU runtime: TensorFlow.js Node 4.22.0; AMD Ryzen 9 9950X 16-Core Processor; 32 logical CPUs; Node v26.12.1. Default thread pools: intra 8, inter 2, OMP 8. Shared-machine activity can affect timings; GPU training performance is not being conflated with CPU inference.
 - Historical deployed artifacts: `tmp/spacer-lines-ts` and `tmp/spacer-tree-sitter-cross-attention-1`. New bilingual export: `tmp/spacer-lines-mixed-1`, from `tmp/lines-mixed-v1/context-dilated-seed42`. Original-trained attention control export: `tmp/spacer-tree-sitter-cross-attention-original-1`. Source training checkpoints: `tmp/research-v2-original-gpu/{lines-typescript,lines-rust,cross-attention-mixed}-seed42`.
 
 ## Reproduce and approval boundary
@@ -199,7 +239,7 @@ mise benchmark
 
 Requires the local model exports, saved evaluation/config files, and pinned example catalog. This command makes **no network/API calls** and does not train, recalibrate, or reopen test data. It preserves the previous report and timestamped raw metrics before replacing this document.
 
-Raw results, input/model hashes, individual timings, and source metrics: [results.json](../docs/benchmark-data/runs/2026-10-21T03-47-56.742Z-summary/results.json).
+Raw results, input/model hashes, individual timings, and source metrics: [results.json](../docs/benchmark-data/runs/2026-10-23T02-37-42.681Z-summary/results.json).
 
 **Further evaluation:** full-file or corpus-wide Jev testing requires a separate budget. Rust corpus teacher labels do not currently exist. No paid testing starts from this benchmark task.
 

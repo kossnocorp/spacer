@@ -1,0 +1,1406 @@
+{
+  "selection": "First 100 file hashes per language from validation, 1–512 eligible boundaries",
+  "files": [
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/excalidraw--excalidraw/packages/excalidraw/actions/actionDeleteSelected.test.tsx",
+      "sha256": "9d93ab9f21523abc2726a4c9a95551f4d3e1ecdfeee974b776bed1d6dc689684",
+      "group": "000017f8e9eb70c523d75bc2bda8d2a31ad448f43fe440047caa81814d25caf6",
+      "split": "eval",
+      "boundaries": 222
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/extensions/codex/src/app-server/run-attempt.steering.test-helpers.ts",
+      "sha256": "ca7f242eabfec5e36f43c04a14ae9ac38dcfeded6ab3b8a033f65df2b97781c4",
+      "group": "0000696a0c3748e00aef76c8308aec5b7c1d9ac8e1cef6438772aa75f53b3fd2",
+      "split": "eval",
+      "boundaries": 62
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/src/renderer/src/hooks/useIpcEvents-silent-terminal-adoption.test.ts",
+      "sha256": "5e8c0338b87308929bbe2419548ce677451bf5e80040274fdb504c29749729a6",
+      "group": "0001ef62648cc4efb440715ecea7bb94d69bc5ada89ff7e92a97dd24dfe380b1",
+      "split": "eval",
+      "boundaries": 113
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/ionic-team--ionic-framework/packages/migrate/test/core-behavior.test.ts",
+      "sha256": "aa813e7a52a80e24159ca2428968eb17d6c67e6fda87dcdb95fb88c49648166c",
+      "group": "00038fdf48ec5572fd8342e8367483e14d5f70bfb52ff22570b71d8c7e023eee",
+      "split": "eval",
+      "boundaries": 143
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/garrytan--gstack/test/skill-e2e-plan-tune.test.ts",
+      "sha256": "401ed867d9652e3ec08cd54ff493a6113f1aca915423d75b31f47ebca80b4369",
+      "group": "0003d4e847585fc166cbbb0cbdc4bc82879a5d018b3b511d09f6b1a05878df5a",
+      "split": "eval",
+      "boundaries": 158
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/src/renderer/src/components/right-sidebar/ai-vault-session-limit.ts",
+      "sha256": "49c9f78775944d7a80f5d508044aaffc6c5000fa5b80af225725cc385f5eea27",
+      "group": "000423af3dd5123bd7898b27146ba7b7b3d3fcc7714e8bdf580c50f132f3292d",
+      "split": "eval",
+      "boundaries": 12
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/calcom--cal.diy/apps/web/components/settings/TravelScheduleModal.tsx",
+      "sha256": "02bb87186345946791ec01daadcb262fdf6468520c3736bd77cf078435d5e848",
+      "group": "00062b734be3fd551297a6656a87c10096fac8e1123c73801f8464e4ca865125",
+      "split": "eval",
+      "boundaries": 89
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/supabase--supabase/apps/ui-library/registry/default/blocks/password-based-auth-react-router/app/routes/forgot-password.tsx",
+      "sha256": "99170ba2ef07b803e025882d36c6bf44c9dffe4490440fd5205a0a74bf99f8df",
+      "group": "0006475fb376c359c36e11046c99d2f79ac04061d1a397c3d7b115c06bc58145",
+      "split": "eval",
+      "boundaries": 48
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/grafana--grafana/public/app/core/components/OptionsUI/fieldColorGradient.test.tsx",
+      "sha256": "8479f46f4bad3a4f4f68a259618373c52972a245333dbbabeff559a05a25b827",
+      "group": "000802d007691c902c82208eb3c07245afda50686cd4fb78176f3df08159966f",
+      "split": "eval",
+      "boundaries": 161
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/appwrite--appwrite/apps/console/src/components/pages/projects/$projectId/sites/create/WizardContext.tsx",
+      "sha256": "a2452b3a1d16b4aee83c92247de271f97e07d3f42d5166b049ab7f8554d1505d",
+      "group": "0008c436251c17b248de96ac23bb7e5fcf939e0e1912650165dba6b7809504ec",
+      "split": "eval",
+      "boundaries": 238
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/remotion-dev--remotion/packages/google-fonts/src/BirthstoneBounce.ts",
+      "sha256": "104949db84e6d8931ce386dc4f1b08d932700bd947b47d3423fbbd8ee92d4e7c",
+      "group": "000d4195ad2274bbfdfdaf4f9eefbc545821c21bfdac1b2d047048756d25136f",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/platform/meteredConnection/common/meteredConnection.config.contribution.ts",
+      "sha256": "7911ae22c6004a4899b3e48d165dea5bfdad7a276afac7880e2b935e308942bc",
+      "group": "00106243b9b34e7e7b18c15de3ea4d11c8b2475bf218e9e4ed1a51d95128db8c",
+      "split": "eval",
+      "boundaries": 25
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-front/src/modules/advanced-text-editor/utils/__tests__/getInsertedNodePosition.test.ts",
+      "sha256": "fc864d024838a7ef790121246d37295ad0173cb7572920fd4ca69461a5210595",
+      "group": "00110446a542890635fbb264e98ced6d395cd14a39f4aa0cd425c9cd8086d16e",
+      "split": "eval",
+      "boundaries": 63
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/openfin/_v2/api/events/channel.d.ts",
+      "sha256": "809c773ca2bad4ea530e2f0b86eb7ee9ddfdd6c7a2295b4f7b8e677a865d0d66",
+      "group": "0011188a00401aad52cdd8b83a203c526691c3e366771ee5cc1ebbdfb410b253",
+      "split": "eval",
+      "boundaries": 9
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/angular--angular/packages/core/schematics/ng-generate/ngclass-to-class-migration/ngclass-to-class-migration.ts",
+      "sha256": "99e43439557e1a748aae21c7c4edb6d5e1c66d68afc63bbfc7b30ea33d1c533b",
+      "group": "00129e50580e7acf11a66ffd84b18ebdc8cf5ee99c4aafb412006441b2628f27",
+      "split": "eval",
+      "boundaries": 235
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/react-native-canvas/index.d.ts",
+      "sha256": "a80024a32ff8071369422e7039cdee9657990c675dbca2e13b0a6287579d5361",
+      "group": "00138c02beefcab353f458e0d5cc1d3cc069650e20bb00a2003e84f6f6a9e963",
+      "split": "eval",
+      "boundaries": 160
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/morluto--rea/src/ghidra/GhidraJavaProbe.ts",
+      "sha256": "499214503e38a0a66230d3f4f4c2cd3fc116f71b7d52a6955bcad9eb89548d45",
+      "group": "00139b9638fdf9a29813a26727159fc91dc02febe60dee230bcb5e1d3c9a8ad5",
+      "split": "eval",
+      "boundaries": 176
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/code-yeongyu--oh-my-openagent/script/qa/dependency-audit/graph.ts",
+      "sha256": "d8b4d7f0a39b0b282f209d6775c2a92363cb6e76e0de40f6988f878947495f2e",
+      "group": "0013d595d80194284013bbc1195393af43289556d6896a15f3e2b411f9fe2411",
+      "split": "eval",
+      "boundaries": 31
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/paperclipai--paperclip/packages/shared/src/validators/tool-access.test.ts",
+      "sha256": "fd007ab808c72e465c9cad590ef49d73b1f518d2e646d0dc50c1b7f9ff6a4332",
+      "group": "00140291e9256d88bc08ffef945abc1f86be1868e4754ee005151d9775d4d9c4",
+      "split": "eval",
+      "boundaries": 179
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/storybookjs--storybook/code/core/src/components/components/Button/Button.stories.tsx",
+      "sha256": "ffbac3a66ddf7c0f8e87bde75eaf631d08caf98d404d74fe4488c223ab8edbff",
+      "group": "00147eea7568e1cbde06e84a5430ef55ace37e42e102fac7c0d3d1d15bc0b156",
+      "split": "eval",
+      "boundaries": 209
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/expo--expo/packages/@expo/fingerprint/src/Presets.ts",
+      "sha256": "3387b10d1b491ca22c6282ea642be7206f2978a13f77485abf113abcb32113a7",
+      "group": "00155f774d0b92c5bb76365b56850f9dfcadacb97382a9a039063d2d360715e6",
+      "split": "eval",
+      "boundaries": 56
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-server/src/engine/core-modules/event-logs/emit/events/workspace-event/billing/payment-received.ts",
+      "sha256": "2ba946df91841a5b2660fadb24b6aedf1393d2e5942345f539f124293a525fb4",
+      "group": "00166ffe053c470e2a783c718a3540e16d004a96d442632c26b0536b5042edca",
+      "split": "eval",
+      "boundaries": 10
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/hoppscotch--hoppscotch/packages/hoppscotch-common/src/helpers/network.ts",
+      "sha256": "036f49db9bac77e83dd968f19eec2ecfcc20848f67e1aff2ab3422cb51fffa8a",
+      "group": "00167c7a8a61222acd3e126cf9c712fba93578d0897f85bcac2fe84b72a182e3",
+      "split": "eval",
+      "boundaries": 81
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/workbench/contrib/chat/common/feedbackSurvey/chatModelFeedbackSurveyTelemetry.ts",
+      "sha256": "e8d23110d614a359a9eb930b7a13f02d8bff0f1da7d18667fdd62b3e6fe08e32",
+      "group": "0017df6fb267acbc3293baf713675e3881e59a0b4f3a553ffc2f34fa36a6885b",
+      "split": "eval",
+      "boundaries": 34
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/toeverything--AFFiNE/packages/frontend/core/src/desktop/dialogs/setting/workspace-setting/preference/enable-cloud.tsx",
+      "sha256": "04c5268b4eb0d7e685a05996bd766bab1e875612c2f294969b45ffc8170ab82c",
+      "group": "0018857b76accecfd602f2b0e70d0e7f9cf007a20e3ab33d7cabc5c0fb8798e8",
+      "split": "eval",
+      "boundaries": 38
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/angular--angular/packages/compiler/public_api.ts",
+      "sha256": "1a2333079db553bfe1081d7d0a292de5a2ee65ee80d891846ce87520ee107e9c",
+      "group": "0018d46dee6b9030b4e030dc7d5a18315804d8205b444ca722884586c6cb80e9",
+      "split": "eval",
+      "boundaries": 3
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/n8n-io--n8n/packages/core/src/utils/convert-binary-data.ts",
+      "sha256": "38d3e69cb22c9579bb7b964b416040541fc7f8bb7119303ac88a3bb6bf26daf5",
+      "group": "001957a85471191b8742ab258a11a0e9c9b074753442fd22c60f7cf531a6bf09",
+      "split": "eval",
+      "boundaries": 62
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/OpenHands--OpenHands/__tests__/components/features/chat/tool-visualizers/dispatcher.test.tsx",
+      "sha256": "967b2bfa3922ac765d89117da1f3916a2e3a6d79be43eaec09794a9684de67ef",
+      "group": "00199fb12a1252e118b5439ca6b0ea1f058ed05177c721c5edd99c8f3a808ce7",
+      "split": "eval",
+      "boundaries": 36
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-front/src/modules/page-layout/widgets/graph/graph-widget-line-chart/constants/LineChartConstants.ts",
+      "sha256": "dd6dd9f609feb11f64b603a94d328582a5b0f71309d5696c7ba8ab565bf8232e",
+      "group": "001d2f7dc3e107ebcdb5684548f9f010f5d15d34c84ee78727cbb71900384da4",
+      "split": "eval",
+      "boundaries": 16
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/extensions/copilot/src/platform/parser/test/node/getStructure.js.spec.ts",
+      "sha256": "979fb28df07e83db6e7a6e3395c06a936c07cc8531367703d6b2fc04224747b7",
+      "group": "001de0686de553da0f9842ba3e524399f1721523edeccd718d9b4c9e5259dd01",
+      "split": "eval",
+      "boundaries": 14
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/deepseek-ai--deepseek-harness/packages/client/ui-attachment/src/client/ComposerAttachments.tsx",
+      "sha256": "5522c084b8c044d6dd64a790851e53f254c6b11b288ae887acf5b5daa67b2c03",
+      "group": "001ea8c87a0e54a664c3f15d0c3ab6a29a997af7241d1610e23daaa34d5588c7",
+      "split": "eval",
+      "boundaries": 38
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/mermaid-js--mermaid/packages/mermaid/src/rendering-util/rendering-elements/shapes/usecaseShapes.spec.ts",
+      "sha256": "d1d666f1c825923c5fe639af9eb482e7aa90b5b4223278f26adaad9afdea49f9",
+      "group": "001f7d6b14dc4fbb7da22f6bc11900392a29250bae824ece6738d42a17ba1f8c",
+      "split": "eval",
+      "boundaries": 485
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-front/src/modules/views/hooks/useViewOrDefaultView.ts",
+      "sha256": "b577b8e9a537d7110421726c8362ccb8751c2892c90efdc16739f3354e2901fc",
+      "group": "0020c1aa40a03a7564e36ac28c553d69919affd6a483dca64d2980968ae6abfe",
+      "split": "eval",
+      "boundaries": 16
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/prisma--orm/examples/prisma-8-postgis-demo/app/components/map-client.tsx",
+      "sha256": "b2836929db38f18c8b67cfd3b805682c8e709f983e17c89244f72ad8c37abd94",
+      "group": "0021287eadcbf2ea87cfc3cffdb6ed597d3e618f44f3192e549590c3ef7f00c1",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/grafana--grafana/public/app/features/connections/pages/DataSourceDetailsPage.tsx",
+      "sha256": "964a8abc54277607fc3ad244794ba65a2cbb749474efcd9efab77ebfd65d5c0a",
+      "group": "0022338636764aaec80a766cac62999fc0f66e76581cb5b9de798db39259d264",
+      "split": "eval",
+      "boundaries": 22
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/src/agents/embedded-agent-runner/run/settled-turn-finalization.stale-error.test.ts",
+      "sha256": "d7afe25a49d45af15c19a0473a0b447e900ae98e0c880b2dd3a17129e0d24941",
+      "group": "002370c49166f85278f2cf5f5fd1da464d2a7af301d4b361ec0a316869b302c7",
+      "split": "eval",
+      "boundaries": 189
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/base/browser/ui/severityIcon/severityIcon.ts",
+      "sha256": "185bade013fcd1c5949ae0b93b5b24ccfda44e6c64169a8e302744ca252e418f",
+      "group": "002372c5bc56f940cfbad1fb724b45b0abdfa04ff9c363dd3203054479250333",
+      "split": "eval",
+      "boundaries": 20
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/extensions/browser/src/browser/pw-ai.ts",
+      "sha256": "31084710932411ae89c7b0a57e1251db8f2edd286ab31755252510d4cb87051f",
+      "group": "00238590f21908c9518f968faafc115afa61a65d5b3e86e62dfbfaacbfbca7e3",
+      "split": "eval",
+      "boundaries": 59
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/withastro--astro/packages/astro/src/vite-plugin-chromedevtools/index.ts",
+      "sha256": "37fe3e1e34dd9f54905a77d0d6c5350b81d626d9a80f927b76815fa0fa81bd6d",
+      "group": "00241012241bf9549879c0db19a347759df1e445a460902805c875ce1b0c8c43",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/nexu-io--open-design/e2e/tests/amr/logout-state-persistence.test.ts",
+      "sha256": "f7a1a0aea84d3446bd7d498adc187686c9f2fee289268e3f4f587cff9b737aa5",
+      "group": "00247cf2a5671d5f3c32fff6bdf679b782e07a96559245a095267195c358bc1d",
+      "split": "eval",
+      "boundaries": 92
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/test/scripts/check-plugin-sdk-wildcard-reexports.test.ts",
+      "sha256": "00b974601f7ddf6d0455cd61d39f6173a1caf65538731d2c9c54937d8aa7e43a",
+      "group": "0025f96088d01066f59709011bb7d17346dfbbf0591d5a354a22210885d65741",
+      "split": "eval",
+      "boundaries": 82
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/extensions/kie/video-generation-provider.test.ts",
+      "sha256": "49530f96a07403dd256bd8d87b15c9101ed33dc298d3c2887eacf1ed414cdc79",
+      "group": "0026909f505526f98a3a8ea7a6e02a1292c4c8c962e259428d375936a77d5812",
+      "split": "eval",
+      "boundaries": 215
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/strapi--strapi/packages/utils/upgrade/src/modules/runner/json/transform.ts",
+      "sha256": "3795cd8d1db3790435bd00eb9a02f17b12f84a00a36fce28b1542bc3f4b8044c",
+      "group": "0029f0318aa2cd1441cd0d3acf7a6bad0737a728ed759f21aa28b4a822ce3798",
+      "split": "eval",
+      "boundaries": 63
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/src/main/github/client/lookup/branch-lookup-derived-data.ts",
+      "sha256": "db16dd47f5aa4af077c76326025c02f998e077e149fa04385323759e2183a3dc",
+      "group": "002ebdaaa8c158820a781c5de19cda4daafdbe3f244f29f93e17578f14aff0a8",
+      "split": "eval",
+      "boundaries": 74
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/platform/customizationMarketplace/test/common/customizationMarketplaceSources.test.ts",
+      "sha256": "f2fc75e9f91486fbf44491084ca48e848d09367ee5ff520e734213c9985f0d59",
+      "group": "003174897fee4545c65ad530233b8d491ad7cb018cc0e0a94f8ec78d9f8e22c9",
+      "split": "eval",
+      "boundaries": 385
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/lobehub--lobehub/src/features/Acceptance/Viewer/Evidence/DesktopEvidenceReview.tsx",
+      "sha256": "6b2ba0b3abf17f5755eb1ed2f0b5031764c801d81f5f21913a92a8439000ef74",
+      "group": "003225f38b9528226827c8f89a7bd986d1f7d26cbfde500a87c054b7776e2815",
+      "split": "eval",
+      "boundaries": 65
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/ui/src/i18n/lib/config-hint-translation.ts",
+      "sha256": "b574db3d05add8c60da6d80cc0cf96aa6cc1314d5990fc27aa7726b99c21a72a",
+      "group": "0032bad14cfcd596e9f531c7e0b7ce09e7bcfaec8e9e47c5415ea2c126d3bc8d",
+      "split": "eval",
+      "boundaries": 12
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/ember__test/ember__test-tests.ts",
+      "sha256": "dd070cbe7c10cbfdb43ee37e040a7d32a7144d828d76203fd71f0d3ae3ffcf22",
+      "group": "0034682e5e66d9ad6b20682fbadf06772214d05de5a8a34c88d5b96fe525bcc3",
+      "split": "eval",
+      "boundaries": 35
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/src/main/runtime/rpc/rpc-binary-sender.ts",
+      "sha256": "504f61af5a144dee818bd851019813afa6463fb19a6b274accf48fb0596f8c3f",
+      "group": "003720cea6c9b0182af5abce3774a6752c54a0d10c5c922f9990762e067af91a",
+      "split": "eval",
+      "boundaries": 9
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/grafana--grafana/public/app/features/dashboard-scene/mutation-api/commands/updateDashboardSettings.ts",
+      "sha256": "4cd2e0a999346fa694c7f7766661299c013be208a6ecd5636a1383a57f641435",
+      "group": "00377d344598a0557808e3e6dcec7eee700e46d032b06dab075ee3835e628427",
+      "split": "eval",
+      "boundaries": 119
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/vuejs--vue/test/unit/features/template-ref.spec.ts",
+      "sha256": "b234f2c10d5e750fa5c1f5fe49432a2b8ac254e91d47876bfad86ae0fd9c440b",
+      "group": "00392a214fe5026f7117bf03ddece6640faaa37cb14249074606ff445bbc8fd1",
+      "split": "eval",
+      "boundaries": 214
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-front-component-renderer/src/__stories__/example-sources-built/bundle-sizes.json.d.ts",
+      "sha256": "babca24434cfc6a90e530f12259d2392785969738be021e6423d7e9872e95967",
+      "group": "00392e79da5aeffe7ccd2f3b3cf575a38e9dd880b8b04142cce7d50d2b41484f",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/cline--cline/sdk/packages/shared/src/connectors/supervision.ts",
+      "sha256": "f5cbd1c3c82ddcee2a2db8f9e6e09d0dfc16d46a83281f45458cd93b4e27bb72",
+      "group": "003bf56a542aab3472dbbf479d232ce5c1a41bed55afb19a5baa8eeda373484d",
+      "split": "eval",
+      "boundaries": 56
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/n8n-io--n8n/packages/nodes-base/nodes/Odoo/v2/transport/index.ts",
+      "sha256": "5c76d04cd81df8f6d89f41012b2c314ec369b55c95082a27893d74252a8f3286",
+      "group": "00405578a0731bdeb7a0c272d903d6769de129ba00af85313c647473af51036c",
+      "split": "eval",
+      "boundaries": 167
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/xml-encryption/xml-encryption-tests.ts",
+      "sha256": "537663d96b8646d855b23243a0607332dc35c9425c39d509842c172ce4c3004e",
+      "group": "00406bae69cb21317a1225cf20908911d3df5bf09aa7b868c5d353c0aad9a97f",
+      "split": "eval",
+      "boundaries": 36
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/mobile/src/platform/keyboard-occlusion.test.tsx",
+      "sha256": "d16e6b686e05b11d316440c04550c3783938b00d8ca2e561358e734efb9c8f04",
+      "group": "0040eb825e5a3ab80dd0911f96705364865d38fa7b94556eb1c3066a9145f33a",
+      "split": "eval",
+      "boundaries": 159
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/TryGhost--Ghost/apps/admin/src/global-search/search-shortcut.ts",
+      "sha256": "b1d6c431d74929e641db290aeb4e82cc430e59bad79621d1a6737fc50526706e",
+      "group": "00420daec325fc9a9a66d43ffa83359bd2722088bcf1cd686de4fdaf0b72e1e2",
+      "split": "eval",
+      "boundaries": 13
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/OpenHands--OpenHands/src/components/features/conversation/usage-panel/context-meter.tsx",
+      "sha256": "df0d64ba4ee5da1858e54903157bff00510b41ca474fb372a64bf45fc67c7bd3",
+      "group": "0043a7d08bc9c0c85ea01417b0a35c27c5df89624dd65b353be25c1f7f62da59",
+      "split": "eval",
+      "boundaries": 50
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DIYgod--RSSHub/lib/routes/seekingalpha/index.tsx",
+      "sha256": "86bec63c8293bd2272701dc3536fcf215964d6d44769c5d23a14ac195a719e06",
+      "group": "0043fc4bbd8b3be737a7dac608da2ea5fe261ea7f4938f826af0897d13c8e254",
+      "split": "eval",
+      "boundaries": 105
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-server/src/engine/core-modules/usage-limit/billing-subscription-item-cap.resolver.ts",
+      "sha256": "46b544821c793cd6815fcdd92f707d93387e1353f07294fd652a1b829e66e19d",
+      "group": "00445a775e1989b5d7a6713da25a8333a18b4d9772e9e1657c77e3d170d22edd",
+      "split": "eval",
+      "boundaries": 52
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/agalwood--Motrix/src/renderer/routes/dashboard/tiles/activity-tile.tsx",
+      "sha256": "4f0cd003f132d00eaae728bafe72fa09f2cb9c118e99d3797aef1a0fa8b072c2",
+      "group": "004553468ef9623d33e88bfd19ebc8bf569046f17b54c6b130ea7f54df9827d0",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/nocodb--nocodb/packages/nocodb/src/models/index.ts",
+      "sha256": "6673ceb54bae6f620c27cc2b5c9fd91eb7ca7b66a018db7d1f1fec71b0ab5d2b",
+      "group": "0046a8dda48159eba67eceff68d1e1def0c9d1bd044c62921c305c622d70d187",
+      "split": "eval",
+      "boundaries": 90
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/lobehub--lobehub/src/layout/GlobalProvider/CacheHydrationGate.test.tsx",
+      "sha256": "9936fb12f76e949c1b8615d0846e4eefec45c28039cf4536605ed73c24f968f0",
+      "group": "0046b275e581a6bd3d7cdb440011dde2eaa8571c76c577eb4873422ae79ea2ab",
+      "split": "eval",
+      "boundaries": 135
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/stablyai--orca/src/preload/api/pet-api.ts",
+      "sha256": "0e6228652aa39236a7b7dfb4f6eed2299b201789147e11a213d34dac61a25b6f",
+      "group": "0047835f1c2b719b113761ab53d572e083d5af18128165dcebc714140d0ed6d6",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/grafana--grafana/public/app/core/components/AppChrome/FullscreenWorkspace/FullscreenWorkspaceShell.test.tsx",
+      "sha256": "4737e6e97d8793eb248f22c7cccbdf6d9cb86f1f54291d027a8dfe8649d86837",
+      "group": "0047b98d7fee9e7c7b6130c5cb2be855bc3dc05004eaa5dc323acc658209a491",
+      "split": "eval",
+      "boundaries": 165
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/facebook-nodejs-business-sdk/src/objects/businessdataapi/event.d.ts",
+      "sha256": "da725148720733a061972c58c15ba9a21a5e853beb7ccd9b0ac5da081172065c",
+      "group": "0047ebea7f42657348915e17a1f443cb3bc798f3311bcc43dd13fc32e2521020",
+      "split": "eval",
+      "boundaries": 48
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/angular--angular/packages/compiler-cli/preprocessor/test/wasm_host_fs_spec.ts",
+      "sha256": "ea3a68aa89394d61057e21fece9d0148308c4e4d9e7e3580c325d29d8dbc866d",
+      "group": "0048356a07a10166f18affa456a6ce46100562b8c30be9b41008261130355c38",
+      "split": "eval",
+      "boundaries": 114
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/src/gateway/server-plugin-runtime-generation.ts",
+      "sha256": "8fab47515838c38d6651862faec9c9057ba64c469e0da0f879491f70ca697e86",
+      "group": "0048c80f11457820c6d1581e7972fb907d3023925b60df5c4899036f560adf8a",
+      "split": "eval",
+      "boundaries": 142
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/platform/agentHost/common/meta/vscode/agentHostArtifactRemovalMeta.ts",
+      "sha256": "b207d1967ba77acfbc72b90a489f7387b7fcafa12c08589eec8d28ee9dd333e3",
+      "group": "004b83f3b93fedd1c89d2cafc0191790665ef762a24a715114ceea5794b5c21f",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/n8n-io--n8n/packages/frontend/editor-ui/src/app/capabilities.manifest.ts",
+      "sha256": "fcb698fa0507b3176303f4e2457b9c07d36dd95e77fe03d875b70e0583d73530",
+      "group": "004bd2266a7e9dfb4ce235e6aed120858cc32a359e656ce8a28a35351a380b81",
+      "split": "eval",
+      "boundaries": 46
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/strapi--strapi/packages/core/admin/admin/src/pages/Settings/components/Tokens/FormApiTokenContainer.tsx",
+      "sha256": "57be7a31be6ddc82a9deaa249409d32d459b6d4ddf4a3e94705f55d85b530de2",
+      "group": "004bec4cdc6cd1c5f6acdcd48a521f5166cc3037178a06570161d95da272d5f0",
+      "split": "eval",
+      "boundaries": 99
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/facebook--docusaurus/packages/eslint-plugin/src/rules/no-untranslated-text.ts",
+      "sha256": "7aa4fe7d9976f9c891404e07f2cf159f8079b88981b2552aacce40e34e2dd13a",
+      "group": "004d01c19185f03d02e782c3425314d99ef33680ed2b37af07528d76125f3009",
+      "split": "eval",
+      "boundaries": 79
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/browser-lang/index.d.ts",
+      "sha256": "a5fa0b0a0116af5d893330984bf8f81e65e3c12b1a9421ca105fdc7455e7da46",
+      "group": "004d4a5f2827920edc0b279f6776972f6d8d6d7cdb21840f13a092bfc7626e68",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/RocketChat--Rocket.Chat/apps/meteor/client/views/navigation/sidepanel/SidepanelItem/SidePanelParentRoom/SidePanelParentRoomWithData.tsx",
+      "sha256": "5af26bdde32385b2263ceff4f66ce1797502143aa2d03f02aa329af1eb85e243",
+      "group": "004d70bf849a12fec97b692c731d1ed6fe9a13aa863315e3b84ad85f37088af0",
+      "split": "eval",
+      "boundaries": 10
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/shadcn-ui--ui/apps/v4/registry/bases/radix/ui/button.tsx",
+      "sha256": "76c6abdf94fae4085fd6c50c97c7a99ec21240af187c63ea4b2e71551d33495f",
+      "group": "0050be36903a182426a186da8f6551edac1cab020b36e1d39d6ffc8456a01885",
+      "split": "eval",
+      "boundaries": 48
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/abhigyanpatwari--GitNexus/gitnexus/src/core/ingestion/languages/cobol/flow.ts",
+      "sha256": "cb1af04c014aaab6336b12ea07e16f45ea28eca555f0c2bef3ad11e8902e6858",
+      "group": "0050f4479f451c7cd6b1b2d174ff132d1686c9ef9b6cfa0aa58bba6fd375f5c6",
+      "split": "eval",
+      "boundaries": 479
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/marktext--marktext/packages/desktop/src/main/windows/setting.ts",
+      "sha256": "5343de99273c9a7a870317a549d635193cb8fb4ccfa8e3cdb31bc47a7c42e9a1",
+      "group": "0052a550130da5322d876731072c06c0024c6d6120365db04b1f115c2a838963",
+      "split": "eval",
+      "boundaries": 104
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/freeCodeCamp--freeCodeCamp/client/src/templates/Introduction/components/legacy-links.tsx",
+      "sha256": "ad30bb65cb92898a24f5f41e91c77b4b29dae481624924c084939d9e420a0cd5",
+      "group": "00567440b2baf5a6eaaa826a4a051b5f56171a0a58d70a9c805d431d0d32007a",
+      "split": "eval",
+      "boundaries": 24
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/paperclipai--paperclip/ui/src/components/onboarding/SleepingZs.tsx",
+      "sha256": "cafa4085f5612f06e85b03b576e4eb8a3417d2084056162e347075c005226b55",
+      "group": "005775cd73041de00c16b807e664cb78f3b0d70e4c91f4ab8969e5d3b718307e",
+      "split": "eval",
+      "boundaries": 71
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/src/security/audit-gateway-exposure.test.ts",
+      "sha256": "1e95c411b86a619b1a453fdd0054a0ba218e488bd5ad816c0ee9e2a0622a3b13",
+      "group": "005784dd84f320df1218a31329e34306cea49bae130966d39ac4aa6b6e2e1026",
+      "split": "eval",
+      "boundaries": 282
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/lobehub--lobehub/packages/local-file-shell/src/contentSearch/__tests__/base.test.ts",
+      "sha256": "3d1e82b8faa52af7e2bdfc0aa6c22c47c721e51977d6623807a201e8bac4d123",
+      "group": "0059c402d6697329f333f704ba6379c6bb53a19493d61ca4e6fb5e32a3a5305c",
+      "split": "eval",
+      "boundaries": 272
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/vitejs--vite/playground/transform-plugin/__tests__/tests.ts",
+      "sha256": "45719c322e29f7e94caa5225bdd8adf9d92c7a6c6996e3dcf118c2e556f0136d",
+      "group": "005ae1b69c8f3ff8298e8232f07229af073058c55709a716ff53ac76b74d8995",
+      "split": "eval",
+      "boundaries": 14
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/chromecast-api/lib/device.d.ts",
+      "sha256": "7e1236930862303efb9f718c7490ad1fa3a078599dcbe15c2f668782d09caebd",
+      "group": "005c50268e7b4a1d7ac874e04e93515a6d533941fe384a2970e57a47b45d9390",
+      "split": "eval",
+      "boundaries": 173
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/moeru-ai--airi/integrations/discord-bot/src/pipelines/tts.ts",
+      "sha256": "3489b610123f67c09b012a9913f5ab73ebe7acab5dc4b0b7cb471b9525f4d64a",
+      "group": "005d361814e65bc59375b126cc749b70e0667464cd82e35d989d6929fd53e3b5",
+      "split": "eval",
+      "boundaries": 73
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/src/infra/bun-sqlite-library.capabilities.test.ts",
+      "sha256": "1ec7af2426379412e205c840144bd2225d80c5108b09efdfbba4e6547736ed7e",
+      "group": "005e6d9175933f7dde8ad1e5edd8f2eb3981a99d46dbdc5327974c9802612eda",
+      "split": "eval",
+      "boundaries": 157
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/supabase--supabase/packages/ui/src/components/shadcn/ui/alert-dialog.test.tsx",
+      "sha256": "6e186be6dfee3a97db6a1eab1b53eddcb3054f206f5dade27270f5aab9d9efda",
+      "group": "005f740fb09d2e7ce6303ca5953fb09dc51b97cf28521c1343f9d1fe6551ec68",
+      "split": "eval",
+      "boundaries": 109
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/angular--angular/packages/compiler-cli/preprocessor/test/serve_paths_spec.ts",
+      "sha256": "1577dc847115de598eca1ce777a0d853265314e00e5312e09853894a2ffa5a50",
+      "group": "00613d68e35b6eb0ba7a20d49001dc8b43b44267034d04f44ab4262b738e8d9b",
+      "split": "eval",
+      "boundaries": 58
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/openclaw--openclaw/src/gateway/server-methods/board.test-support.ts",
+      "sha256": "404a530edccad71b3d9c954fdfbd96d32b6b2fbf569bd5a4e4175b2577ab2c57",
+      "group": "006290e94e86f1ebbd4a06c977c9fbf6aced0f54140404a9231ee6b28658ff04",
+      "split": "eval",
+      "boundaries": 125
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/twentyhq--twenty/packages/twenty-front/src/modules/onboarding/states/isOnboardingCheckoutPendingState.ts",
+      "sha256": "2284ca7af966f90bb830f4b2e89f1df70820ad80f3ded1ce74ad327d9f591c83",
+      "group": "0063d05fa104807ad40dfda6c2053bdc2e646b9f83d211a67bd8d8380fa77274",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/diegosouzapw--OmniRoute/tests/unit/compression/caveman-file-reference-9144.test.ts",
+      "sha256": "08f7286a24e4d10c2fbd16ac2e64d6b0de4972d7cebc6754a47d1e5608d095e5",
+      "group": "0064c4ab7be0ef717c377ad252be4e44ce5febb0e9f8c61afec919e8c10746ad",
+      "split": "eval",
+      "boundaries": 62
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/firecrawl--firecrawl/apps/api/src/controllers/v2/mcp-action-logs.ts",
+      "sha256": "2d596556de82d85500b1187e42575eda7f6cf77acdfdd3953f72cf31e340ed2d",
+      "group": "006a4b74b952d8cb236e45f3174392d16248dd4094fbf1d12acd980b9938f18c",
+      "split": "eval",
+      "boundaries": 112
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/siyuan-note--siyuan/app/src/protyle/export/util.ts",
+      "sha256": "8cb32b47d2a29da2f10964f8dba85d2f32d4ac7c4b6c46803e4aea393f7352b4",
+      "group": "006e9ff2033e87fe3a552603e81e7dda5e9cef89653c0cee688e121c535aaabe",
+      "split": "eval",
+      "boundaries": 350
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/microsoft--vscode/src/vs/workbench/contrib/chat/browser/widget/input/chatInputTipPresenter.ts",
+      "sha256": "b13440de96bf9faa85195d6469762d9de2be86284eccfc3027a26041bb87914e",
+      "group": "006f7e9c8bbfd551a6f4987b31e9a1fbf04797b297e61b485133f8d5bede25b0",
+      "split": "eval",
+      "boundaries": 113
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/DefinitelyTyped--DefinitelyTyped/types/react-dev-utils/launchEditor.d.ts",
+      "sha256": "79c89f1708bf5971f8cf196d1c2524920777520d2728f0f6aa7b029d477a43b5",
+      "group": "0071f684dcd3b0a19abed4bcc46e7ee2775357f9a40ad6116d361681078ea5ae",
+      "split": "eval",
+      "boundaries": 2
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/n8n-io--n8n/packages/@n8n/typeorm/test/functional/query-builder/join/entity/Post.ts",
+      "sha256": "ca24f5b27b844fefadcc1eb4928b4b81e036c9a1d0337417a3bddcc282b18e35",
+      "group": "00739eb36d1fdeda88e9ce5a01a0613f6a1b775b5942df83f1219c38738120fe",
+      "split": "eval",
+      "boundaries": 32
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/supabase--supabase/apps/studio/components/grid/components/grid/Grid.utils.tsx",
+      "sha256": "83d2415f9f6096f92e8d790db1b7439dd0eaa4b3d700dc77235ad49b7ee17cb8",
+      "group": "007519b52189a0163b06d16018f491c9a1c5685717360920d23a7562f37911cd",
+      "split": "eval",
+      "boundaries": 58
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/n8n-io--n8n/packages/nodes-base/nodes/LinkedIn/LinkedIn.node.test.ts",
+      "sha256": "c7afe59e147541d0892b6f4a3cdc4d1ac5d132ba0d7ac642531b9b50c1fe3e31",
+      "group": "00761141a9a3703a5c87776a8da9c1738b05f26591e5ea4c3823ce5224b28292",
+      "split": "eval",
+      "boundaries": 57
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/anthropics--claude-code/mods/telemetry/tests/fixtures/started.ts",
+      "sha256": "aa48a31329bf83a2a155a1395049aed25f580e3ca2795dc9cbb114401f031252",
+      "group": "0077594529c65e6449e2fdf5d412b6955cf6bdf2227abde92bca1e313683ecb3",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/supabase--supabase/apps/studio/components/grid/components/editor/DateTimeEditor.tsx",
+      "sha256": "ccfe2a1fdfd0ca37a075c2e05d012ed2fdb4270291b43e94c83726cf3184ea45",
+      "group": "0078b5a026cd31715b74543c9403d46f3fd27e005effdf10d3490e813d17cc1c",
+      "split": "eval",
+      "boundaries": 79
+    },
+    {
+      "filename": "corpora/github-top100-typescript-2026-10-17-v2/repos/RocketChat--Rocket.Chat/packages/ui-client/src/components/Contextualbar/ContextualbarBack.tsx",
+      "sha256": "9acb2cc8ff03f98a27c589a1ce43a70969c340bb5ac6bf55a9cfe2c8e049857d",
+      "group": "00790c988a24b8959d9bfb8c87b914e1fb07e397fce05bdc792f16b4d31ae8d4",
+      "split": "eval",
+      "boundaries": 8
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/typst--typst/crates/typst-library/src/introspection/position.rs",
+      "sha256": "8000f9fde6d1c1e73120e5288f573fd922230d949a3e8d9eda5c9ba7f238e23c",
+      "group": "0004037270bce60f4fe966f6e39396f2f9719ede2fa2a854f358c63bb3b18121",
+      "split": "eval",
+      "boundaries": 112
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openai--codex/codex-rs/http-client/src/request_builder_tests.rs",
+      "sha256": "3263d567f620f9e22498e1cfc62966a6b9f38afab87635d5ef44a1011a7740b1",
+      "group": "0008c8c14d5870924224dfc49826e74b2b5b24589bc4b6a695464615b0fce65e",
+      "split": "eval",
+      "boundaries": 115
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/xai-org--x-algorithm/abuse-enforcement-service/service-lib/src/confidence.rs",
+      "sha256": "4d215dcf9c035105669d79cd10d61c5aeae9dc13e59fc10aced8d3a46b695e4b",
+      "group": "0011d9dc644eb7064e6f10b98f1795c2b4f57f985c6e771fe1b5ce17bd386af3",
+      "split": "eval",
+      "boundaries": 463
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pola-rs--polars/crates/polars-core/src/serde/df.rs",
+      "sha256": "a7b08063c3a0228859b211ce3dcf6b4a7e489368adeb614124de521134ac4af9",
+      "group": "0012d1d3068b7479fffd7753dffce3b20a73e0a5e633f0516592afc5322b0e1a",
+      "split": "eval",
+      "boundaries": 162
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/coherence/auxiliary/option_future.rs",
+      "sha256": "19cab06c8b2d37a1a99dd5e24cb75a95d9d28d059c1398d46a74168d9f3a0589",
+      "group": "00187aebc50564bf694cad7fc2d40f1e850383899de0695e05d000a59fa02712",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/denoland--deno/libs/core/runtime/host_defined_options.rs",
+      "sha256": "faa8815cb36f754507a18d334d21a61d7208f56f1bcd58d2f65e78ce15327ad4",
+      "group": "0019603a6ef47f2396b39f711685095ad11817252174d587d29027a090769a9f",
+      "split": "eval",
+      "boundaries": 95
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/traits/inheritance/num5.rs",
+      "sha256": "00b5abbffd0eabcc938ad55adcb1e86d83434547c7af771eb695b67b660a4d97",
+      "group": "001f86f49fd36d46f77978e0bbf6f3b0575424fabde6fb69ab792a0f0a078059",
+      "split": "eval",
+      "boundaries": 18
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/oven-sh--bun/src/lint/types/utils/type_flag_utils.rs",
+      "sha256": "836672c56a0ad95f9675d73fe2eab4f340c846f796d8e4a3efac96654736dcfe",
+      "group": "00209a5d9804fb86566b04084f6431d51c4f6cb101f07d54c9347c4d3b993225",
+      "split": "eval",
+      "boundaries": 8
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/storytold--artcraft/crates/api_clients/artcraft/artcraft_api_defs/src/generate/splat/generate_worldlabs_marble_0p1_plus_splat.rs",
+      "sha256": "eb8227fe2782190c5506e84f3d7690a2965d1ba42d7c930fe7e6b735f90e6edf",
+      "group": "0028f234d3b3900141934fcdfbdef6435331e490608a757f3c30518ebd5c514b",
+      "split": "eval",
+      "boundaries": 15
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/check-cfg/exhaustive-names.rs",
+      "sha256": "f21736445b2b716db30a32585216df1afab1ea303b5b9310ea097d639ef38271",
+      "group": "002ad179acfbcb47179a98ae00f466303f30fcd7860e7f959302805c5dbbc481",
+      "split": "eval",
+      "boundaries": 8
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nautechsystems--nautilus_trader/crates/data/src/engine/handlers.rs",
+      "sha256": "4c8c3fa76f54808ad103cbea8a902459311e9df530398eaa54e10df181f7c7ff",
+      "group": "0030871e8b525cdb3633a2a94ca77b68842ffd04ca806ec2087f95529920f1bd",
+      "split": "eval",
+      "boundaries": 125
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/tokio-rs--axum/axum/src/extract/state.rs",
+      "sha256": "2a3dcdee586ff600096bbdc2e498f5725638d79097a811d9e9cfcf7cf3fdd93f",
+      "group": "003352c4029dd0f4608de5b751f877657b939d497c8c977cbd75799145eb9428",
+      "split": "eval",
+      "boundaries": 32
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/influxdata--influxdb/core/iox_query_influxql/src/plan/planner/select.rs",
+      "sha256": "0a4506f4b9639963c736ffca41c81c3538fba48cbfb5cf3b66081221bb512d1e",
+      "group": "0036b3640f4e7d43d9044c34becabbd80364d2978515037f276635c28e079ac7",
+      "split": "eval",
+      "boundaries": 373
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openinterpreter--openinterpreter/codex-rs/state/src/runtime/test_support.rs",
+      "sha256": "4dc7a35f57dd155f1b59e438bc97dcaa66e57a3151de7fa21fd89e6bd8f3147f",
+      "group": "0038246f0267980f8364714a8dd148540d3fbcc2db18ef6f87ebd8c808ec83a7",
+      "split": "eval",
+      "boundaries": 78
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/rfcs/rfc-1445-restrict-constants-in-patterns/cant-hide-behind-indirect-struct-param.rs",
+      "sha256": "0e3cfd48f2df83a3f50269964d1e63c9dbb7d1d900a9bb550caad52fd74593e2",
+      "group": "00406d9b98d93b360c5c4cb2d2b0bd4bb5bbe11f5297ef0f7b6d938bdcbcdd13",
+      "split": "eval",
+      "boundaries": 19
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/helix-editor--helix/helix-term/src/keymap/macros.rs",
+      "sha256": "baba522597167a299608f3708bb0299a79ce8c13e87f6af91f9a3ae53eaccb43",
+      "group": "004079f3502b8c88b8f1de2d29e25daa4eedcd57d5c511e3e50bb69a5fbefe7c",
+      "split": "eval",
+      "boundaries": 100
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pnpm--pnpm/pnpm/crates/cli/src/cli_args/install.rs",
+      "sha256": "e9f32fe530bdd3c00b8a7e8dec6c74c4e56c4e01bdbe98db5f152d5985eab484",
+      "group": "0040fe9ab6945c9060a364b58e682852fc93e7294e4af8e1943674f8e391a6c6",
+      "split": "eval",
+      "boundaries": 368
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/influxdata--influxdb/core/query_functions/src/to_timestamp.rs",
+      "sha256": "16eb72e6454100d51eea9a517774fab499d86039a7d72b3bda69af0ff494d24d",
+      "group": "004154b69ea724ee02fe604efe03c9c78f68cca73684351cd7b33ec02d6c7b55",
+      "split": "eval",
+      "boundaries": 69
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/storytold--artcraft/crates/api_clients/grok_consumer_client/src/datatypes/api/baggage.rs",
+      "sha256": "a481ee4c60dff4566a6dd5491f860ff2ebb12ba52e253394648b5cd8abe78e6c",
+      "group": "0049cf10c6d8143c5438821ea29458e1d382a180de335c2078af717e9bc2c3dc",
+      "split": "eval",
+      "boundaries": 1
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/suggestions/missing-bound-in-manual-copy-impl.rs",
+      "sha256": "d363287bcfe0ba3fe4925b779b748978d0b6f95c5f54193c2062c91caa9d07f9",
+      "group": "004c22c30f5ed0a33d62b74188fb53cd89988bfdc58fe93a40da2e833f4472d9",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/assumptions_on_binders/alias_outlives_with_repeated_placeholder.rs",
+      "sha256": "b3d59ad1f5a4cb0610c07332abd15a20852e4f1c22f0aa9933f003d206f28628",
+      "group": "0053d5f469481fb9497ba1ace5a5578cbb20911e7e31c635b96c3cb78971ef62",
+      "split": "eval",
+      "boundaries": 29
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/zed-industries--zed/crates/migrator/src/patterns.rs",
+      "sha256": "500bf385a0162fa7532805f44b072d20d464cd16261c91b0da017ec54a0a0a42",
+      "group": "0054f040b752672521132fdb63d9ebf5713519d728013ec7a8084be4728e5286",
+      "split": "eval",
+      "boundaries": 10
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/bevyengine--bevy/crates/bevy_time/src/common_conditions.rs",
+      "sha256": "b853c690249284bbc1adb134b6a481603eda240e7dadd6ccdd486d31828902cf",
+      "group": "00588c636dae84f8ba1d3c98ce51e9ad1ff7e1a608659c14f8e663f59aca57a1",
+      "split": "eval",
+      "boundaries": 64
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/zeroclaw-labs--zeroclaw/tests/integration/telegram_finalize_draft.rs",
+      "sha256": "ee65667f5d8ce686012fbd6243fd9c6a4d2e6ce9faf9ec49d804f33630752911",
+      "group": "005896b3c38358630998bacd4c0e577489f11d20bbf7c53ec4aa8c185da8dde2",
+      "split": "eval",
+      "boundaries": 196
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/pattern/rest-pat-syntactic.rs",
+      "sha256": "e864edab7f30321c418241edff7f97cd6bfca5fd61e40bd2aaa8cc521932cccb",
+      "group": "005a5fe2cd0b590de8ecd44a6367eee79d47efb975b45f959ba1b5b8133310e9",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/jdx--mise/crates/mise-interactive-config/src/lib.rs",
+      "sha256": "0ee0d6b05fb290a64071f6c3441dc660261786eb1ccf83c7ef656b8533c81107",
+      "group": "005c58f8f6e426e083bc18c57740939b112f4e55649aa82280fdffa11db21dcd",
+      "split": "eval",
+      "boundaries": 15
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/transmutability/alignment/align-fail.rs",
+      "sha256": "d620e6f51eb9fa92712b4853e77d09fea58e38cd1d1eac1b3b904bb34a680f9e",
+      "group": "00685cd18f673cbc7a651128095b4036a427ff8018a06f5daa32ab04e98a9721",
+      "split": "eval",
+      "boundaries": 18
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/xai-org--grok-build/crates/codegen/xai-grok-shell/src/session/helpers/full_replace_compaction_tests.rs",
+      "sha256": "79ecc25b5573acd1e25f0329e655b0ba8052e6a17d26f2abf4dc14e94cf8ac00",
+      "group": "006ad104ddf765246197f846af3a55788b31629f0e414cb74832ec2d3782a304",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/library/std/src/os/unix/net/mod.rs",
+      "sha256": "f2fb07c12caff2feb6d81254a60b60526cb33225f3a043fd967522e561f4ca45",
+      "group": "006ae0d009cc187e942287a59bce42c0bf5cd0171c6b8fc658a5a4fee164d9de",
+      "split": "eval",
+      "boundaries": 26
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/tinyhumansai--openhuman/crates/openhuman-core/src/flows/ops_support_tests.rs",
+      "sha256": "bf636e193997be304b2e2e446c760b2ce3290a01b496c2e2406eb1935ce5e7aa",
+      "group": "00717ca1ba2a5c133165639e1db6fe91a9144cf39977caa6ebbda22a5b021aac",
+      "split": "eval",
+      "boundaries": 45
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/FuelLabs--sway/forc-plugins/forc-migrate/src/modifying/function.rs",
+      "sha256": "66d8436f16fd8716b9edc9c36c7a681f07bd91bc718131309d6b18dbd579442b",
+      "group": "007273739e2740f9a66d359d546d14b12524a85c37ca3b7e32da16906d8bf6f5",
+      "split": "eval",
+      "boundaries": 45
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/surrealdb--surrealdb/surrealdb/core/src/fnc/script/modules/surrealdb/functions/crypto/argon2.rs",
+      "sha256": "e892679f4bf0962179930dc69d6ca0cb49443c753c37f937dc044a0ea0687e26",
+      "group": "0073a05b262debb5fd835ca360c1ef57e6dc445e511dccf9ad09972cb4fbd6d2",
+      "split": "eval",
+      "boundaries": 9
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/run-make/interdependent-c-libraries/bar.rs",
+      "sha256": "62aaeb661a63f0f6d328cbbe0ea55e238ea89b7338a85b365f406f440676754d",
+      "group": "0074a208247bf7d4e91c7324c4d0aa9d2dedf4bafba52f5af81c834289c10663",
+      "split": "eval",
+      "boundaries": 10
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/swc-project--swc/crates/swc_ecma_compat_es2022/src/class_properties/class_name_tdz.rs",
+      "sha256": "5e8e4421d964d0b7d697728e6eb4f544cdba815a37e02c5796e09fb594e4cb42",
+      "group": "007a9d4bb5cb2325f5d2ca270ea42e80ac7d4b20df44758254edec2718923456",
+      "split": "eval",
+      "boundaries": 68
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/GraphiteEditor--Graphite/node-graph/libraries/vector-types/src/vector/algorithms/consts.rs",
+      "sha256": "7e27c300cb4cbeead7376e9d92c9ba1848aa6b4cb05b64925d758ba9d8f61fa7",
+      "group": "007f75a442fa37093b0a30ef734b4c3b3287f66ea73f168f59a5bdbe8f6ef7a0",
+      "split": "eval",
+      "boundaries": 3
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pola-rs--polars/crates/polars-utils/src/regex_cache.rs",
+      "sha256": "1693913b105a785fbe5b2bb6fba7569f4581fac61578f4c411c0de658d3417b4",
+      "group": "008497f30b3c98c3283f77a7000f1a1fe621651e3ceeebff073ec9d4ec8779a7",
+      "split": "eval",
+      "boundaries": 139
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/tokio-rs--tokio/tests-build/tests/pass/use_builder_outer.rs",
+      "sha256": "826e3253d2e267e6de9fcb2b7ee89ef211e488fea783ef62d0b400f6a1dc3f10",
+      "group": "0088842f2325371d5adfbc3b4aa14a8b2465731c6401662cb0969df56075e72a",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/zed-industries--zed/crates/git_hosting_providers/src/git_hosting_providers.rs",
+      "sha256": "33157c43a3d399cf09f049be44b1a494294464f3ca0f8473e1b85acb1895d81d",
+      "group": "008d615b23d324ef9ccb7e68f192061cf800ca8dded3c385078be2dbebcdd9b6",
+      "split": "eval",
+      "boundaries": 85
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/traits/next-solver/normalization-shadowing/discard-impls-shadowed-by-env-3.rs",
+      "sha256": "5ca4539fdf5d717cd2fe631a87441908d5074650648ec33b0d41480a25a6ccf3",
+      "group": "009502104176e7ab7bc57563f0365d1ee7513c7c768b7ec26a586628e534c0db",
+      "split": "eval",
+      "boundaries": 13
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/DioxusLabs--dioxus/examples/07-fullstack/auth/src/auth.rs",
+      "sha256": "9c30f98ddfc9f4f0c2fc1d72b4a406c5f063f7bb86c18e7ad5e771dcf3149ff4",
+      "group": "00a40992f7ef8abbedc52713ddc6c5995fb0d726a360b0188850fd2e06fd4fbc",
+      "split": "eval",
+      "boundaries": 65
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/warpdotdev--warp/crates/warp_tui/src/api_keys_menu_tests.rs",
+      "sha256": "e19bc36e1d78ca943bac07e86517fc9d9cc1f58a836e6ef65ad173b984d61381",
+      "group": "00a5d1c85cf22b344a555244074f0449c0a82263629de44e5df4adba97fb4c57",
+      "split": "eval",
+      "boundaries": 386
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/xai-org--grok-build/crates/codegen/xai-grok-shell/src/session/result.rs",
+      "sha256": "ea717cb2245a7cc8fe6ee687186f4b77e80281dde27f3fb6ff851afecd64bad9",
+      "group": "00a62394c845e3f184a936776ecc00cc414d903b0d0de397ccca675500e45a98",
+      "split": "eval",
+      "boundaries": 134
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/bevyengine--bevy/examples/ecs/custom_executor.rs",
+      "sha256": "b2a7414c92895cb23e85d77154ff30c2bd2c08480791a1a82e4f612043f63181",
+      "group": "00a76fe4944b2ba699b6671abc56907d0e1a5a29c443c92679a327c24bb859dc",
+      "split": "eval",
+      "boundaries": 43
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/union/union_destructure.rs",
+      "sha256": "7240f33d0cecf1896c6c5d6c980af78f348384606626376794f09ab5969f4902",
+      "group": "00ab5ef86efcfeed8b85b99ead84f3880ea2c0c03e842f4b631ac82f0fb77da4",
+      "split": "eval",
+      "boundaries": 45
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/xai-org--grok-build/crates/codegen/xai-grok-foreign-sessions/src/claude/windows_tests.rs",
+      "sha256": "b56bd50f01940b933c8c6d166efc21c7a951a47c364e54cc84679a4af05f5e14",
+      "group": "00abf67305f35e7effb9b92b7dd719f61e286b9f529d9ce7e0e2fd9a246a2454",
+      "split": "eval",
+      "boundaries": 108
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/traits/issue-38404.rs",
+      "sha256": "248ffbd4265ce15cbd48ff179b07a169900785506d536ac8d987294593b2e3e9",
+      "group": "00b037c3042c27623bb7fe69ee812f37f3f3025ef7697f815f867923dce2194b",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/juspay--hyperswitch/crates/external_services/src/http_client/metrics.rs",
+      "sha256": "01d6093ec58f7e092c9f4bc85ec04387d0943cf065b4ac88e1ee44fc1ef9601a",
+      "group": "00b2cec4020b4c4e583be34d11a58ef0f28bd3abb0c491fb41290534842c80e8",
+      "split": "eval",
+      "boundaries": 8
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/rustdoc-json/unions/field_order.rs",
+      "sha256": "925ba449aa09045a6c57b17300a0b2f4936d0a44eccc84db9d0f584cd9d2d17c",
+      "group": "00b44ea95fba8dc114181cf1e07fdb5371033cd1dda02f6c1af5818946d9a0ba",
+      "split": "eval",
+      "boundaries": 34
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pbakaus--impeccable/crates/html/src/cascade/csstree/ast.rs",
+      "sha256": "ebfb31122eee940d74b8058cc6426a6149135264fee05e428af4bbe11639939a",
+      "group": "00b8a8708ed6946222c432d9e7e3a432094d7ef964723890ebd92ac187260cda",
+      "split": "eval",
+      "boundaries": 170
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/src/tools/clippy/tests/ui/serde.rs",
+      "sha256": "aef0e242315954cae97cd0eda09ebebd042cb822bde55e31f85be619567d462b",
+      "group": "00b8dedcf8e45ad653b316d994150100717506d398c576fa67bd3799bcd3853e",
+      "split": "eval",
+      "boundaries": 35
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nushell--nushell/crates/nu-cmd-extra/src/extra/math/arccosh.rs",
+      "sha256": "c279a36402288a07c11127d50d03f43113361604ea2bbfff9cf68d24b9e9f14a",
+      "group": "00ba7aed415d25e5a2702bab39a055b173c8acba1d158c7f3f77efa432f0460a",
+      "split": "eval",
+      "boundaries": 90
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pnpm--pnpm/pnpm/crates/cli/tests/suite/local_directory_without_manifest.rs",
+      "sha256": "bc9db6503c00960cb67c1ae78f0a2df050a6cc063655bbccd6ba80e9c5e8cb8c",
+      "group": "00bdceeb6628623b6e670fb5e02be727bc0ec1f832317f12d8f94b8ac0b478fa",
+      "split": "eval",
+      "boundaries": 46
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/wezterm--wezterm/bidi/src/direction.rs",
+      "sha256": "fdc134cd20d05376e7094c979b1b6b9aa2fcb29f8acc5f5f14df8c6e544e64fc",
+      "group": "00c82d55777f42c9182f97da4f8bab5d474618aabcba87ab5d7ccbf7105e558e",
+      "split": "eval",
+      "boundaries": 51
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/zed-industries--zed/crates/outline_panel/src/outline_panel_settings.rs",
+      "sha256": "a2f432b5656b2a56f59fcb34512b95e1fbc849344d36f4b786a296b8e4884a5e",
+      "group": "00cb862f1573e767afd051a86fc0e6ab070e010eeafc2894164570c893752e5a",
+      "split": "eval",
+      "boundaries": 73
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/swc-project--swc/crates/swc_ecma_transformer/src/es2015/mod.rs",
+      "sha256": "52a9909f831062290c4e7a136f4bcea01406fedea85893ca31ef2b86f68e4469",
+      "group": "00d041d0cd79ac802c3b1d0f5de8c1b0c468e56a451fb5d46fb97714459dae61",
+      "split": "eval",
+      "boundaries": 70
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/denoland--deno/cli/cache/caches.rs",
+      "sha256": "02d896fe136a2c870867dc0b52d9282644b854d78d710802505af8353d737c61",
+      "group": "00e277fc68ea5145cf67402335b47b7b390f8b19f2c95d3382af80fc96680d84",
+      "split": "eval",
+      "boundaries": 129
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/juspay--hyperswitch/crates/api_models/src/analytics/sdk_events.rs",
+      "sha256": "69cab8255a744bd247444402bcf07e857b39a848dde1f0c61cca84f6f49a20b4",
+      "group": "00e46accf5afc5694424dd2ddc0b7843b70aa7423e61e35cf5d7090f66b1d3b2",
+      "split": "eval",
+      "boundaries": 174
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rustlings/src/dev/update.rs",
+      "sha256": "dd3f84df4578117af209105ec14b6910287c1574f0e1253a32a02a39b76682dc",
+      "group": "00e9e1c5fcc0c9a86a28753ed7dc82cf4da931746ce9c15a1f67b6987120d643",
+      "split": "eval",
+      "boundaries": 33
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/bevyengine--bevy/crates/bevy_reflect/src/serde/ser/maps.rs",
+      "sha256": "ea032c458593571ef94e754579b135dc6fab0bea3cd9fc5aa5da6b35f09e063a",
+      "group": "00eb898f7e189debadb55951f3af323cdf159988f3e11dc811cd2405050ddc95",
+      "split": "eval",
+      "boundaries": 22
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pnpm--pnpm/pnpm/crates/auth-commands/src/login/web_login.rs",
+      "sha256": "28cce973177b029388a8af9275223a46aa6d436841606607866194faee8e480f",
+      "group": "00ec83de13834765ac1581d9ec6cd9f99028434b25dd7ad1f86472f4986d7af5",
+      "split": "eval",
+      "boundaries": 121
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/type-inference/type-inference-none-in-generic-ref.rs",
+      "sha256": "b032bfc8170df302feffdae61f85a49eb6c13342b00f0b1baf5d2ebfacbc24bd",
+      "group": "00ed197c09a82e890fa067129fda14cba1b4171b29632e4de72540082727c865",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pnpm--pnpm/pnpm/crates/resolving-deps-resolver/src/resolve_importer/tests/lockfile_reuse.rs",
+      "sha256": "122f1419cd0f32dc6e8dedae7ed1aeaf20f4ed3fb2b81b7463f557510a1a2ef3",
+      "group": "00f3fc91e0c7219ff01e2cbc290e5d36241f8afc4ee10b370a32bcdd29cd5802",
+      "split": "eval",
+      "boundaries": 49
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/storytold--photocraft/crates/ui-egui/tests/drag_preview_canvas.rs",
+      "sha256": "7139f176ceb0bb68342f4c24d5e44859b17d246eafd77b46067566ffc2a1439a",
+      "group": "00fc6cbce7436aa1dd31ceecbb7383c5084e458de2152e514b6ff23b9e7229d7",
+      "split": "eval",
+      "boundaries": 251
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/compiler/rustc_thread_pool/tests/simple_panic.rs",
+      "sha256": "c22731d7abbe87859769a279388ee789b89348af09647463bb3b2ec05c299025",
+      "group": "00ff96e7932ab454d5e3afc1a195a8e3277f7f4ba99435615df08cf4ee047def",
+      "split": "eval",
+      "boundaries": 6
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/denoland--deno/libs/resolver/npm_lockfile_import.rs",
+      "sha256": "f4398541d8931ffa57ec68f749fffc3725903d168c76337682de40359481f81f",
+      "group": "01048edc9538bd8d84324b49dca0b566fc104bae572305db5ed8014be4f4f9cd",
+      "split": "eval",
+      "boundaries": 324
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nautechsystems--nautilus_trader/crates/adapters/binance/src/spot/sbe/generated/web_socket_session_logon_response_codec.rs",
+      "sha256": "6c6adc0d23b07e58e44c13aeacd674d638668c75dd57f57ccf788d094557058c",
+      "group": "0105f76156b02e23ad4499e6e29d7c4e5a9fa8e8aa294fcc75b685ee8b3e54b9",
+      "split": "eval",
+      "boundaries": 187
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openinterpreter--openinterpreter/codex-rs/http-client/src/tls_backend_fallback.rs",
+      "sha256": "8a5e498a970be6971ac8525d875c7da20315ed5398c201e1b3545cf225439df2",
+      "group": "010dff59952a6cfa7e59f62fc900ab950e4cfe4d7bcd4e005ad6236022a02f47",
+      "split": "eval",
+      "boundaries": 135
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/closures/closure-arg-assoc-type-mismatch.rs",
+      "sha256": "7ac1b3d26d8b4f3220794ab3b6eab2cdafcca0b5a5a0b59cb22473bd54763119",
+      "group": "010eb011a164b1c3d7f9f6307eca2e2c9d161353096ad01f262567ac6276dd06",
+      "split": "eval",
+      "boundaries": 23
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/warpdotdev--warp/app/src/terminal/view/block_banner/warpify.rs",
+      "sha256": "01b3457a0054821d5e875a4aee9b803dced86b1888f65a8a4b38984279ebab03",
+      "group": "010f91da42ad276c70d2fe9abd5215aee9f867098eee9ac9f8cd863686baebe9",
+      "split": "eval",
+      "boundaries": 161
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nushell--nushell/crates/nu-explore/src/explore/views/try.rs",
+      "sha256": "e61703b0a95afb90039a3594c4a33c40767a9b3a1002db2012afab3b299c1839",
+      "group": "0112985e5ffef7cefb767e0738ada8085620b2ba49413eae8d55a1b28343d2dc",
+      "split": "eval",
+      "boundaries": 293
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/oven-sh--bun/src/format/js/utils/tailwindcss.rs",
+      "sha256": "b0dbdfede938833175dec49389eb15f6c1e2ee2f24764421512730f3da2941e7",
+      "group": "01138771ad02009e2a062909b4b7e04a90f6dc8ed063f65639ebb4f239c7d4d5",
+      "split": "eval",
+      "boundaries": 441
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/trycua--cua/libs/cua-driver/rust/crates/cua-driver-core/src/cursor_shape.rs",
+      "sha256": "799551a2696e683334d72679b5f290b5848968251bbe4d46326f777b17c18834",
+      "group": "011e9ad9ccda0a7b097b31ad799cf5597eee164ea5a596bfd5632ddbf8d871a4",
+      "split": "eval",
+      "boundaries": 59
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/warpdotdev--warp/app/src/ai/ambient_agents/scheduled.rs",
+      "sha256": "ff554f010450c634e8ff94828369718079d24963764494abf9f48b3f7d42d471",
+      "group": "011f70c0f093bb36af536ed928abf10281a9c402c51363985863b4f8c736048c",
+      "split": "eval",
+      "boundaries": 315
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openinterpreter--openinterpreter/codex-rs/thread-store/src/local/rollout_migration/canonicalizer.rs",
+      "sha256": "4ee6fcd718a87218c5e01a54b8a2371075301fbfbe427dbe5024379933ac0b1f",
+      "group": "01210749d48da296df23ed959254bb890a86320a00b9aa8838144f2e0f75259d",
+      "split": "eval",
+      "boundaries": 470
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/src/tools/clippy/tests/ui/missing_inline_test_crate.rs",
+      "sha256": "a19c2329fa6f318d6d451ef41d3a4a1c5fbce3e8a7e3c1b0322c9d9149554010",
+      "group": "01237db9e78ccda38af9ab33429473422ee2c438b852dd562b1d66222889c7ba",
+      "split": "eval",
+      "boundaries": 7
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openai--codex/codex-rs/ext/mcp/src/plugin/provider_tests.rs",
+      "sha256": "3b5f58e7330e378f55f36b8c83085ee4b9b87ce54dd2d824214a47d1a68e658e",
+      "group": "01258973c5517ad7c2b927959d619258d395db9368a546097d31ac36834aafa3",
+      "split": "eval",
+      "boundaries": 413
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/codegen-llvm/bounds-checking/gep-issue-133979.rs",
+      "sha256": "abeedd657bd3258499b2d290daced3152214c82ef8274cd64c56dafb15ff10fa",
+      "group": "0126f9cc278375e0116e3d4aa900ee89db47fd0e7a2b05015d498a6d7c1d4615",
+      "split": "eval",
+      "boundaries": 16
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/openinterpreter--openinterpreter/codex-rs/tui/src/chatwidget/startup_submission.rs",
+      "sha256": "242484b3a91e194c8bfa12de1544fe8e967eaa05f530fc843c9b9ec6970ae2d3",
+      "group": "0129e57f8dcf8c4e0279b6a9492f3d60e1147f68f452e1f5cef2a584a87184ab",
+      "split": "eval",
+      "boundaries": 109
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/swc-project--swc/crates/swc_bundler/src/bundler/tests.rs",
+      "sha256": "48a18a5592eb4d345040d414920a825d5abae66655ba6e1998c532f7d03e8a25",
+      "group": "012ae77427d325bdd70a43b00621d7c1ae175a3b050773960e55b7ca4b011b90",
+      "split": "eval",
+      "boundaries": 147
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/unionlabs--union/lib/tendermint-verifier/src/types.rs",
+      "sha256": "daf9b9a19334be52065cfb7f8d8be307f8e996519af5ce5ab0b066d3edd262cc",
+      "group": "012efe1af96c5e6c4eb82c7e7f414ab6ae678414b4851bbb23e7bce3900b83e4",
+      "split": "eval",
+      "boundaries": 13
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/numbers-arithmetic/next-power-of-two-overflow-ndebug.rs",
+      "sha256": "3319d77f1b9c4f44ba20739df540d9ddacc76d4f99a2e2b3b82e244ad9f2d10d",
+      "group": "012f6057eb8058ceee8ad46da8934c6de58dc16714ac3e8c8a7823cf0d3b38ce",
+      "split": "eval",
+      "boundaries": 11
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nautechsystems--nautilus_trader/crates/adapters/lighter/src/signing/tx/mod.rs",
+      "sha256": "dd9c3bc28a6ce53b8ae087c944fd6a3eec34ee6b20af91ff91ed6229518a47d5",
+      "group": "0131d84dd7b128e34f2cdfc469b1557ccbfea929cc8b2b2ac14345dbd83c38ab",
+      "split": "eval",
+      "boundaries": 21
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/pnpm--pnpm/pnpm/crates/fs/src/copy_file_exclusive/tests.rs",
+      "sha256": "ea3bfc71626b5a1bc6c3add34b94c53f8da5e1dd6aa8959635d6af455c8b0110",
+      "group": "01358844853462ea6b24c36196a6fc3e1837c5ece7275ec6229ac4a1ea33651a",
+      "split": "eval",
+      "boundaries": 115
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/impl-trait/nested-return-type3.rs",
+      "sha256": "b7e6f46f3536069cb5be7012e151c4c43ecdb28f4facef1a7150d61351170c55",
+      "group": "013690448474cbd44fd8f4cf7e43c6d50d38e668c39f2f56844c6f4ff0dbf57f",
+      "split": "eval",
+      "boundaries": 13
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/nll/issue-57280-1-flipped.rs",
+      "sha256": "b51048e6caf5e7cc0c2834a9fedf989b5fb703d2e1282d536a3ddb6f5fe13498",
+      "group": "0136ac5e726b569c67293f50c9f5c34a2ebac159e0abeda7f40d1ef0b1475b8e",
+      "split": "eval",
+      "boundaries": 18
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/functional-struct-update/fru-on-enum-variant.rs",
+      "sha256": "fdd4b7bf877868919ff19e263c39d05207d8f7334aa4005ee746573c5e0d7d3d",
+      "group": "01379c4e6507ba60c458669bf8ccbee83c99b9d99b86c5fd5964317dec0f015b",
+      "split": "eval",
+      "boundaries": 5
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/storytold--artcraft/crates/desktop/artcraft/src/core/api_adapters/aspect_ratio/convert/aspect_ratio_to_artcraft_nano_banana_pro.rs",
+      "sha256": "b47ef8849fd7c657df79a913dd136e32999d439a9eeff6bbd2c56bd6736093ff",
+      "group": "013a38228ad0a882397cb286cb765c3093742504883b7d4dd75be04442b08624",
+      "split": "eval",
+      "boundaries": 27
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rustfs--rustfs/crates/s3-client/src/checksum.rs",
+      "sha256": "afa3785d09cb526cc0e0326067543835187885446996f34c71f5defd4bd6a5ba",
+      "group": "013d0e0eaad2fddf35d82caa48d329fb74aeda485b4ec31190ac47ac7731a661",
+      "split": "eval",
+      "boundaries": 356
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/resolve/resolve-conflict-import-vs-extern-crate.rs",
+      "sha256": "43316159a7fc15869f5267061a4d7b7793652a889fe165e165489fbc68a0eecc",
+      "group": "0143b09589b21fa4bdd458e18d3f0e849785372b562e3f81bda11a0ae659480e",
+      "split": "eval",
+      "boundaries": 3
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/warpdotdev--warp/app/src/code_review/diff_size_limits.rs",
+      "sha256": "15a07b492af4b45cf0922cefc4ff406d2064943c8b4c25bd4bb2b983c7768b88",
+      "group": "014b2070de9e916d37a4b8b7453511c4d49dff5bf6c80651d844f85beeaebd2d",
+      "split": "eval",
+      "boundaries": 69
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/astral-sh--ruff/crates/ty_server/tests/e2e/folding_range.rs",
+      "sha256": "2552fb9a898eb94dae1b16fcde51cc2cf889923a4d967e0896ff9d3955ce10df",
+      "group": "014c43bc5591c84df5dbb51f77fd59f02c30c5a6aa1948a33ba1bfecdd2c9359",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/nautechsystems--nautilus_trader/crates/adapters/kraken/src/websocket/mod.rs",
+      "sha256": "3a976a2a490149970ea96d383c4f84df135028fc1d6534a3227debd3757326a6",
+      "group": "01547d586271c4d0479173c1ca476fa714a6fcfe2fa27b0e53c051352069cf3e",
+      "split": "eval",
+      "boundaries": 17
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/servo--servo/components/shared/net/fetch/fetch_controller.rs",
+      "sha256": "c7b4195585d9af1debe9ecfca63fe7445e4fbd65ce69e3392190d8bc170372b6",
+      "group": "01561c2beec9e67e91e1adecfc9e18035e29b70ce95b3c5fffb094f5a10cf0d0",
+      "split": "eval",
+      "boundaries": 59
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/tinyhumansai--openhuman/crates/openhuman-core/src/agent/session_host/runtime_session/transcript.rs",
+      "sha256": "7b11fbef4e48e7d334d32f74af774671e75b54a926db312f28b800775d4e7782",
+      "group": "015873a2dbb846c71aff7e1a41f95bc3c1284b3e4d8bee7a1e8cb8fb5f299b48",
+      "split": "eval",
+      "boundaries": 61
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/rustdoc-html/reexport/private-mod-override-reexport.rs",
+      "sha256": "14dc819d045af6c2dfb065bee338e9803c9f6743bacdff0a2ce0a7e84e19c676",
+      "group": "0159a4753320a24a6d5790aca8fc83f9b9fb1a333d6d15da4e72d3384031b093",
+      "split": "eval",
+      "boundaries": 9
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/qdrant--qdrant/lib/common/common/src/mmap/advice.rs",
+      "sha256": "fed787c0e7ede7c9275d4393ab856befd84444d0352253dccc38d84bf79679a2",
+      "group": "016164ec45c42ad87767f058d1b1584405ad3ecb642618de53e0fabab6bc54b2",
+      "split": "eval",
+      "boundaries": 236
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/tests/ui/link-native-libs/lib-defaults.rs",
+      "sha256": "7ea596e1f5e8de4d019e2c92987b08b19ff8a6b3cf64068e8cfe088ccd5d5c0c",
+      "group": "016cb31c61240b7949984efd658c7a16ef03db122be6108892a9efb8eccbde3f",
+      "split": "eval",
+      "boundaries": 10
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/linera-io--linera-protocol/linera-sdk/tests/fixtures/event-subscriber/src/contract.rs",
+      "sha256": "5d25eaaf1cfb871ef4cd35324a3ae6b24561b82587461199f74982c80442263f",
+      "group": "0178daa766712c09e9b2b29b629914c759bf56e4db624a90c0697e476ff2464c",
+      "split": "eval",
+      "boundaries": 89
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/rust-lang--rust/src/tools/rust-analyzer/lib/lsp-server/src/socket.rs",
+      "sha256": "e53aa42d9d7da09cf1610b0d352ffcd483c9509fb8d324f55ddf1f7a05556de7",
+      "group": "0184c87ed54d0e3f8e21e398c8ede5a32d92814c2719ea0ac6f89d5d4e40be53",
+      "split": "eval",
+      "boundaries": 53
+    },
+    {
+      "filename": "corpora/github-top100-rust-2026-10-17-v2/repos/linera-io--linera-protocol/linera-witty-macros/src/wit_store.rs",
+      "sha256": "ec9a9b3530a473b95c698617bd02e576149711180afee24ee87dc404f14ee673",
+      "group": "01856f718f71896aee86f470723c660f1ec1a33818d44c36dad078a1452bccac",
+      "split": "eval",
+      "boundaries": 131
+    }
+  ],
+  "threshold": 0.47
+}

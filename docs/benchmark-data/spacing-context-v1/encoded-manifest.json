@@ -1,0 +1,45 @@
+{
+  "schema": 2,
+  "recordU32": 387,
+  "lexicalTokens": 256,
+  "syntaxTokens": 128,
+  "splits": {
+    "train": {
+      "count": 64039150,
+      "positive": 7033512
+    },
+    "eval": {
+      "count": 13331614,
+      "positive": 1449037
+    },
+    "test": {
+      "count": 13366640,
+      "positive": 1488386
+    }
+  },
+  "lexicalTokenizer": {
+    "name": "cl100k_base",
+    "implementation": "gpt-tokenizer@3.4.0",
+    "mode": "line-wise BPE; literal special-token strings are ordinary text",
+    "pad": 0,
+    "offset": 1,
+    "vocabulary": 100278
+  },
+  "structuralTokenizer": "Tree-sitter compact identifier schema 2, 64 tokens per side",
+  "architectureInput": "spacing-context-v1: all safe inter-line gaps; target gap omitted; five nonempty lines/side with internal spacing; raw syntax events",
+  "contextMode": "spacing-context-v1",
+  "deduplication": "exact truncated lexical context, train first; identical membership for all architectures",
+  "corpus": [
+    {
+      "root": "corpora/github-top100-typescript-2026-10-17-v2",
+      "sha256": "d8139fd5e02d8ce1ef24d96141187b15195fce0dd7d2fd3185f3a52976145696"
+    },
+    {
+      "root": "corpora/github-top100-rust-2026-10-17-v2",
+      "sha256": "633c8335f458f346ee530c0a33f34a4e1cd312a264b90f472166fcda3a10570e"
+    }
+  ],
+  "labelSource": "original upstream spacing (no Jev or formatter)",
+  "omitted": 12306,
+  "duplicates": 4611568
+}

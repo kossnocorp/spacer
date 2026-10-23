@@ -4,6 +4,7 @@ import { cpus } from "node:os";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { examples } from "../../playground/src/examples/catalog.ts";
+import { spacingBenchmarkSection } from "./spacing-benchmark-section.ts";
 
 const [family, language] = process.argv.slice(2);
 const chart = (
@@ -28,12 +29,14 @@ const directories = {
   attention: "tmp/spacer-tree-sitter-cross-attention-1",
   "lines-mixed": "tmp/spacer-lines-mixed-1",
   "attention-original": "tmp/spacer-tree-sitter-cross-attention-original-1",
+  sequential: "tmp/spacer-tree-sitter-spacing-context-1",
 };
 const familyNames: Record<string, string> = {
   lines: "Lines (Jev-trained)",
   attention: "Cross-attention (Jev-trained)",
   "lines-mixed": "Bilingual Lines (original-trained)",
   "attention-original": "Cross-attention (original-trained)",
+  sequential: "Sequential Tree",
 };
 if (family) {
   const { LocalSpacer } = await import("./predict.ts");
@@ -52,6 +55,8 @@ if (family) {
     const document = await prepareDocument(
       input.withoutSpacing,
       input.filename,
+      undefined,
+      true,
     );
     const scores =
       model instanceof LocalSpacer
@@ -85,6 +90,8 @@ if (family) {
         directory,
         lines,
         repetitions: 20,
+        boundaryMode: "all safe inter-line gaps (current playground)",
+        contextMode: model instanceof AttentionSpacer ? model.contextMode : "stripped",
         locPerSecond: (lines * 20 * 1000) / elapsed,
         p95Ms: sorted[18],
         cpuPercent: (100 * cpuTimes.reduce((a, b) => a + b, 0)) / elapsed,
@@ -116,6 +123,7 @@ if (family) {
   }
 } else {
   const created = new Date().toISOString();
+  const spacing = await spacingBenchmarkSection();
   const root = `docs/benchmark-data/runs/${created.replaceAll(":", "-")}-summary`;
   await mkdir(root, { recursive: true });
   // Retain the previous report before replacing it.
@@ -238,6 +246,7 @@ One request per language; latency includes the API round trip. This sampled-boun
         teacher,
         heldOut,
         scoring,
+        spacing,
         jev,
       },
       null,
@@ -300,7 +309,9 @@ One request per language; latency includes the API round trip. This sampled-boun
 
 Updated ${created}. **This report generation makes no Jev API calls.** ${jev?.complete ? "Approved Jev probe results are reused from the persistent cache below." : "Jev remains unmeasured pending approval."}
 
-**Result:** the new bilingual Lines model trades a small held-out accuracy loss for faster full-file formatting on the pinned examples. ${formatComparison}. Its frozen held-out accuracy is **${pct(primary.typescript.accuracy)}% TS / ${pct(primary.rust.accuracy)}% Rust**, versus **${pct(control.typescript.accuracy)}% / ${pct(control.rust.accuracy)}%** for the original-trained cross-attention control.
+${spacing.markdown}
+
+**Earlier bilingual comparison:** Lines trades a small held-out accuracy loss for faster full-file formatting on the pinned examples. ${formatComparison}. Its frozen held-out accuracy is **${pct(primary.typescript.accuracy)}% TS / ${pct(primary.rust.accuracy)}% Rust**, versus **${pct(control.typescript.accuracy)}% / ${pct(control.rust.accuracy)}%** for the original-trained cross-attention control. Speed now uses expanded playground boundaries; the held-out accuracy below retains its original sibling-boundary scope.
 
 ## Bilingual original-source models — held-out test
 
@@ -397,7 +408,7 @@ Earlier cross-attention advantages over language-specific Lines: **+${((ts.accur
 
 ## CPU formatting performance and resource use
 
-Measured with both the historical Jev-trained playground checkpoints and the **original-trained bilingual Lines and matched cross-attention control**. The bilingual Lines export is the frozen seed-42 checkpoint evaluated above, not the confirmation seed. All model/language combinations are rerun with the same runtime and inputs. Both original-trained models are available in the playground and published to R2.
+Measured with the historical Jev-trained checkpoints, original-trained bilingual Lines/cross-attention, and the new sequential model. **All use the current playground's expanded safe inter-line boundaries** on the same inputs. Older models score independently with stripped lexical context; the new model scores top-to-bottom with spacing feedback. These timings replace the older sibling-only workload and should not be treated as a runtime regression at fixed boundary coverage. All listed models are available in the playground and published to R2.
 
 | Model | Input language | LoC/sec ↑ | p95 file ms ↓ | CPU %¹ | CPU ms / 1k LoC ↓ | Peak RAM MiB² | Weights MiB |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |

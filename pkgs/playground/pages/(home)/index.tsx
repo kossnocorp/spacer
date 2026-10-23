@@ -15,6 +15,7 @@ export const Playground: React.FC = () => {
   const { source, setSource, filename, setFilename } = exampleState;
   const [backends, setBackends] = useState([defaultModel]);
   const [jevApiKey, setJevApiKey] = useState("");
+  const [preserveBlankLines, setPreserveBlankLines] = useState(false);
   const [results, setResults] = useState<Record<string, Result>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [cache] = useState(() => new ResultCache<Result>());
@@ -24,8 +25,8 @@ export const Playground: React.FC = () => {
   async function format(targets = backends) {
     await Promise.all(
       targets.map(async (backend) => {
-        const input = { source, filename, backend };
-        const key = resultKey(source, filename, backend);
+        const input = { source, filename, backend, preserveBlankLines };
+        const key = JSON.stringify([resultKey(source, filename, backend), preserveBlankLines]);
         setErrors((previous) => {
           const next = { ...previous };
           delete next[backend];
@@ -102,6 +103,19 @@ export const Playground: React.FC = () => {
         </span>
       </section>
       <ExampleControls state={exampleState} />
+      <section className="model-description">
+        <label>
+          <input type="checkbox" checked={preserveBlankLines} disabled={busy}
+            onChange={(event) => {
+              setPreserveBlankLines(event.target.checked);
+              setResults({});
+              setErrors({});
+            }} />
+          Preserve blank lines in context
+        </label>
+        <p>Local models score every inter-line gap outside protected syntax, including block edges and gaps around comments. The sequential cross-attention model was trained for these boundaries and always uses surrounding spacing with the current gap hidden.</p>
+        <small>This checkbox only affects older lexical models: it includes existing blank lines in their context, including the current gap, as an inference experiment. The sequential model always uses its trained top-to-bottom behavior. Syntax-only tokenizers do not encode blank lines. Jev is unchanged. Click Format code after changing this option.</small>
+      </section>
       <div className="toolbar">
         <label>
           Filename

@@ -11,9 +11,10 @@ export const POST = defineHandler(async (c) => {
   }
   if (!body || typeof body !== "object")
     return c.json({ error: "Expected source, filename and backend." }, 400);
-  const { source, filename, backend, apiKey } = body as Record<string, unknown>;
+  const { source, filename, backend, apiKey, preserveBlankLines } = body as Record<string, unknown>;
   if (
     typeof source !== "string" ||
+    (preserveBlankLines !== undefined && typeof preserveBlankLines !== "boolean") ||
     source.length > 200000 ||
     (apiKey !== undefined && (typeof apiKey !== "string" || apiKey.length > 4096)) ||
     typeof filename !== "string" ||
@@ -31,7 +32,7 @@ export const POST = defineHandler(async (c) => {
     );
   }
   try {
-    return await formatSource(source, filename, backend as string, backend === "jev" ? apiKey as string | undefined : undefined);
+    return await formatSource(source, filename, backend as string, backend === "jev" ? apiKey as string | undefined : undefined, preserveBlankLines === true);
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Formatting failed.";

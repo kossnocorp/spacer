@@ -124,6 +124,7 @@ def main():
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--device", default="auto")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--stream-data", action="store_true", help="Memory-map encoded records and transfer only minibatches")
     parser.add_argument("--resume-from", type=Path, help="Continue a preserved checkpoint into a new run directory")
     args = parser.parse_args()
     if min(args.epochs, args.patience, args.batch_size) < 1:
@@ -174,8 +175,12 @@ def main():
     required = sum(len(a) * 384 * 4 for a in arrays)
     free = torch.cuda.mem_get_info(device)[0] if device.type == "cuda" else 0
     storage = device if device.type == "cuda" and required < free * .65 else torch.device("cpu")
-    print(f"Input tensor storage: {storage}; {required / 2**30:.2f} GiB", flush=True)
-    train_x, val_x = [torch.from_numpy(np.array(a[:, :384], dtype=np.int32)).to(storage) for a in arrays]
+    if args.stream_data:
+        storage = torch.device("cpu")
+        train_x, val_x = [a[:, :384] for a in arrays]
+    else:
+        train_x, val_x = [torch.from_numpy(np.array(a[:, :384], dtype=np.int32)).to(storage) for a in arrays]
+    print(f"Input tensor storage: {'memory-mapped CPU' if args.stream_data else storage}; {required / 2**30:.2f} GiB encoded inputs", flush=True)
     train_y = torch.from_numpy(np.array(arrays[0][:, 384], dtype=np.float32)).to(storage)
     val_y = np.array(arrays[1][:, 384], dtype=np.float32)
     val_language = np.array(arrays[1][:, 386])
@@ -205,7 +210,8 @@ def main():
         for start in range(0, len(order), args.batch_size):
             idx = order[start:start+args.batch_size]
             optimizer.zero_grad(set_to_none=True)
-            loss = loss_fn(model(train_x[idx].to(device)), train_y[idx].to(device))
+            batch_x = torch.from_numpy(np.array(train_x[idx.numpy()], dtype=np.int32)) if args.stream_data else train_x[idx]
+            loss = loss_fn(model(batch_x.to(device)), train_y[idx].to(device))
             if not torch.isfinite(loss):
                 raise ValueError("Nonfinite training loss")
             loss.backward()
@@ -221,7 +227,14 @@ def main():
                 with (root / "progress.jsonl").open("a") as output:
                     output.write(json.dumps(event) + "\n")
                 last = now
-        scores = predict(model, val_x, args.batch_size)
+        if args.stream_data:
+            model.eval()
+            with torch.inference_mode():
+                scores = np.concatenate([model(torch.from_numpy(np.array(val_x[i:i+args.batch_size], dtype=np.int32)).to(device)).sigmoid().cpu().numpy()
+                                         for i in range(0, len(val_x), args.batch_size)])
+        else:
+            scores = predict(model, val_x, args.batch_size)
+        scores = scores.astype(np.float64)
         evaluation = measure(val_y, scores)
         history.append({"epoch": epoch, "trainingLoss": total/seen, "validation": evaluation, "seconds": time.monotonic()-begin})
         print(json.dumps(history[-1]), flush=True)
@@ -238,7 +251,7 @@ def main():
         (root / "last.pt.tmp").replace(root / "last.pt")
         if stale >= args.patience:
             break
-    scores = np.load(root / "validation-scores.npy")
+    scores = np.load(root / "validation-scores.npy").astype(np.float64)
     # Accuracy is the predeclared win criterion, F1 and log-loss are reported too.
     selected = max((measure(val_y, scores, t/1000) for t in range(100, 901, 5)), key=lambda m: (m["accuracy"], m["f1"]))
     by_language = {name: measure(val_y[val_language == code], scores[val_language == code], selected["threshold"])

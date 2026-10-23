@@ -1,0 +1,282 @@
+{
+  "config": {
+    "data": "tmp/encoded-spacing-context-v1",
+    "out": "tmp/spacing-context-v1",
+    "architecture": "cross-attention",
+    "language": "mixed",
+    "epochs": 40,
+    "patience": 7,
+    "batch_size": 512,
+    "seed": 42,
+    "device": "AMD Radeon Graphics",
+    "stream_data": true,
+    "resume_from": null,
+    "encodedManifestSha256": "2eb27b5e14e92140d1f5b0263e5651057dc6108ead5343727a76f955c10a909a",
+    "implementationSha256": "fb4f7167e43e5825e08fcfbed08b488216a22dd1049243412e6c960fdc0baad6",
+    "parameters": 3613761,
+    "validation": {
+      "examples": 13331614,
+      "threshold": 0.47,
+      "tp": 1144042,
+      "fp": 179282,
+      "fn": 304995,
+      "tn": 11703295,
+      "accuracy": 0.9636745408320403,
+      "precision": 0.8645214626198875,
+      "recall": 0.7895188321623258,
+      "f1": 0.8253196463231159,
+      "logLoss": 0.088459519593642
+    },
+    "byLanguage": {
+      "typescript": {
+        "examples": 8815387,
+        "threshold": 0.47,
+        "tp": 785295,
+        "fp": 130435,
+        "fn": 197572,
+        "tn": 7702085,
+        "accuracy": 0.9627915371157273,
+        "precision": 0.8575617267098381,
+        "recall": 0.7989839927477471,
+        "f1": 0.8272371651277233,
+        "logLoss": 0.09053129556188191
+      },
+      "rust": {
+        "examples": 4516227,
+        "threshold": 0.47,
+        "tp": 358747,
+        "fp": 48847,
+        "fn": 107423,
+        "tn": 4001210,
+        "accuracy": 0.9653981077567625,
+        "precision": 0.880157705952492,
+        "recall": 0.7695626059162967,
+        "f1": 0.8211530802367687,
+        "logLoss": 0.08441554506859382
+      }
+    },
+    "checkpointSelection": "minimum validation log loss",
+    "thresholdSelection": "maximum validation accuracy, F1 tie break",
+    "elapsedSeconds": 12673.37987771799,
+    "torch": "2.10.0+rocm7.1"
+  },
+  "history": [
+    {
+      "epoch": 1,
+      "trainingLoss": 0.10143764936824474,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1105292,
+        "fp": 166641,
+        "fn": 343745,
+        "tn": 11715936,
+        "accuracy": 0.9617161132928091,
+        "precision": 0.8689860236348927,
+        "recall": 0.7627769339223222,
+        "f1": 0.8124249807972892,
+        "logLoss": 0.09213807011623538
+      },
+      "seconds": 6144.625769892002
+    },
+    {
+      "epoch": 2,
+      "trainingLoss": 0.08882477097347267,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1137872,
+        "fp": 186327,
+        "fn": 311165,
+        "tn": 11696250,
+        "accuracy": 0.9626832880099889,
+        "precision": 0.8592907863546189,
+        "recall": 0.7852608318490142,
+        "f1": 0.820609569470467,
+        "logLoss": 0.09012312825898265
+      },
+      "seconds": 6068.527474935003
+    },
+    {
+      "epoch": 3,
+      "trainingLoss": 0.08445540663482816,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1135105,
+        "fp": 179519,
+        "fn": 313932,
+        "tn": 11703058,
+        "accuracy": 0.9629864020965504,
+        "precision": 0.863444604693053,
+        "recall": 0.7833512877863023,
+        "f1": 0.8214502429928996,
+        "logLoss": 0.08955171548529153
+      },
+      "seconds": 6096.883394202996
+    },
+    {
+      "epoch": 4,
+      "trainingLoss": 0.0817042910760566,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1151411,
+        "fp": 191078,
+        "fn": 297626,
+        "tn": 11691499,
+        "accuracy": 0.9633424730118949,
+        "precision": 0.8576688524077293,
+        "recall": 0.7946042785656957,
+        "f1": 0.8249330294613054,
+        "logLoss": 0.09092589958194734
+      },
+      "seconds": 6112.840053546999
+    },
+    {
+      "epoch": 5,
+      "trainingLoss": 0.07976429987094237,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1123641,
+        "fp": 159856,
+        "fn": 325396,
+        "tn": 11722721,
+        "accuracy": 0.9636014064013555,
+        "precision": 0.8754527669328405,
+        "recall": 0.7754398265882789,
+        "f1": 0.8224168482441573,
+        "logLoss": 0.088459519593642
+      },
+      "seconds": 6129.564031507005
+    },
+    {
+      "epoch": 6,
+      "trainingLoss": 0.07832640539507231,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1168648,
+        "fp": 207959,
+        "fn": 280389,
+        "tn": 11674618,
+        "accuracy": 0.963369176455304,
+        "precision": 0.8489336462766788,
+        "recall": 0.8064997650163522,
+        "f1": 0.827172849799904,
+        "logLoss": 0.0895375563658101
+      },
+      "seconds": 6147.833242936002
+    },
+    {
+      "epoch": 7,
+      "trainingLoss": 0.07726243822990624,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1141853,
+        "fp": 179448,
+        "fn": 307184,
+        "tn": 11703129,
+        "accuracy": 0.9634978930533092,
+        "precision": 0.8641884021884492,
+        "recall": 0.7880081737043292,
+        "f1": 0.8243420116967677,
+        "logLoss": 0.0900420936516106
+      },
+      "seconds": 6174.4598172230035
+    },
+    {
+      "epoch": 8,
+      "trainingLoss": 0.07641702380062013,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1145447,
+        "fp": 180793,
+        "fn": 303590,
+        "tn": 11701784,
+        "accuracy": 0.9636665898067556,
+        "precision": 0.8636800277476173,
+        "recall": 0.7904884416339956,
+        "f1": 0.8254649896208559,
+        "logLoss": 0.08918528594997471
+      },
+      "seconds": 6190.474750567992
+    },
+    {
+      "epoch": 9,
+      "trainingLoss": 0.07238020264117256,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1159861,
+        "fp": 189797,
+        "fn": 289176,
+        "tn": 11692780,
+        "accuracy": 0.9640723921349658,
+        "precision": 0.8593740043774052,
+        "recall": 0.8004357376657739,
+        "f1": 0.828858450099064,
+        "logLoss": 0.08908431514107781
+      },
+      "seconds": 6202.62660538801
+    },
+    {
+      "epoch": 10,
+      "trainingLoss": 0.07145114147001598,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1167164,
+        "fp": 200561,
+        "fn": 281873,
+        "tn": 11682016,
+        "accuracy": 0.9638127836584528,
+        "precision": 0.8533616041236359,
+        "recall": 0.805475636577948,
+        "f1": 0.8287274537216847,
+        "logLoss": 0.090002319681927
+      },
+      "seconds": 6220.686260282993
+    },
+    {
+      "epoch": 11,
+      "trainingLoss": 0.07103670598090786,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1152814,
+        "fp": 177415,
+        "fn": 296223,
+        "tn": 11705162,
+        "accuracy": 0.9644725687377387,
+        "precision": 0.8666282271699084,
+        "recall": 0.7955725078103596,
+        "f1": 0.8295816233494743,
+        "logLoss": 0.08848738067464992
+      },
+      "seconds": 6377.1744894099975
+    },
+    {
+      "epoch": 12,
+      "trainingLoss": 0.06861379932509737,
+      "validation": {
+        "examples": 13331614,
+        "threshold": 0.5,
+        "tp": 1161152,
+        "fp": 192383,
+        "fn": 287885,
+        "tn": 11690194,
+        "accuracy": 0.9639752546090818,
+        "precision": 0.8578662539202903,
+        "recall": 0.8013266741981053,
+        "f1": 0.8286331269990566,
+        "logLoss": 0.0911334052535677
+      },
+      "seconds": 6278.141508226996
+    }
+  ],
+  "weightsSha256": "0186f8a4bbb7faa7e0863333e9f0896a49d53baa1ce646757ca69f4cb27dc0d6"
+}

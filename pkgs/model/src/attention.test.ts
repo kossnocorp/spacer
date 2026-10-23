@@ -15,6 +15,7 @@ import {
 for (const name of [
   "spacer-tree-sitter-cross-attention-1",
   "spacer-tree-sitter-cross-attention-original-1",
+  "spacer-tree-sitter-spacing-context-1",
 ]) {
   const directory = fileURLToPath(
     new URL(`../../../tmp/${name}/`, import.meta.url),

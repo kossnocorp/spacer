@@ -6,6 +6,7 @@ import { encodeContext, type Document } from "@spcr/tree-sitter";
 import { lineContext } from "./line-document.ts";
 import { windows } from "./data.ts";
 import { encodePair } from "./tokenizer.ts";
+import { scoreSequential } from "./spacing-context.ts";
 
 export const attentionTokenizerInfo = {
   name: "spacer-lexical-tree-sitter",
@@ -23,7 +24,13 @@ export const attentionTokenizerInfo = {
 export class AttentionSpacer {
   readonly weights: Record<string, Tensor>;
   readonly threshold: number;
-  constructor(weights: Record<string, Tensor>, threshold: number) {
+  readonly contextMode: string;
+  constructor(
+    weights: Record<string, Tensor>,
+    threshold: number,
+    contextMode = "stripped",
+  ) {
+    this.contextMode = contextMode;
     this.weights = weights;
     this.threshold = threshold;
   }
@@ -61,7 +68,12 @@ export class AttentionSpacer {
       }
       if (offset !== bytes.length)
         throw new Error("Cross-attention weight length mismatch");
-      return new AttentionSpacer(weights, config.threshold);
+      if (
+        config.contextMode &&
+        !["stripped", "spacing-context-v1"].includes(config.contextMode)
+      )
+        throw new Error("Unknown attention context mode");
+      return new AttentionSpacer(weights, config.threshold, config.contextMode);
     } catch (error) {
       tf.dispose(Object.values(weights));
       throw error;
@@ -155,6 +167,13 @@ export class AttentionSpacer {
   }
 
   async score(document: Document, batchSize = 128) {
+    if (this.contextMode === "spacing-context-v1") {
+      return scoreSequential(
+        document,
+        this.threshold,
+        async (tokens) => (await this.scoreTokens(tokens, 1))[0]!,
+      );
+    }
     const prepared = lineContext(document);
     const scores = new Float32Array(document.boundaries.length);
     for (let start = 0; start < scores.length; start += batchSize) {

@@ -13,6 +13,7 @@ export async function formatModel(
   source: string,
   filename: string,
   id: string,
+  preserveBlankLines = false,
 ) {
   const entry = models.find((m) => m.id === id);
   if (!entry) throw new Error("Unknown model ID");
@@ -30,7 +31,8 @@ export async function formatModel(
     pending.catch(() => cache.delete(id));
   }
   const model = await pending;
-  const doc = await prepareDocument(source, filename);
+  const doc = await prepareDocument(source, filename, undefined, true);
+  doc.preserveBlankLines = preserveBlankLines;
   const scores =
     model instanceof LocalSpacer
       ? await model.scoreDocument(doc)

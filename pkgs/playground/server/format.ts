@@ -7,6 +7,7 @@ export async function formatSource(
   filename: string,
   backend: string,
   apiKey?: string,
+  preserveBlankLines = false,
 ) {
   if (backend !== "jev") {
     const entry = pathToFileURL(resolve("../model/src/serve.ts")).href;
@@ -15,6 +16,7 @@ export async function formatSource(
       source,
       filename,
       backend === "spacer" ? defaultModel : backend,
+      preserveBlankLines,
     );
   }
   // Native loading keeps Tree-sitter workers outside Vite's module runner.

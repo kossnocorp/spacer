@@ -8,7 +8,7 @@ export function lineContext(document: Document): Prepared {
   const lines: string[] = [];
   for (const line of document.lines) {
     rows.push(lines.length);
-    if (line.trim()) lines.push(line);
+    if (document.preserveBlankLines || line.trim()) lines.push(line);
   }
   return {
     file: document.language,

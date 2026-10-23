@@ -25,7 +25,7 @@ parentPort!.on("message", async ({ id, action, args }) => {
     } else if (action === "tokenize")
       value = await tokenize(args[0], workerData.language);
     else if (action === "prepare")
-      value = await prepareDocument(args[0], args[1], workerData.language);
+      value = await prepareDocument(args[0], args[1], workerData.language, args[2]);
     else if (action === "render")
       value = await renderDocument(args[0], args[1], args[2]);
     else throw new Error(`Unknown action ${action}`);

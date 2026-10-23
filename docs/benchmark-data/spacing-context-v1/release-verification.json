@@ -1,0 +1,32 @@
+{
+  "verifiedAt": "2026-10-23T02:37:30.543787+00:00",
+  "bucket": "spacer-models",
+  "prefix": "models/tree-sitter-spacing-context-1",
+  "files": [
+    {
+      "file": "config.json",
+      "bytes": 2590,
+      "sha256": "0bde2802d8ddd9f15fccbce0d48d4c1d4267ca1003f4e21cc1935688b197bfe9"
+    },
+    {
+      "file": "best/model.json",
+      "bytes": 1554,
+      "sha256": "f21b2310534e89f218509f572a1be220991adb072afb8390afd2013e8a16a853"
+    },
+    {
+      "file": "best/weights.bin",
+      "bytes": 14455044,
+      "sha256": "0cfb31cde78a2c2b7ef3400c84e9518c21078a88ba82acc9168b5992820bc206"
+    },
+    {
+      "file": "export-check.json",
+      "bytes": 119,
+      "sha256": "a80cad59e52c1d2cf0372a5ae311d4ecd4319f34d3821c7dce78af669faca381"
+    },
+    {
+      "file": "release.json",
+      "bytes": 2112,
+      "sha256": "f47495287d8c8781ac19fc0ab6bac53d2a9741e492a2ad57b36c287097eb00e9"
+    }
+  ]
+}

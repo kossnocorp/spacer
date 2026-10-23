@@ -16,6 +16,18 @@ export const modelTokenizers = {
 
 export const models = [
   {
+    id: "spacer-tree-sitter-spacing-context-1",
+    name: "Spacer Sequential Cross-Attention v1 Rust + TypeScript",
+    family: "attention",
+    tokenizer: {
+      key: "compact",
+      label: "Hybrid · BPE with surrounding blank lines + Tree-Sitter compact schema 2",
+    },
+    directory: "tmp/spacer-tree-sitter-spacing-context-1",
+    description:
+      "3.61M-parameter model trained on all safe inter-line gaps in original Rust/TypeScript. Always preserves surrounding spacing, hides the current gap, and formats top-to-bottom using previous decisions. Threshold 0.47. Sequential validation on 200 files: 96.35% TS / 97.26% Rust accuracy with original spacing; 95.30% / 96.91% with blank lines stripped. Different boundaries from older models; not a matched held-out comparison. The context checkbox does not override this model's trained behavior.",
+  },
+  {
     id: "spacer-lines-mixed-1",
     name: "Spacer Lines v1 Rust + TypeScript",
     family: "lines",

@@ -33,6 +33,7 @@ with torch.inference_mode():
     scores = model(torch.from_numpy(tokens)).sigmoid().tolist()
 (out / "parity.json").write_text(json.dumps({"tokens": tokens.tolist(), "scores": scores}))
 config = json.loads((root / "config.json").read_text())
+config["contextMode"] = manifest.get("contextMode", "stripped")
 config.update({"modelName": out.name, "trainingLanguages": args.training_languages, "threshold": config["validation"]["threshold"],
                "tokenizer": {"name": "spacer-lexical-tree-sitter", "schema": 1,
                    "lexical": {"name": "cl100k_base", "implementation": "gpt-tokenizer@3.4.0", "tokensPerSide": 128, "contextLines": 5},

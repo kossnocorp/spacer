@@ -80,6 +80,10 @@ run = "python3 pkgs/model/python/research_status.py"
 description = "GPU from-scratch bilingual lexical CNN search; validation only, resumable"
 run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/lines_mixed.py"
 
+[tasks."research:spacing-context"]
+description = "Train mixed cross-attention with hidden target gaps and original surrounding spacing; sequential validation"
+run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/spacing_campaign.py"
+
 [tasks."research:finalize-lines-mixed"]
 description = "One-shot frozen bilingual held-out comparison on CPU; resumable"
 run = "uv run --project pkgs/model --frozen python -u pkgs/model/python/finalize_lines_mixed.py"

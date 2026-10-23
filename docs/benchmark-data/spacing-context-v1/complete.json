@@ -1,0 +1,7 @@
+{
+  "complete": true,
+  "checkpoint": "tmp/spacing-context-v1/cross-attention-mixed-seed42",
+  "export": "tmp/spacer-tree-sitter-spacing-context-1",
+  "weightsSha256": "0186f8a4bbb7faa7e0863333e9f0896a49d53baa1ce646757ca69f4cb27dc0d6",
+  "protocolSha256": "3e71cb16671f480c2b9074d2aad672601706f09a883c86814e543957cfeb1097"
+}
